@@ -8,22 +8,22 @@
 import UIKit
 
 class TabBarItemView: UIButton {
-    // MARK: - Properties
+    // MARK: - Public properties
     var isSelectedItem: Bool = false {
         didSet {
             substrate.isHidden = isSelectedItem ? false : true
         }
     }
     
-    // MARK: Views
-    let iconView: UIImageView = {
+    // MARK: - Views
+    private let iconView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
         view.tintColor = UIColor(hexString: "#F3F3F3")
         return view
     }()
     
-    let substrate: UIView = {
+    private let substrate: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.alpha = 0.3
@@ -38,16 +38,12 @@ class TabBarItemView: UIButton {
         iconView.image = icon?.withRenderingMode(.alwaysTemplate)
         setupView()
     }
-    
-    // MARK: - UI
-    private func setupView() {
-        [substrate,
-         iconView].forEach(addSubview)
-        
-        translatesAutoresizingMaskIntoConstraints = false
-        iconView.translatesAutoresizingMaskIntoConstraints = false
-        substrate.translatesAutoresizingMaskIntoConstraints = false
-        
+}
+
+// MARK: - Private extension
+private extension TabBarItemView {
+    func setupView() {
+        addViews([substrate, iconView])
         substrate.layer.cornerRadius = 9
         
         NSLayoutConstraint.activate([
@@ -59,7 +55,7 @@ class TabBarItemView: UIButton {
             substrate.trailingAnchor.constraint(equalTo: trailingAnchor),
             substrate.leadingAnchor.constraint(equalTo: leadingAnchor),
             substrate.topAnchor.constraint(equalTo: topAnchor),
-            substrate.bottomAnchor.constraint(equalTo: bottomAnchor)
+            substrate.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
 }

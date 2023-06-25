@@ -7,13 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C72465422A3E2F1F005AE0AA /* CircleParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72465412A3E2F1F005AE0AA /* CircleParameters.swift */; };
+		C726F8932A474F3D0007EE80 /* CounterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F8922A474F3D0007EE80 /* CounterController.swift */; };
+		C726F8952A4751F70007EE80 /* CounterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F8942A4751F70007EE80 /* CounterDelegate.swift */; };
+		C726F8982A47549B0007EE80 /* TimerParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F8972A47549B0007EE80 /* TimerParameters.swift */; };
+		C72FE1D12A30C2BE0000B98C /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72FE1D02A30C2BE0000B98C /* TimerViewController.swift */; };
 		C73D0BFF2A01699F006F0EE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73D0BFE2A01699F006F0EE2 /* AppDelegate.swift */; };
 		C73D0C012A01699F006F0EE2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73D0C002A01699F006F0EE2 /* SceneDelegate.swift */; };
 		C73D0C082A01699F006F0EE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C73D0C072A01699F006F0EE2 /* Assets.xcassets */; };
 		C73D0C0B2A01699F006F0EE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C73D0C092A01699F006F0EE2 /* LaunchScreen.storyboard */; };
-		C7D226F22A02AD9B001D1966 /* RedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D226F12A02AD9B001D1966 /* RedViewController.swift */; };
-		C7D226F42A02ADB2001D1966 /* BlueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D226F32A02ADB2001D1966 /* BlueViewController.swift */; };
-		C7D226F62A02ADBD001D1966 /* GreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D226F52A02ADBD001D1966 /* GreenViewController.swift */; };
+		C75C09C12A377EBD00A1EA4F /* CircleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75C09C02A377EBD00A1EA4F /* CircleShape.swift */; };
+		C7CB25BE2A30E5CB001F3685 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB25BD2A30E5CB001F3685 /* Fonts.swift */; };
+		C7CB25CB2A30E776001F3685 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7CB25C52A30E776001F3685 /* Inter-Medium.ttf */; };
+		C7CB25CC2A30E776001F3685 /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7CB25C62A30E776001F3685 /* Inter-Black.ttf */; };
+		C7CB25CD2A30E776001F3685 /* Inter-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7CB25C72A30E776001F3685 /* Inter-Thin.ttf */; };
+		C7CB25CE2A30E776001F3685 /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7CB25C82A30E776001F3685 /* Inter-Light.ttf */; };
+		C7CB25CF2A30E776001F3685 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7CB25C92A30E776001F3685 /* Inter-Regular.ttf */; };
+		C7CB25D02A30E776001F3685 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7CB25CA2A30E776001F3685 /* Inter-Bold.ttf */; };
+		C7CB25D32A30E83D001F3685 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB25D22A30E83D001F3685 /* ClockView.swift */; };
+		C7CB25D72A30EAF5001F3685 /* UIView+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB25D62A30EAF5001F3685 /* UIView+ext.swift */; };
+		C7D226F22A02AD9B001D1966 /* TemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D226F12A02AD9B001D1966 /* TemplateViewController.swift */; };
 		C7D226FA2A02BB19001D1966 /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D226F92A02BB19001D1966 /* TabBarItemView.swift */; };
 		C7D226FC2A02BE86001D1966 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D226FB2A02BE86001D1966 /* TabBarView.swift */; };
 		C7D226FE2A02D984001D1966 /* UIColor+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D226FD2A02D984001D1966 /* UIColor+ext.swift */; };
@@ -21,15 +34,28 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C72465412A3E2F1F005AE0AA /* CircleParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleParameters.swift; sourceTree = "<group>"; };
+		C726F8922A474F3D0007EE80 /* CounterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterController.swift; sourceTree = "<group>"; };
+		C726F8942A4751F70007EE80 /* CounterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterDelegate.swift; sourceTree = "<group>"; };
+		C726F8972A47549B0007EE80 /* TimerParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerParameters.swift; sourceTree = "<group>"; };
+		C72FE1D02A30C2BE0000B98C /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		C73D0BFB2A01699F006F0EE2 /* ModocoreApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModocoreApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73D0BFE2A01699F006F0EE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C73D0C002A01699F006F0EE2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C73D0C072A01699F006F0EE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C73D0C0A2A01699F006F0EE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C73D0C0C2A01699F006F0EE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C7D226F12A02AD9B001D1966 /* RedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedViewController.swift; sourceTree = "<group>"; };
-		C7D226F32A02ADB2001D1966 /* BlueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueViewController.swift; sourceTree = "<group>"; };
-		C7D226F52A02ADBD001D1966 /* GreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenViewController.swift; sourceTree = "<group>"; };
+		C75C09C02A377EBD00A1EA4F /* CircleShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleShape.swift; sourceTree = "<group>"; };
+		C7CB25BD2A30E5CB001F3685 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		C7CB25C52A30E776001F3685 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
+		C7CB25C62A30E776001F3685 /* Inter-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Black.ttf"; sourceTree = "<group>"; };
+		C7CB25C72A30E776001F3685 /* Inter-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Thin.ttf"; sourceTree = "<group>"; };
+		C7CB25C82A30E776001F3685 /* Inter-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Light.ttf"; sourceTree = "<group>"; };
+		C7CB25C92A30E776001F3685 /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
+		C7CB25CA2A30E776001F3685 /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
+		C7CB25D22A30E83D001F3685 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
+		C7CB25D62A30EAF5001F3685 /* UIView+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ext.swift"; sourceTree = "<group>"; };
+		C7D226F12A02AD9B001D1966 /* TemplateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateViewController.swift; sourceTree = "<group>"; };
 		C7D226F92A02BB19001D1966 /* TabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemView.swift; sourceTree = "<group>"; };
 		C7D226FB2A02BE86001D1966 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		C7D226FD2A02D984001D1966 /* UIColor+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ext.swift"; sourceTree = "<group>"; };
@@ -92,9 +118,9 @@
 			isa = PBXGroup;
 			children = (
 				C73D0C1D2A016E50006F0EE2 /* Navigation */,
-				C7D226F12A02AD9B001D1966 /* RedViewController.swift */,
-				C7D226F32A02ADB2001D1966 /* BlueViewController.swift */,
-				C7D226F52A02ADBD001D1966 /* GreenViewController.swift */,
+				C7D226F12A02AD9B001D1966 /* TemplateViewController.swift */,
+				C72FE1D02A30C2BE0000B98C /* TimerViewController.swift */,
+				C726F8922A474F3D0007EE80 /* CounterController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -102,6 +128,8 @@
 		C73D0C142A016AB5006F0EE2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C72465412A3E2F1F005AE0AA /* CircleParameters.swift */,
+				C726F8972A47549B0007EE80 /* TimerParameters.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -109,6 +137,7 @@
 		C73D0C152A016ABC006F0EE2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C7CB25D12A30E831001F3685 /* Clock */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -116,6 +145,7 @@
 		C73D0C162A016ACA006F0EE2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C7CB25B62A30E509001F3685 /* Fonts */,
 				C73D0C072A01699F006F0EE2 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -125,16 +155,10 @@
 			isa = PBXGroup;
 			children = (
 				C73D0C1A2A016B08006F0EE2 /* Helpers */,
-				C73D0C192A016AF6006F0EE2 /* Base */,
+				C7CB25BD2A30E5CB001F3685 /* Fonts.swift */,
+				C726F8942A4751F70007EE80 /* CounterDelegate.swift */,
 			);
 			path = Library;
-			sourceTree = "<group>";
-		};
-		C73D0C192A016AF6006F0EE2 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Base;
 			sourceTree = "<group>";
 		};
 		C73D0C1A2A016B08006F0EE2 /* Helpers */ = {
@@ -149,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				C7D226FD2A02D984001D1966 /* UIColor+ext.swift */,
+				C7CB25D62A30EAF5001F3685 /* UIView+ext.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -166,6 +191,28 @@
 				C7EF04862A01829C0030BE13 /* TabBar */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		C7CB25B62A30E509001F3685 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C7CB25C62A30E776001F3685 /* Inter-Black.ttf */,
+				C7CB25CA2A30E776001F3685 /* Inter-Bold.ttf */,
+				C7CB25C82A30E776001F3685 /* Inter-Light.ttf */,
+				C7CB25C52A30E776001F3685 /* Inter-Medium.ttf */,
+				C7CB25C92A30E776001F3685 /* Inter-Regular.ttf */,
+				C7CB25C72A30E776001F3685 /* Inter-Thin.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		C7CB25D12A30E831001F3685 /* Clock */ = {
+			isa = PBXGroup;
+			children = (
+				C7CB25D22A30E83D001F3685 /* ClockView.swift */,
+				C75C09C02A377EBD00A1EA4F /* CircleShape.swift */,
+			);
+			path = Clock;
 			sourceTree = "<group>";
 		};
 		C7EF04862A01829C0030BE13 /* TabBar */ = {
@@ -238,6 +285,12 @@
 			files = (
 				C73D0C0B2A01699F006F0EE2 /* LaunchScreen.storyboard in Resources */,
 				C73D0C082A01699F006F0EE2 /* Assets.xcassets in Resources */,
+				C7CB25D02A30E776001F3685 /* Inter-Bold.ttf in Resources */,
+				C7CB25CB2A30E776001F3685 /* Inter-Medium.ttf in Resources */,
+				C7CB25CD2A30E776001F3685 /* Inter-Thin.ttf in Resources */,
+				C7CB25CE2A30E776001F3685 /* Inter-Light.ttf in Resources */,
+				C7CB25CC2A30E776001F3685 /* Inter-Black.ttf in Resources */,
+				C7CB25CF2A30E776001F3685 /* Inter-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,15 +301,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7D226F22A02AD9B001D1966 /* RedViewController.swift in Sources */,
+				C72FE1D12A30C2BE0000B98C /* TimerViewController.swift in Sources */,
+				C7CB25D32A30E83D001F3685 /* ClockView.swift in Sources */,
+				C726F8952A4751F70007EE80 /* CounterDelegate.swift in Sources */,
+				C7D226F22A02AD9B001D1966 /* TemplateViewController.swift in Sources */,
 				C7D226FC2A02BE86001D1966 /* TabBarView.swift in Sources */,
 				C7D226FE2A02D984001D1966 /* UIColor+ext.swift in Sources */,
 				C73D0BFF2A01699F006F0EE2 /* AppDelegate.swift in Sources */,
+				C726F8932A474F3D0007EE80 /* CounterController.swift in Sources */,
+				C75C09C12A377EBD00A1EA4F /* CircleShape.swift in Sources */,
+				C726F8982A47549B0007EE80 /* TimerParameters.swift in Sources */,
 				C73D0C012A01699F006F0EE2 /* SceneDelegate.swift in Sources */,
-				C7D226F42A02ADB2001D1966 /* BlueViewController.swift in Sources */,
+				C72465422A3E2F1F005AE0AA /* CircleParameters.swift in Sources */,
 				C7D226FA2A02BB19001D1966 /* TabBarItemView.swift in Sources */,
+				C7CB25D72A30EAF5001F3685 /* UIView+ext.swift in Sources */,
+				C7CB25BE2A30E5CB001F3685 /* Fonts.swift in Sources */,
 				C7EF04882A0182AE0030BE13 /* TabBarController.swift in Sources */,
-				C7D226F62A02ADBD001D1966 /* GreenViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

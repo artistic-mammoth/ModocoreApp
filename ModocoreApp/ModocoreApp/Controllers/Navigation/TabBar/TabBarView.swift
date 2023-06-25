@@ -8,12 +8,14 @@
 import UIKit
 
 class TabBarView: UITabBar {
-    
-    // MARK: - Properties
+    // MARK: - Public properties
     var itemsWrapped = [TabBarItemView]()
     
-    // MARK: Views
-    let stackView: UIStackView = {
+    // MARK: - Private properties
+    private let appearance = UITabBarAppearance()
+    
+    // MARK: - Views
+    private let stackView: UIStackView = {
         let view = UIStackView()
         view.alignment = .fill
         view.axis = .horizontal
@@ -28,20 +30,22 @@ class TabBarView: UITabBar {
         setupView()
     }
     
-    // MARK: - UI
-    private func setupView() {
-        addSubview(stackView)
-        
-        translatesAutoresizingMaskIntoConstraints = false
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        isTranslucent = false
-        let appearance = UITabBarAppearance()
+    // MARK: - Public methods
+    func setCustomAppearance(_ isDark: Bool = false) {
         appearance.configureWithTransparentBackground()
-        appearance.backgroundColor = UIColor(hexString: "#16161B")
+        appearance.backgroundColor = isDark ? UIColor(hexString: "#363642") : UIColor(hexString: "#16161B")
         standardAppearance = appearance
         scrollEdgeAppearance = appearance
-        
+    }
+}
+
+// MARK: - Private extension
+private extension TabBarView {
+    func setupView() {
+        addViews(stackView)
+        isTranslucent = false
+        setCustomAppearance()
+
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
@@ -49,15 +53,10 @@ class TabBarView: UITabBar {
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -9)
         ])
         
-        for i in 0 ..< itemsWrapped.count {
-            let item = itemsWrapped[i]
+        for item in itemsWrapped {
+            item.translatesAutoresizingMaskIntoConstraints = false
             stackView.addArrangedSubview(item)
-            
-            NSLayoutConstraint.activate([
-                item.widthAnchor.constraint(equalTo: stackView.heightAnchor)
-            ])
+            item.widthAnchor.constraint(equalTo: stackView.heightAnchor).isActive = true
         }
     }
-    
-    
 }
