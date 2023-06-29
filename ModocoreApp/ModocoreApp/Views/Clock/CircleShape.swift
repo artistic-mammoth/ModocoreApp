@@ -9,7 +9,7 @@ import UIKit
 
 final class CircleShape: CAShapeLayer {
     // MARK: - Private properties
-    private var param: CircleParameters?
+    private var param: CircleParameters = CircleParameters(powAmplitude: 9, powDynamics: 10, waveAmplitude: 20, diameter: 300, frequency: 3, speed: 1 / 1000.0, opacity: 1, color: .white)
 
     // MARK: - Init
     @available (*, unavailable)
@@ -19,7 +19,7 @@ final class CircleShape: CAShapeLayer {
         super.init(layer: layer)
     }
     
-    init(with parameters: CircleParameters? = nil) {
+    init(with parameters: CircleParameters) {
         super.init()
         self.param = parameters
         drawCircle()
@@ -27,20 +27,19 @@ final class CircleShape: CAShapeLayer {
     
     // MARK: - Public methods
     func startAnimation() {
-        guard let param = param else { return }
         let animation = getWaveAnimation(with: param)
         add(animation, forKey: nil)
     }
     
     func stopAnimation() {
-        removeAllAnimations()
-        removeFromSuperlayer()
+        let animation = getStopAnimation(with: param)
+        add(animation, forKey: nil)
     }
 }
 
 // MARK: - Private extension
 private extension CircleShape {
-    private func getNewPath(_ factor: Double, param: CircleParameters) -> UIBezierPath {
+    func getNewPath(_ factor: Double, param: CircleParameters) -> UIBezierPath {
         let points = 180
         let shift: Double = 2 * Double.pi / 3
         let path = UIBezierPath()
@@ -52,9 +51,8 @@ private extension CircleShape {
         for i in 0..<points {
             let a: Double = Double(i) * 2 * Double.pi / Double(points)
             let s: Double = factor * param.speed
-            let c: Double = cos(a * Double(param.frequency) - shift + s)
             let p: Double = pow(((Double(param.powAmplitude) + cos(a - s)) / Double(param.powDynamics)), 3)
-            let r: Double = Double(circleRadius + waveAmplitude * c * p)
+            let r: Double = Double(circleRadius + waveAmplitude * cos(a * Double(param.frequency) - shift + s) * p)
             let x: Double = Double(center.x) + (r * sin(a))
             let y: Double =  Double(center.y) + (r * -cos(a))
             
@@ -66,8 +64,7 @@ private extension CircleShape {
         return path
     }
     
-    private func drawCircle() {
-        guard let param = param else { return }
+    func drawCircle() {
         let pathN = getNewPath(1, param: param)
         path = pathN.cgPath
         strokeColor = param.color.cgColor
@@ -78,7 +75,7 @@ private extension CircleShape {
         lineCap = .round
     }
     
-    private func getWaveAnimation(with param: CircleParameters) -> CAKeyframeAnimation {
+    func getWaveAnimation(with param: CircleParameters) -> CAKeyframeAnimation {
         let animation = CAKeyframeAnimation(keyPath: "path")
 
         var animseq: [CGPath] = []
@@ -88,7 +85,7 @@ private extension CircleShape {
             animseq.append(getNewPath(Double(i) / Double(shards) * Double.pi * 2000, param: param).cgPath)
         }
         
-        animation.calculationMode = CAAnimationCalculationMode.linear
+        animation.calculationMode = CAAnimationCalculationMode.cubic
         animation.duration = 3
         animation.values = animseq.reversed()
         animation.isRemovedOnCompletion = false
@@ -97,4 +94,16 @@ private extension CircleShape {
         
         return animation
     }
+    
+    func getStopAnimation(with param: CircleParameters) -> CABasicAnimation {
+        let animation = CABasicAnimation(keyPath: "path")
+        
+        animation.fillMode = CAMediaTimingFillMode.forwards
+        animation.toValue = getNewPath(0, param: param)
+        animation.duration = 2
+        animation.isRemovedOnCompletion = false
+        
+        return animation
+    }
+    
 }

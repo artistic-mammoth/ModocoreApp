@@ -31,7 +31,7 @@ struct CircleParameters {
 
 
 /*
- // MARK: default
+ // MARK: default testing
  let powAmplitude: Int = 9
  let powDynamics: Int = 10
  let waveAmplitude: Int = 20

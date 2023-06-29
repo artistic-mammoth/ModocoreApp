@@ -7,10 +7,21 @@
 
 import UIKit
 
-final class TimerViewController: UIViewController, CounterDelegate {
-    let time = 3
+final class TimerViewController: UIViewController {
+    // TODO: remove after testing
+    private let parameters = [TimerParameters(status: .focus, timeInSec: 2), TimerParameters(status: .rest, timeInSec: 2)]
+//    private let parameters: [TimerParameters] = []
+
     
-    let label: UILabel = {
+    // MARK: - Private properties
+    private var counterService: CounterService?
+    private var isPaused = false
+    private var isStarted = false
+    
+    // MARK: - Views
+    private lazy var clockView = ClockView()
+    
+    private lazy var label: UILabel = {
        let label = UILabel()
         label.textColor = .white
         label.textAlignment = .center
@@ -19,52 +30,24 @@ final class TimerViewController: UIViewController, CounterDelegate {
         return label
     }()
     
-    var clockView: ClockView?
-    var counterController: CounterController?
-    
+
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureAppearance()
         layoutViews()
-        counterController = CounterController()
-        counterController?.delegate = self
-        counterController?.startCounter(with: time)
-
-    }
-    
-    func updateTime(with timeInSec: Int) {
-        clockView?.updateTime(with: timeInSec)
-    }
-    
-    func startTimer(with timeInSec: Int) {
-        clockView = ClockView()
-        if let clockView = clockView {
-            view.addViews(clockView)
-        }
-        
-        clockView?.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        clockView?.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        clockView?.heightAnchor.constraint(equalToConstant: 273).isActive = true
-        clockView?.widthAnchor.constraint(equalToConstant: 273).isActive = true
-        clockView?.startTimer(with: timeInSec)
-        label.text = "FOCUS"
-        view.layoutIfNeeded()
-    }
-    
-    func stopTimer() {
-        clockView?.stopTimer()
-        label.text = ""
-        counterController = nil
-        clockView?.removeFromSuperview()
-        clockView = nil
     }
 
 }
 
+// MARK: - Private extension
 private extension TimerViewController {
     func configureAppearance() {
-        view.addViews([label])
-        view.backgroundColor = UIColor(hexString: "16161B")
+        view.addViews([label, clockView])
+        view.backgroundColor = .blackBackground
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(pauseTimer))
+        clockView.addGestureRecognizer(tapGesture)
     }
     
     func layoutViews() {
@@ -73,6 +56,74 @@ private extension TimerViewController {
             label.widthAnchor.constraint(equalToConstant: 100),
             label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+            
+            clockView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            clockView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            clockView.heightAnchor.constraint(equalToConstant: 273),
+            clockView.widthAnchor.constraint(equalToConstant: 273),
         ])
     }
+    
+    @objc func pauseTimer() {
+        if !isStarted {
+            guard parameters.count > 0 else { return }
+            isStarted = true
+            counterService = CounterService(parameters)
+            counterService?.delegate = self
+            counterService?.startCounter()
+            return
+        }
+        
+        if isPaused {
+            counterService?.resumeTimer()
+            clockView.resumeTimer()
+            isPaused = false
+        }
+        else {
+            counterService?.pauseTimer()
+            clockView.pauseTimer()
+            isPaused = true
+        }
+    }
+}
+
+// MARK: - CounterDelegate extension
+extension TimerViewController: CounterDelegate {
+    func startTimer(with param: TimerParameters) {
+        clockView.startTimer(with: param.timeInSec)
+        
+        UIView.transition(with: label, duration: 1.5, options: .transitionCrossDissolve) { [weak self] in
+            switch param.status {
+            case .focus: self?.label.text = "FOCUS"
+            case .rest: self?.label.text = "REST"
+            }
+        }
+    }
+    
+    func updateTime(with timeInSec: Int) {
+        clockView.updateTime(with: timeInSec)
+    }
+    
+    func switchState(with param: TimerParameters) {
+        clockView.updateTime(with: param.timeInSec)
+        
+        UIView.transition(with: label, duration: 0.5, options: .transitionCrossDissolve) { [weak self] in
+            switch param.status {
+            case .focus: self?.label.text = "FOCUS"
+            case .rest: self?.label.text = "REST"
+            }
+        }
+    }
+    
+    func stopTimer() {
+        clockView.stopTimer()
+        
+        UIView.transition(with: label, duration: 1.5, options: .transitionCrossDissolve) { [weak self] in
+            self?.label.text = ""
+        }
+        
+        counterService = nil
+        isStarted = false
+    }
+
 }

@@ -28,9 +28,9 @@ private extension TabBarController {
         let timerItem = TabBarItemView(icon: UIImage(systemName: "timer.circle.fill"))
         let settings = TabBarItemView(icon: UIImage(systemName: "gear.circle"))
         
-        let red = TemplateViewController()
-        let timerController = TimerViewController()
-        let green = TemplateViewController()
+        lazy var red = TemplateViewController()
+        lazy var timerController = TimerViewController()
+        lazy var green = TemplateViewController()
         
         setTabBar(items: [home, timerItem, settings])
         viewControllers = [red, timerController, green]
