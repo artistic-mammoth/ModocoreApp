@@ -9,7 +9,7 @@ import UIKit
 
 final class CircleShape: CAShapeLayer {
     // MARK: - Private properties
-    private var param: CircleParameters = CircleParameters(powAmplitude: 9, powDynamics: 10, waveAmplitude: 20, diameter: 300, frequency: 3, speed: 1 / 1000.0, opacity: 1, color: .white)
+    private var param: CircleShapeParameters = CircleShapeParameters(powAmplitude: 9, powDynamics: 10, waveAmplitude: 20, diameter: 300, frequency: 3, speed: 1 / 1000.0, opacity: 1, color: .white)
 
     // MARK: - Init
     @available (*, unavailable)
@@ -19,7 +19,7 @@ final class CircleShape: CAShapeLayer {
         super.init(layer: layer)
     }
     
-    init(with parameters: CircleParameters) {
+    init(with parameters: CircleShapeParameters) {
         super.init()
         self.param = parameters
         drawCircle()
@@ -39,7 +39,7 @@ final class CircleShape: CAShapeLayer {
 
 // MARK: - Private extension
 private extension CircleShape {
-    func getNewPath(_ factor: Double, param: CircleParameters) -> UIBezierPath {
+    func getNewPath(_ factor: Double, param: CircleShapeParameters) -> UIBezierPath {
         let points = 180
         let shift: Double = 2 * Double.pi / 3
         let path = UIBezierPath()
@@ -75,7 +75,7 @@ private extension CircleShape {
         lineCap = .round
     }
     
-    func getWaveAnimation(with param: CircleParameters) -> CAKeyframeAnimation {
+    func getWaveAnimation(with param: CircleShapeParameters) -> CAKeyframeAnimation {
         let animation = CAKeyframeAnimation(keyPath: "path")
 
         var animseq: [CGPath] = []
@@ -95,7 +95,7 @@ private extension CircleShape {
         return animation
     }
     
-    func getStopAnimation(with param: CircleParameters) -> CABasicAnimation {
+    func getStopAnimation(with param: CircleShapeParameters) -> CABasicAnimation {
         let animation = CABasicAnimation(keyPath: "path")
         
         animation.fillMode = CAMediaTimingFillMode.forwards

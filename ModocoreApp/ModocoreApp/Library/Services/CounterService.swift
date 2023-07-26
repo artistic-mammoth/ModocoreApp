@@ -9,27 +9,26 @@ import Foundation
 
 final class CounterService {
     // MARK: - Public properties
-    weak var delegate: CounterDelegate?
+    weak var delegate: ClockDelegate?
     
     // MARK: - Private properties
     private var currentTime = 0
     private weak var timer: Timer?
-    private var currentSessionIndex = 0
-    private var session: [TimerParameters]
+    private var currentIntervalIndex = 0
+    private var setup: SessionSetup
     
     // MARK: - Init
-    init(_ params: [TimerParameters]) {
-        session = params
+    init(_ setup: SessionSetup) {
+        self.setup = setup
     }
     
     // MARK: - Public methods
-    func startCounter() {
-        guard session.count > 0 else { delegate = nil; return }
-        currentSessionIndex = 0
-        currentTime = session[0].timeInSec
-        delegate?.startTimer(with: session[0])
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+    func runCounter() {
+        guard setup.session.count > 0 else { delegate = nil; return }
+        currentIntervalIndex = 0
+        currentTime = setup.session[0].seconds
+        delegate?.runClock(with: setup)
+        runTimer()
     }
     
     func pauseTimer() {
@@ -37,32 +36,42 @@ final class CounterService {
     }
     
     func resumeTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+        runTimer()
     }
 }
 
 // MARK: - Private extension
 private extension CounterService {
+    func runTimer() {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+    }
+    
     @objc func timerAction() {
-        if currentTime >= 0 {
-            delegate?.updateTime(with: currentTime)
+        if currentTime >= 1 {
             currentTime -= 1
+            delegate?.updateClockTime(currentTime)
         }
         else {
-            switchOrStop()
+            checkoutState()
         }
     }
     
-    func switchOrStop() {
-        currentSessionIndex += 1
-        if currentSessionIndex >= session.count {
-            delegate?.stopTimer()
-            timer?.invalidate()
+    func checkoutState() {
+        currentIntervalIndex += 1
+        
+        if currentIntervalIndex >= setup.session.count {
+            delegate?.stopClock()
+            stopTimer()
             return
         }
-        currentTime = session[currentSessionIndex].timeInSec
-        delegate?.switchState(with: session[currentSessionIndex])
+        
+        currentTime = setup.session[currentIntervalIndex].seconds
+        delegate?.updateClock(with: setup.session[currentIntervalIndex])
+        runTimer()
+    }
+    
+    func stopTimer() {
         timer?.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
     }
 }

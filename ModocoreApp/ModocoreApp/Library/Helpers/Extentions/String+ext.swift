@@ -8,10 +8,10 @@
 import Foundation
 
 extension String {
-    static func secondsToString(_ timeInSec: Int) -> String {
-        let h = Int(timeInSec / 60)
-        let m = Int(timeInSec % 60)
-        let mString = m < 10 ? "0\(m)" : "\(m)"
-        return "\(h):\(mString)"
+    static func secondsToString(_ seconds: Int) -> String {
+        let m = Int(seconds / 60)
+        let s = Int(seconds % 60)
+        let sString = m < 10 ? "0\(s)" : "\(s)"
+        return "\(m):\(sString)"
     }
 }

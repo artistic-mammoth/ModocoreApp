@@ -8,15 +8,22 @@
 import UIKit
 
 extension UIImage {
-    static let pauseIcon: UIImage = {
-        guard let icon = UIImage(systemName: "pause.fill") else {
+    static let playIcon: UIImage = {
+        guard let icon = UIImage(systemName: "play.fill") else {
             return UIImage()
         }
        return icon
     }()
     
-    static let playIcon: UIImage = {
-        guard let icon = UIImage(systemName: "play.fill") else {
+    static let circleIndicator: UIImage = {
+        guard let icon = UIImage(systemName: "circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .bold)) else {
+            return UIImage()
+        }
+       return icon
+    }()
+    
+    static let circleFillIndicator: UIImage = {
+        guard let icon = UIImage(systemName: "circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 20, weight: .bold)) else {
             return UIImage()
         }
        return icon

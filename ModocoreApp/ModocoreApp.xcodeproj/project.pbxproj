@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C72465422A3E2F1F005AE0AA /* CircleParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72465412A3E2F1F005AE0AA /* CircleParameters.swift */; };
+		C72465422A3E2F1F005AE0AA /* CircleShapeParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72465412A3E2F1F005AE0AA /* CircleShapeParameters.swift */; };
 		C726F8932A474F3D0007EE80 /* CounterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F8922A474F3D0007EE80 /* CounterService.swift */; };
-		C726F8952A4751F70007EE80 /* CounterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F8942A4751F70007EE80 /* CounterDelegate.swift */; };
-		C726F8982A47549B0007EE80 /* TimerParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F8972A47549B0007EE80 /* TimerParameters.swift */; };
+		C726F8952A4751F70007EE80 /* ClockDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F8942A4751F70007EE80 /* ClockDelegate.swift */; };
+		C726F8982A47549B0007EE80 /* SessionSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F8972A47549B0007EE80 /* SessionSetup.swift */; };
 		C72FE1D12A30C2BE0000B98C /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72FE1D02A30C2BE0000B98C /* TimerViewController.swift */; };
 		C73D0BFF2A01699F006F0EE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73D0BFE2A01699F006F0EE2 /* AppDelegate.swift */; };
 		C73D0C012A01699F006F0EE2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73D0C002A01699F006F0EE2 /* SceneDelegate.swift */; };
@@ -18,7 +18,12 @@
 		C73D0C0B2A01699F006F0EE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C73D0C092A01699F006F0EE2 /* LaunchScreen.storyboard */; };
 		C744208C2A4DCE9F00849DBB /* ImagesRes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C744208B2A4DCE9F00849DBB /* ImagesRes.swift */; };
 		C74420902A4DE41700849DBB /* ColorRes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C744208F2A4DE41700849DBB /* ColorRes.swift */; };
+		C74695402A7107EF00D6E795 /* IntervalTypeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C746953F2A7107EF00D6E795 /* IntervalTypeLabel.swift */; };
+		C74695422A7152AA00D6E795 /* IntervalParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74695412A7152AA00D6E795 /* IntervalParameters.swift */; };
+		C74695442A7152C000D6E795 /* IntervalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74695432A7152C000D6E795 /* IntervalType.swift */; };
+		C74695482A71536C00D6E795 /* ExampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74695472A71536C00D6E795 /* ExampleData.swift */; };
 		C75C09C12A377EBD00A1EA4F /* CircleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75C09C02A377EBD00A1EA4F /* CircleShape.swift */; };
+		C75DCA3C2A6FF94C00D362E9 /* StatusIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75DCA3B2A6FF94C00D362E9 /* StatusIndicatorView.swift */; };
 		C76FBE542A4B520B0067FC9D /* String+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76FBE532A4B520B0067FC9D /* String+ext.swift */; };
 		C7CB25BE2A30E5CB001F3685 /* FontsRes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB25BD2A30E5CB001F3685 /* FontsRes.swift */; };
 		C7CB25CB2A30E776001F3685 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7CB25C52A30E776001F3685 /* Inter-Medium.ttf */; };
@@ -34,13 +39,14 @@
 		C7D226FC2A02BE86001D1966 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D226FB2A02BE86001D1966 /* TabBarView.swift */; };
 		C7D226FE2A02D984001D1966 /* UIColor+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D226FD2A02D984001D1966 /* UIColor+ext.swift */; };
 		C7EF04882A0182AE0030BE13 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EF04872A0182AE0030BE13 /* TabBarController.swift */; };
+		C7F191F12A702F1F00B1937D /* CircleIndicatorImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F191F02A702F1F00B1937D /* CircleIndicatorImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C72465412A3E2F1F005AE0AA /* CircleParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleParameters.swift; sourceTree = "<group>"; };
+		C72465412A3E2F1F005AE0AA /* CircleShapeParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleShapeParameters.swift; sourceTree = "<group>"; };
 		C726F8922A474F3D0007EE80 /* CounterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterService.swift; sourceTree = "<group>"; };
-		C726F8942A4751F70007EE80 /* CounterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterDelegate.swift; sourceTree = "<group>"; };
-		C726F8972A47549B0007EE80 /* TimerParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerParameters.swift; sourceTree = "<group>"; };
+		C726F8942A4751F70007EE80 /* ClockDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockDelegate.swift; sourceTree = "<group>"; };
+		C726F8972A47549B0007EE80 /* SessionSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSetup.swift; sourceTree = "<group>"; };
 		C72FE1D02A30C2BE0000B98C /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		C73D0BFB2A01699F006F0EE2 /* ModocoreApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ModocoreApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73D0BFE2A01699F006F0EE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -50,7 +56,12 @@
 		C73D0C0C2A01699F006F0EE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C744208B2A4DCE9F00849DBB /* ImagesRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesRes.swift; sourceTree = "<group>"; };
 		C744208F2A4DE41700849DBB /* ColorRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRes.swift; sourceTree = "<group>"; };
+		C746953F2A7107EF00D6E795 /* IntervalTypeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalTypeLabel.swift; sourceTree = "<group>"; };
+		C74695412A7152AA00D6E795 /* IntervalParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalParameters.swift; sourceTree = "<group>"; };
+		C74695432A7152C000D6E795 /* IntervalType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalType.swift; sourceTree = "<group>"; };
+		C74695472A71536C00D6E795 /* ExampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleData.swift; sourceTree = "<group>"; };
 		C75C09C02A377EBD00A1EA4F /* CircleShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleShape.swift; sourceTree = "<group>"; };
+		C75DCA3B2A6FF94C00D362E9 /* StatusIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusIndicatorView.swift; sourceTree = "<group>"; };
 		C76FBE532A4B520B0067FC9D /* String+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ext.swift"; sourceTree = "<group>"; };
 		C7CB25BD2A30E5CB001F3685 /* FontsRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontsRes.swift; sourceTree = "<group>"; };
 		C7CB25C52A30E776001F3685 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
@@ -66,6 +77,7 @@
 		C7D226FB2A02BE86001D1966 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		C7D226FD2A02D984001D1966 /* UIColor+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ext.swift"; sourceTree = "<group>"; };
 		C7EF04872A0182AE0030BE13 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		C7F191F02A702F1F00B1937D /* CircleIndicatorImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleIndicatorImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,8 +145,9 @@
 		C73D0C142A016AB5006F0EE2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C72465412A3E2F1F005AE0AA /* CircleParameters.swift */,
-				C726F8972A47549B0007EE80 /* TimerParameters.swift */,
+				C72465412A3E2F1F005AE0AA /* CircleShapeParameters.swift */,
+				C726F8972A47549B0007EE80 /* SessionSetup.swift */,
+				C74695412A7152AA00D6E795 /* IntervalParameters.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -142,7 +155,9 @@
 		C73D0C152A016ABC006F0EE2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C75DCA3A2A6FF93200D362E9 /* StatusIndicator */,
 				C7CB25D12A30E831001F3685 /* Clock */,
+				C746953F2A7107EF00D6E795 /* IntervalTypeLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -162,6 +177,7 @@
 		C73D0C172A016AE5006F0EE2 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				C74695452A71531100D6E795 /* Enums */,
 				C744208E2A4DE3FF00849DBB /* Delegates */,
 				C744208D2A4DE1AF00849DBB /* Services */,
 				C73D0C1A2A016B08006F0EE2 /* Helpers */,
@@ -172,6 +188,7 @@
 		C73D0C1A2A016B08006F0EE2 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C74695462A71535800D6E795 /* ExampleTesting */,
 				C73D0C1B2A016B11006F0EE2 /* Extentions */,
 			);
 			path = Helpers;
@@ -213,9 +230,34 @@
 		C744208E2A4DE3FF00849DBB /* Delegates */ = {
 			isa = PBXGroup;
 			children = (
-				C726F8942A4751F70007EE80 /* CounterDelegate.swift */,
+				C726F8942A4751F70007EE80 /* ClockDelegate.swift */,
 			);
 			path = Delegates;
+			sourceTree = "<group>";
+		};
+		C74695452A71531100D6E795 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				C74695432A7152C000D6E795 /* IntervalType.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		C74695462A71535800D6E795 /* ExampleTesting */ = {
+			isa = PBXGroup;
+			children = (
+				C74695472A71536C00D6E795 /* ExampleData.swift */,
+			);
+			path = ExampleTesting;
+			sourceTree = "<group>";
+		};
+		C75DCA3A2A6FF93200D362E9 /* StatusIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				C75DCA3B2A6FF94C00D362E9 /* StatusIndicatorView.swift */,
+				C7F191F02A702F1F00B1937D /* CircleIndicatorImageView.swift */,
+			);
+			path = StatusIndicator;
 			sourceTree = "<group>";
 		};
 		C7CB25B62A30E509001F3685 /* Fonts */ = {
@@ -328,7 +370,7 @@
 			files = (
 				C72FE1D12A30C2BE0000B98C /* TimerViewController.swift in Sources */,
 				C7CB25D32A30E83D001F3685 /* ClockView.swift in Sources */,
-				C726F8952A4751F70007EE80 /* CounterDelegate.swift in Sources */,
+				C726F8952A4751F70007EE80 /* ClockDelegate.swift in Sources */,
 				C7D226F22A02AD9B001D1966 /* TemplateViewController.swift in Sources */,
 				C7D226FC2A02BE86001D1966 /* TabBarView.swift in Sources */,
 				C7D226FE2A02D984001D1966 /* UIColor+ext.swift in Sources */,
@@ -336,15 +378,21 @@
 				C726F8932A474F3D0007EE80 /* CounterService.swift in Sources */,
 				C75C09C12A377EBD00A1EA4F /* CircleShape.swift in Sources */,
 				C744208C2A4DCE9F00849DBB /* ImagesRes.swift in Sources */,
-				C726F8982A47549B0007EE80 /* TimerParameters.swift in Sources */,
+				C726F8982A47549B0007EE80 /* SessionSetup.swift in Sources */,
 				C73D0C012A01699F006F0EE2 /* SceneDelegate.swift in Sources */,
-				C72465422A3E2F1F005AE0AA /* CircleParameters.swift in Sources */,
+				C74695442A7152C000D6E795 /* IntervalType.swift in Sources */,
+				C75DCA3C2A6FF94C00D362E9 /* StatusIndicatorView.swift in Sources */,
+				C72465422A3E2F1F005AE0AA /* CircleShapeParameters.swift in Sources */,
 				C7D226FA2A02BB19001D1966 /* TabBarItemView.swift in Sources */,
+				C74695422A7152AA00D6E795 /* IntervalParameters.swift in Sources */,
 				C76FBE542A4B520B0067FC9D /* String+ext.swift in Sources */,
 				C7CB25D72A30EAF5001F3685 /* UIView+ext.swift in Sources */,
 				C7CB25BE2A30E5CB001F3685 /* FontsRes.swift in Sources */,
 				C7EF04882A0182AE0030BE13 /* TabBarController.swift in Sources */,
+				C74695402A7107EF00D6E795 /* IntervalTypeLabel.swift in Sources */,
+				C7F191F12A702F1F00B1937D /* CircleIndicatorImageView.swift in Sources */,
 				C74420902A4DE41700849DBB /* ColorRes.swift in Sources */,
+				C74695482A71536C00D6E795 /* ExampleData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

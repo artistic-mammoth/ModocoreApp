@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TemplateViewController: UIViewController {
+final class TemplateViewController: UIViewController {
     
     private let label: UILabel = {
        let label = UILabel()

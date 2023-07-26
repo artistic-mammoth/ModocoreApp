@@ -8,11 +8,6 @@
 import UIKit
 
 final class TimerViewController: UIViewController {
-    // TODO: remove after testing
-    private let parameters = [TimerParameters(status: .focus, timeInSec: 2), TimerParameters(status: .rest, timeInSec: 2)]
-//    private let parameters: [TimerParameters] = []
-
-    
     // MARK: - Private properties
     private var counterService: CounterService?
     private var isPaused = false
@@ -20,110 +15,96 @@ final class TimerViewController: UIViewController {
     
     // MARK: - Views
     private lazy var clockView = ClockView()
-    
-    private lazy var label: UILabel = {
-       let label = UILabel()
-        label.textColor = .white
-        label.textAlignment = .center
-        label.font = UIFont.lightInter(size: 28)
-        label.sizeToFit()
-        return label
-    }()
-    
+    private lazy var intervalTypeLabel = IntervalTypeLabel()
+    private lazy var statusIndicatorView = StatusIndicatorView()
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureAppearance()
-        layoutViews()
+        setupAndLayoutView()
     }
-
 }
 
 // MARK: - Private extension
 private extension TimerViewController {
-    func configureAppearance() {
-        view.addViews([label, clockView])
+    func setupAndLayoutView() {
+        view.addViews([intervalTypeLabel, clockView, statusIndicatorView])
         view.backgroundColor = .blackBackground
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(pauseTimer))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(clockViewBtnHandler))
         clockView.addGestureRecognizer(tapGesture)
-    }
-    
-    func layoutViews() {
+        
         NSLayoutConstraint.activate([
-            label.heightAnchor.constraint(equalToConstant: 40),
-            label.widthAnchor.constraint(equalToConstant: 100),
-            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+            intervalTypeLabel.heightAnchor.constraint(equalToConstant: 40),
+            intervalTypeLabel.widthAnchor.constraint(equalToConstant: 100),
+            intervalTypeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            intervalTypeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
             
             clockView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             clockView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             clockView.heightAnchor.constraint(equalToConstant: 273),
             clockView.widthAnchor.constraint(equalToConstant: 273),
+            
+            statusIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            statusIndicatorView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -111),
+            statusIndicatorView.heightAnchor.constraint(equalToConstant: 25),
+            statusIndicatorView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -100)
         ])
     }
     
-    @objc func pauseTimer() {
+    @objc func clockViewBtnHandler() {
         if !isStarted {
-            guard parameters.count > 0 else { return }
-            isStarted = true
-            counterService = CounterService(parameters)
-            counterService?.delegate = self
-            counterService?.startCounter()
+            runTimer()
             return
         }
         
         if isPaused {
             counterService?.resumeTimer()
-            clockView.resumeTimer()
+            clockView.resumeClock()
             isPaused = false
         }
         else {
             counterService?.pauseTimer()
-            clockView.pauseTimer()
+            clockView.pauseClock()
             isPaused = true
         }
+    }
+    
+    func runTimer() {
+        isStarted = true
+        
+        // TODO: REMOVE after testing
+        let session = ExampleData().getRandomSession()
+        counterService = CounterService(session)
+        
+        counterService?.delegate = self
+        counterService?.runCounter()
     }
 }
 
 // MARK: - CounterDelegate extension
-extension TimerViewController: CounterDelegate {
-    func startTimer(with param: TimerParameters) {
-        clockView.startTimer(with: param.timeInSec)
-        
-        UIView.transition(with: label, duration: 1.5, options: .transitionCrossDissolve) { [weak self] in
-            switch param.status {
-            case .focus: self?.label.text = "FOCUS"
-            case .rest: self?.label.text = "REST"
-            }
-        }
+extension TimerViewController: ClockDelegate {
+    func runClock(with setup: SessionSetup) {
+        intervalTypeLabel.switchType(to: setup.session[0].type)
+        clockView.runClock(with: setup.session[0].seconds)
+        statusIndicatorView.configure(with: setup)
     }
     
-    func updateTime(with timeInSec: Int) {
-        clockView.updateTime(with: timeInSec)
+    func updateClockTime(_ seconds: Int) {
+        clockView.currentClockSeconds = seconds
     }
     
-    func switchState(with param: TimerParameters) {
-        clockView.updateTime(with: param.timeInSec)
-        
-        UIView.transition(with: label, duration: 0.5, options: .transitionCrossDissolve) { [weak self] in
-            switch param.status {
-            case .focus: self?.label.text = "FOCUS"
-            case .rest: self?.label.text = "REST"
-            }
-        }
+    func updateClock(with param: IntervalParameters) {
+        intervalTypeLabel.switchType(to: param.type)
+        clockView.currentClockSeconds = param.seconds
+        statusIndicatorView.fillNext()
     }
     
-    func stopTimer() {
-        clockView.stopTimer()
-        
-        UIView.transition(with: label, duration: 1.5, options: .transitionCrossDissolve) { [weak self] in
-            self?.label.text = ""
-        }
-        
+    func stopClock() {
+        intervalTypeLabel.resetText()
+        clockView.stopClock()
+        statusIndicatorView.fillNext()
         counterService = nil
         isStarted = false
     }
-
 }

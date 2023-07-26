@@ -1,5 +1,5 @@
 //
-//  CircleParameters.swift
+//  CircleShapeParameters.swift
 //  ModocoreApp
 //
 //  Created by Михайлов Александр on 17.06.2023.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct CircleParameters {
+struct CircleShapeParameters {
     let powAmplitude: Int
     let powDynamics: Int
     let waveAmplitude: Int
