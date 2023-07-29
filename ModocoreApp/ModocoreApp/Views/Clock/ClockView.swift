@@ -98,18 +98,9 @@ private extension ClockView {
             playIcon.widthAnchor.constraint(equalToConstant: 50),
         ])
     }
-
-    private func getCircleShapeParameters() -> [CircleShapeParameters] {
-        return [
-            CircleShapeParameters(powAmplitude: 3, powDynamics: 4, waveAmplitude: 50, diameter: 300, frequency: 8, speed: 1 / 500.0, opacity: 0.25, color: .circleBlue),
-            CircleShapeParameters(powAmplitude: 9, powDynamics: 10, waveAmplitude: 11, diameter: 300, frequency: 6, speed: 1 / 500.0, opacity: 0.50, color: .circleBlue),
-            CircleShapeParameters(powAmplitude: 3, powDynamics: 4, waveAmplitude: 5, diameter: 300, frequency: 4, speed: 1 / 1000.0, opacity: 0.75, color: UIColor.white),
-            CircleShapeParameters(powAmplitude: 9, powDynamics: 10, waveAmplitude: 20, diameter: 300, frequency: 5, speed: 1 / 1000.0, opacity: 1, color: UIColor.white)
-        ]
-    }
     
-    private func getCircleShapes() -> [CircleShape] {
-        let params = getCircleShapeParameters()
+    func getCircleShapes() -> [CircleShape] {
+        let params = Catalog.circleShapeParameters
         var circleShapes: [CircleShape] = []
         for param in params {
             let circle = CircleShape(with: param)

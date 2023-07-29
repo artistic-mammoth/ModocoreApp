@@ -28,4 +28,11 @@ extension UIImage {
         }
        return icon
     }()
+    
+    static let flameIcon: UIImage = {
+        guard let icon = UIImage(systemName: "flame.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30, weight: .bold)) else {
+            return UIImage()
+        }
+       return icon
+    }()
 }

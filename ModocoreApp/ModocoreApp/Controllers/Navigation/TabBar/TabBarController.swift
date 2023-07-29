@@ -12,10 +12,25 @@ final class TabBarController: UITabBarController {
     // MARK: - Private properties
     private var tabBarView: TabBarView!
     
+    private(set) lazy var homeController = UINavigationController(rootViewController: HomeViewController())
+    private(set) lazy var timerController = TimerViewController()
+    private(set) lazy var templateController = TemplateViewController()
+    
+    static let shared: TabBarController = TabBarController()
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+    }
+    
+    func switchTabTo(_ id: Int) {
+        guard let vcCount = viewControllers?.count else { return }
+        guard id < vcCount && id >= 0 else { return }
+        tabBarView.setCustomAppearance(id == 1)
+        tabBarView.itemsWrapped[selectedIndex].isSelectedItem = false
+        tabBarView.itemsWrapped[id].isSelectedItem = true
+        selectedIndex = id
     }
 }
 
@@ -26,20 +41,16 @@ private extension TabBarController {
         
         let home = TabBarItemView(icon: UIImage(systemName: "house.circle"))
         let timerItem = TabBarItemView(icon: UIImage(systemName: "timer.circle.fill"))
-        let settings = TabBarItemView(icon: UIImage(systemName: "gear.circle"))
+        let template = TabBarItemView(icon: UIImage(systemName: "gear.circle"))
         
-        lazy var red = TemplateViewController()
-        lazy var timerController = TimerViewController()
-        lazy var green = TemplateViewController()
-        
-        setTabBar(items: [home, timerItem, settings])
-        viewControllers = [red, timerController, green]
+        setTabBar(items: [home, timerItem, template])
+        viewControllers = [homeController, timerController, templateController]
         
         // TODO: - delete after testing
-        selectedIndex = 1
-        tabBarView.setCustomAppearance(true)
-        tabBarView.itemsWrapped[0].isSelectedItem = false
-        tabBarView.itemsWrapped[1].isSelectedItem = true
+//        selectedIndex = 1
+//        tabBarView.setCustomAppearance(true)
+//        tabBarView.itemsWrapped[0].isSelectedItem = false
+//        tabBarView.itemsWrapped[1].isSelectedItem = true
     }
     
     func setTabBar(items: [TabBarItemView]) {

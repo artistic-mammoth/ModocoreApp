@@ -53,7 +53,7 @@ final class StatusIndicatorView: UIView {
         }
     }
 
-    func fillNext() {
+    func fillNextCircle() {
         let views = stackView.arrangedSubviews as! [CircleIndicatorImageView]
         for i in 0..<views.count {
             if !views[i].isFilled {
@@ -62,8 +62,10 @@ final class StatusIndicatorView: UIView {
             }
         }
     }
-    
-    // MARK: - Private methods
+}
+
+// MARK: - Private extension
+private extension StatusIndicatorView {
     private func setupAndLayoutView() {
         addViews(stackView)
         NSLayoutConstraint.activate([

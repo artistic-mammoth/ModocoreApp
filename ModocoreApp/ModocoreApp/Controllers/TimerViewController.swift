@@ -17,11 +17,28 @@ final class TimerViewController: UIViewController {
     private lazy var clockView = ClockView()
     private lazy var intervalTypeLabel = IntervalTypeLabel()
     private lazy var statusIndicatorView = StatusIndicatorView()
-
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAndLayoutView()
+        setupSwipeNavigation()
+    }
+    
+    // MARK: - Override
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    // MARK: - Public methods
+    func startTimer(with session: SessionSetup) {
+        guard !isStarted else { return }
+        
+        isStarted = true
+        
+        counterService = CounterService(session)
+        counterService?.delegate = self
+        counterService?.runCounter()
     }
 }
 
@@ -53,11 +70,8 @@ private extension TimerViewController {
     }
     
     @objc func clockViewBtnHandler() {
-        if !isStarted {
-            runTimer()
-            return
-        }
-        
+        guard isStarted else { return }
+
         if isPaused {
             counterService?.resumeTimer()
             clockView.resumeClock()
@@ -70,15 +84,22 @@ private extension TimerViewController {
         }
     }
     
-    func runTimer() {
-        isStarted = true
-        
-        // TODO: REMOVE after testing
-        let session = ExampleData().getRandomSession()
-        counterService = CounterService(session)
-        
-        counterService?.delegate = self
-        counterService?.runCounter()
+    func setupSwipeNavigation() {
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
+        leftSwipe.direction = .left
+        rightSwipe.direction = .right
+        self.view.addGestureRecognizer(leftSwipe)
+        self.view.addGestureRecognizer(rightSwipe)
+    }
+    
+    @objc func handleSwipes(_ sender: UISwipeGestureRecognizer) {
+        if sender.direction == .left {
+            TabBarController.shared.switchTabTo(self.tabBarController!.selectedIndex + 1)
+        }
+        if sender.direction == .right {
+            TabBarController.shared.switchTabTo(self.tabBarController!.selectedIndex - 1)
+        }
     }
 }
 
@@ -97,13 +118,13 @@ extension TimerViewController: ClockDelegate {
     func updateClock(with param: IntervalParameters) {
         intervalTypeLabel.switchType(to: param.type)
         clockView.currentClockSeconds = param.seconds
-        statusIndicatorView.fillNext()
+        statusIndicatorView.fillNextCircle()
     }
     
     func stopClock() {
         intervalTypeLabel.resetText()
         clockView.stopClock()
-        statusIndicatorView.fillNext()
+        statusIndicatorView.fillNextCircle()
         counterService = nil
         isStarted = false
     }

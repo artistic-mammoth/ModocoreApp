@@ -36,19 +36,21 @@ final class CircleIndicatorImageView: UIImageView {
         self.isFilled = isFilled
         setupView()
     }
-    
-    // MARK: - Private methods
-    private func setupView() {
+}
+
+// MARK: - Private extension
+private extension CircleIndicatorImageView {
+    func setupView() {
         contentMode = .scaleAspectFit
         setIntervalType()
         setImage()
     }
     
-    private func setImage() {
+    func setImage() {
         image = isFilled ? .circleFillIndicator : .circleIndicator
     }
     
-    private func setIntervalType() {
+    func setIntervalType() {
         tintColor = intervalType == .focus ? .indicatorFocus : .indicatorRest
     }
 }

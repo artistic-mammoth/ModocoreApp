@@ -14,7 +14,7 @@ final class IntervalTypeLabel: UILabel {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupView()
+        setupAndLayoutView()
     }
 
     // MARK: - Public methods
@@ -32,9 +32,11 @@ final class IntervalTypeLabel: UILabel {
             self?.text = ""
         }
     }
-    
-    // MARK: - Private methods
-    private func setupView() {
+}
+
+// MARK: - Private extension
+private extension IntervalTypeLabel {
+    func setupAndLayoutView() {
         textColor = .white
         textAlignment = .center
         font = UIFont.lightInter(size: 28)

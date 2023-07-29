@@ -9,9 +9,10 @@ import Foundation
 
 extension String {
     static func secondsToString(_ seconds: Int) -> String {
-        let m = Int(seconds / 60)
-        let s = Int(seconds % 60)
-        let sString = m < 10 ? "0\(s)" : "\(s)"
-        return "\(m):\(sString)"
+        [Int(seconds / 60), Int(seconds % 60)].compactMap {
+            String(format: "%02d", $0)
+        }.joined(separator: ":")
     }
 }
+
+
