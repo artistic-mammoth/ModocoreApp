@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C720F4BA2A72A68F00E61536 /* SetupPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C720F4B92A72A68F00E61536 /* SetupPickerView.swift */; };
 		C720F4BE2A72D92300E61536 /* PickerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C720F4BD2A72D92300E61536 /* PickerType.swift */; };
+		C72180882A757D31001DA4F3 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72180872A757D31001DA4F3 /* HistoryView.swift */; };
 		C72465422A3E2F1F005AE0AA /* CircleShapeParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72465412A3E2F1F005AE0AA /* CircleShapeParameters.swift */; };
 		C726F8932A474F3D0007EE80 /* CounterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F8922A474F3D0007EE80 /* CounterService.swift */; };
 		C726F8952A4751F70007EE80 /* ClockDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F8942A4751F70007EE80 /* ClockDelegate.swift */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		C720F4B92A72A68F00E61536 /* SetupPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupPickerView.swift; sourceTree = "<group>"; };
 		C720F4BD2A72D92300E61536 /* PickerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerType.swift; sourceTree = "<group>"; };
+		C72180872A757D31001DA4F3 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		C72465412A3E2F1F005AE0AA /* CircleShapeParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleShapeParameters.swift; sourceTree = "<group>"; };
 		C726F8922A474F3D0007EE80 /* CounterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterService.swift; sourceTree = "<group>"; };
 		C726F8942A4751F70007EE80 /* ClockDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +107,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C72180842A757CCD001DA4F3 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C72180872A757D31001DA4F3 /* HistoryView.swift */,
+				C720F4B92A72A68F00E61536 /* SetupPickerView.swift */,
+				C72989932A753F6200547B16 /* InfoView.swift */,
+				C72989952A75494F00547B16 /* WeekStreakView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		C72180852A757CEF001DA4F3 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				C75DCA3A2A6FF93200D362E9 /* StatusIndicator */,
+				C7CB25D12A30E831001F3685 /* Clock */,
+				C746953F2A7107EF00D6E795 /* IntervalTypeLabel.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
 		C73D0BF22A01699F006F0EE2 = {
 			isa = PBXGroup;
 			children = (
@@ -171,13 +194,9 @@
 		C73D0C152A016ABC006F0EE2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C75DCA3A2A6FF93200D362E9 /* StatusIndicator */,
-				C7CB25D12A30E831001F3685 /* Clock */,
-				C746953F2A7107EF00D6E795 /* IntervalTypeLabel.swift */,
+				C72180852A757CEF001DA4F3 /* Timer */,
+				C72180842A757CCD001DA4F3 /* Home */,
 				C7B4E28F2A718919002D3DEE /* ActiveButton.swift */,
-				C720F4B92A72A68F00E61536 /* SetupPickerView.swift */,
-				C72989932A753F6200547B16 /* InfoView.swift */,
-				C72989952A75494F00547B16 /* WeekStreakView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -397,6 +416,7 @@
 				C744208C2A4DCE9F00849DBB /* ImagesRes.swift in Sources */,
 				C726F8982A47549B0007EE80 /* SessionSetup.swift in Sources */,
 				C72989982A75691200547B16 /* Catalog.swift in Sources */,
+				C72180882A757D31001DA4F3 /* HistoryView.swift in Sources */,
 				C73D0C012A01699F006F0EE2 /* SceneDelegate.swift in Sources */,
 				C74695442A7152C000D6E795 /* IntervalType.swift in Sources */,
 				C720F4BA2A72A68F00E61536 /* SetupPickerView.swift in Sources */,

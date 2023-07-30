@@ -1,5 +1,5 @@
 //
-//  WeekStreakView.swift
+//  HistoryView.swift
 //  ModocoreApp
 //
 //  Created by Михайлов Александр on 29.07.2023.
@@ -7,21 +7,14 @@
 
 import UIKit
 
-final class WeekStreakView: UIView {
-    // MARK: - Public properties
-    var currentStreak: Int = 0 {
-        didSet {
-            setupStackView()
-        }
-    }
-    
+final class HistoryView: UIView {
     // MARK: - Views
     private lazy var titleLabel: UILabel = {
        let label = UILabel()
         label.font = .boldInter(size: 17)
-        label.text = "Week streak"
+        label.text = "Focus history"
         label.textAlignment = .left
-        label.textColor = .white
+        label.textColor = .black
         return label
     }()
     
@@ -43,13 +36,12 @@ final class WeekStreakView: UIView {
 }
 
 // MARK: - Private extension
-private extension WeekStreakView {
+private extension HistoryView {
     func setupAndLayoutView() {
         addViews([titleLabel, stack])
         setupStackView()
         
-        backgroundColor = .blackBackground
-        layer.cornerRadius = 23
+        backgroundColor = .clear
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 13),
@@ -67,22 +59,35 @@ private extension WeekStreakView {
             stack.removeArrangedSubview(view)
             view.removeFromSuperview()
         }
-        
-        for _ in 0..<currentStreak {
-            stack.addArrangedSubview(getFireIcon(true))
+
+        for _ in 0..<22 {
+            // TODO: - Change it after additing history
+            stack.addArrangedSubview(getBarShape(CGFloat.random(in: 0...1)))
         }
-        
-        for _ in 0..<(7 - currentStreak) {
-            stack.addArrangedSubview(getFireIcon(false))
-        }
-        setNeedsLayout()
     }
     
-    func getFireIcon(_ isFire: Bool) -> UIImageView {
-        let icon = UIImageView()
-        icon.image = .flameIcon
-        icon.tintColor = isFire ? .fire : .grayBackground
-        icon.contentMode = .scaleAspectFit
-        return icon
+    func getBarShape(_ progress: CGFloat) -> UIView {
+        let bar = UIView(frame: CGRect(x: 0, y: 0, width: 7, height: 50))
+        
+        let shape = CAShapeLayer()
+        let path = UIBezierPath()
+        
+        path.move(to: CGPoint(x: 0, y: bar.bounds.maxY))
+        path.addLine(to: CGPoint(x: 0, y: bar.bounds.maxY * (1 - progress)))
+        
+        shape.path = path.cgPath
+        shape.lineWidth = 7.0
+        shape.strokeColor = progress < 0.5 ? UIColor.grayBar.cgColor : UIColor.fire.cgColor
+        shape.lineCap = .round
+        bar.layer.addSublayer(shape)
+        
+        let animation = CABasicAnimation(keyPath: "strokeEnd")
+        animation.fromValue = 0
+        animation.toValue = 1
+        animation.duration = Double.random(in: 0.2...0.7)
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        shape.add(animation, forKey: nil)
+
+        return bar
     }
 }

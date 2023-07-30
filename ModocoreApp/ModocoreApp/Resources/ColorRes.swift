@@ -19,4 +19,6 @@ extension UIColor {
     static let indicatorRest: UIColor = UIColor(hexString: "1C737A")
     
     static let fire: UIColor = UIColor(hexString: "F35A3A")
+    
+    static let grayBar: UIColor = UIColor(hexString: "E8E8E8")
 }

@@ -30,6 +30,11 @@ final class SetupViewController: UIViewController {
         setupAndLayoutView()
         setupHandlers()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        doneButtonHandler()
+    }
 }
 
 // MARK: - Private extension
@@ -43,22 +48,22 @@ private extension SetupViewController {
         doneButton.labelText = "DONE"
         
         NSLayoutConstraint.activate([
-            focusPickerView.heightAnchor.constraint(equalToConstant: 150),
+            focusPickerView.heightAnchor.constraint(equalToConstant: 140),
             focusPickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             focusPickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            focusPickerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            focusPickerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
             
-            restPickerView.heightAnchor.constraint(equalToConstant: 150),
+            restPickerView.heightAnchor.constraint(equalToConstant: 140),
             restPickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             restPickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            restPickerView.topAnchor.constraint(equalTo: focusPickerView.bottomAnchor, constant: 50),
+            restPickerView.topAnchor.constraint(equalTo: focusPickerView.bottomAnchor, constant: 30),
             
-            repeatsPickerView.heightAnchor.constraint(equalToConstant: 150),
+            repeatsPickerView.heightAnchor.constraint(equalToConstant: 140),
             repeatsPickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             repeatsPickerView.widthAnchor.constraint(equalToConstant: 170),
-            repeatsPickerView.topAnchor.constraint(equalTo: restPickerView.bottomAnchor, constant: 50),
+            repeatsPickerView.topAnchor.constraint(equalTo: restPickerView.bottomAnchor, constant: 30),
             
-            doneButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
+            doneButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -35),
             doneButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             doneButton.heightAnchor.constraint(equalToConstant: 50),
             doneButton.widthAnchor.constraint(equalToConstant: 150),
