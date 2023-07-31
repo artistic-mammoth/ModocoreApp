@@ -21,8 +21,8 @@ final class IntervalTypeLabel: UILabel {
     func switchType(to type: IntervalType) {
         UIView.transition(with: self, duration: 0.5, options: .transitionCrossDissolve) { [weak self] in
             switch type {
-            case .focus: self?.text = "FOCUS"
-            case .rest: self?.text = "REST"
+            case .focus: self?.text = Catalog.Names.focusName
+            case .rest: self?.text = Catalog.Names.restName
             }
         }
     }

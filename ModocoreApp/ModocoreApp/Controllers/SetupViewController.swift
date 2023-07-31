@@ -18,9 +18,9 @@ final class SetupViewController: UIViewController {
     private lazy var currentRepeatsTimes: Int = 1
     
     // MARK: - Views
-    private lazy var focusPickerView = SetupPickerView(type: .timePicker, labelText: "FOCUS TIME")
-    private lazy var restPickerView = SetupPickerView(type: .timePicker, labelText: "REST TIME")
-    private lazy var repeatsPickerView = SetupPickerView(type: .amountPicker, labelText: "REPEATS")
+    private lazy var focusPickerView = SetupPickerView(type: .timePicker, labelText: Catalog.Names.focusPickerTitle)
+    private lazy var restPickerView = SetupPickerView(type: .timePicker, labelText: Catalog.Names.restPickerTitle)
+    private lazy var repeatsPickerView = SetupPickerView(type: .amountPicker, labelText: Catalog.Names.repeatsPickerTitle)
     
     private lazy var doneButton = ActiveButton()
     
@@ -45,7 +45,7 @@ private extension SetupViewController {
         
         doneButton.addTarget(self, action: #selector(doneButtonHandler), for: .touchUpInside)
         doneButton.BgColor = .blackBackground
-        doneButton.labelText = "DONE"
+        doneButton.labelText = Catalog.Names.doneButtonName
         
         NSLayoutConstraint.activate([
             focusPickerView.heightAnchor.constraint(equalToConstant: 140),

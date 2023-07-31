@@ -8,11 +8,18 @@
 import UIKit
 
 final class HistoryView: UIView {
+    // MARK: - Public properties
+    var historySeconds: [Int] = [] {
+        didSet {
+            updateStackView()
+        }
+    }
+    
     // MARK: - Views
     private lazy var titleLabel: UILabel = {
        let label = UILabel()
         label.font = .boldInter(size: 17)
-        label.text = "Focus history"
+        label.text = Catalog.Names.historyTitle
         label.textAlignment = .left
         label.textColor = .black
         return label
@@ -39,7 +46,7 @@ final class HistoryView: UIView {
 private extension HistoryView {
     func setupAndLayoutView() {
         addViews([titleLabel, stack])
-        setupStackView()
+        updateStackView()
         
         backgroundColor = .clear
         
@@ -54,40 +61,25 @@ private extension HistoryView {
         ])
     }
     
-    func setupStackView() {
-        stack.arrangedSubviews.forEach { (view) in
+    func updateStackView() {
+        stack.arrangedSubviews.forEach { view in
             stack.removeArrangedSubview(view)
             view.removeFromSuperview()
         }
-
-        for _ in 0..<22 {
-            // TODO: - Change it after additing history
-            stack.addArrangedSubview(getBarShape(CGFloat.random(in: 0...1)))
+        
+        let countHistory = historySeconds.count <= 22 ? historySeconds.count : 22
+        
+        for _ in 0..<22 - countHistory {
+            stack.addArrangedSubview(HistoryBar(0))
         }
-    }
-    
-    func getBarShape(_ progress: CGFloat) -> UIView {
-        let bar = UIView(frame: CGRect(x: 0, y: 0, width: 7, height: 50))
         
-        let shape = CAShapeLayer()
-        let path = UIBezierPath()
+        guard !historySeconds.isEmpty else { return }
         
-        path.move(to: CGPoint(x: 0, y: bar.bounds.maxY))
-        path.addLine(to: CGPoint(x: 0, y: bar.bounds.maxY * (1 - progress)))
+        let maxFocus = historySeconds.max() ?? 1
         
-        shape.path = path.cgPath
-        shape.lineWidth = 7.0
-        shape.strokeColor = progress < 0.5 ? UIColor.grayBar.cgColor : UIColor.fire.cgColor
-        shape.lineCap = .round
-        bar.layer.addSublayer(shape)
-        
-        let animation = CABasicAnimation(keyPath: "strokeEnd")
-        animation.fromValue = 0
-        animation.toValue = 1
-        animation.duration = Double.random(in: 0.2...0.7)
-        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        shape.add(animation, forKey: nil)
-
-        return bar
+        for i in 0..<countHistory {
+            let progress: Double = Double(historySeconds[i]) / Double(maxFocus)
+            stack.addArrangedSubview(HistoryBar(progress))
+        }
     }
 }

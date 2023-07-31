@@ -21,9 +21,9 @@ final class InfoView: UIView {
         }
     }
     
-    public var totalMinutes: Int = 0 {
+    public var totalSeconds: Int = 0 {
         didSet {
-            totalMinutesTimeLabel.text = "\(totalMinutes) "
+            setTimeText()
         }
     }
     
@@ -55,7 +55,7 @@ final class InfoView: UIView {
         return label
     }()
     
-    private lazy var totalMinutesTimeLabel: UILabel = {
+    private lazy var totalTimeLabel: UILabel = {
        let label = UILabel()
         label.font = .boldInter(size: 17)
         label.textAlignment = .right
@@ -71,7 +71,7 @@ final class InfoView: UIView {
     
     private lazy var timePrefixLabel: UILabel = {
        let label = UILabel()
-        label.text = " min"
+        label.text = " \(Catalog.Names.timePrefixMinutesName)"
         label.font = .mediumInter(size: 13)
         label.textAlignment = .left
         return label
@@ -96,9 +96,10 @@ final class InfoView: UIView {
 private extension InfoView {
     func setupAndLayoutView() {
         configureBackground()
+        setTimeText()
         layer.cornerRadius = 23
         
-        stackTime.addArrangedSubview(totalMinutesTimeLabel)
+        stackTime.addArrangedSubview(totalTimeLabel)
         stackTime.addArrangedSubview(timePrefixLabel)
         
         stack.addArrangedSubview(titleLabel)
@@ -119,7 +120,20 @@ private extension InfoView {
         backgroundColor = isBlackTheme ? .blackBackground : .grayBackground
         titleLabel.textColor = isBlackTheme ? .white : .black
         countLabel.textColor = isBlackTheme ? .white : .black
-        totalMinutesTimeLabel.textColor = isBlackTheme ? .white : .black
+        totalTimeLabel.textColor = isBlackTheme ? .white : .black
         timePrefixLabel.textColor = isBlackTheme ? .white : .black
+    }
+    
+    func setTimeText() {
+        let totalMinutes = totalSeconds / 60
+
+        if totalMinutes <= 1000 {
+            totalTimeLabel.text = "\(totalMinutes) "
+            timePrefixLabel.text = " \(Catalog.Names.timePrefixMinutesName)"
+        }
+        else {
+            totalTimeLabel.text = "\(totalMinutes / 60) "
+            timePrefixLabel.text = " \(Catalog.Names.timePrefixHoursName)"
+        }
     }
 }

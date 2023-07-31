@@ -106,8 +106,8 @@ private extension SetupPickerView {
     }
     
     func setupForTimeType() {
-        let minLabel = getLabelForSection(with: "min")
-        let secLabel = getLabelForSection(with: "sec")
+        let minLabel = getLabelForSection(with: Catalog.Names.timePrefixMinutesName)
+        let secLabel = getLabelForSection(with: Catalog.Names.timePrefixSecondsName)
         
         addViews([separatorLabel,minLabel, secLabel])
         

@@ -9,9 +9,9 @@ import UIKit
 
 final class WeekStreakView: UIView {
     // MARK: - Public properties
-    var currentStreak: Int = .random(in: 0...7) {
+    var currentStreak: Int = 0 {
         didSet {
-            setupStackView()
+            updateStackView()
         }
     }
     
@@ -19,7 +19,7 @@ final class WeekStreakView: UIView {
     private lazy var titleLabel: UILabel = {
        let label = UILabel()
         label.font = .boldInter(size: 17)
-        label.text = "Week streak"
+        label.text = Catalog.Names.weekStreakTitle
         label.textAlignment = .left
         label.textColor = .white
         return label
@@ -46,7 +46,7 @@ final class WeekStreakView: UIView {
 private extension WeekStreakView {
     func setupAndLayoutView() {
         addViews([titleLabel, stack])
-        setupStackView()
+        updateStackView()
         
         backgroundColor = .blackBackground
         layer.cornerRadius = 23
@@ -62,7 +62,7 @@ private extension WeekStreakView {
         ])
     }
     
-    func setupStackView() {
+    func updateStackView() {
         stack.arrangedSubviews.forEach { (view) in
             stack.removeArrangedSubview(view)
             view.removeFromSuperview()

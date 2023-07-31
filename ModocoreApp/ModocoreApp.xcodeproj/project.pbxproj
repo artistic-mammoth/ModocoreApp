@@ -27,6 +27,11 @@
 		C74695402A7107EF00D6E795 /* IntervalTypeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C746953F2A7107EF00D6E795 /* IntervalTypeLabel.swift */; };
 		C74695422A7152AA00D6E795 /* IntervalParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74695412A7152AA00D6E795 /* IntervalParameters.swift */; };
 		C74695442A7152C000D6E795 /* IntervalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74695432A7152C000D6E795 /* IntervalType.swift */; };
+		C74FC4DF2A77BD8A00987BD3 /* DataStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74FC4DE2A77BD8A00987BD3 /* DataStorageService.swift */; };
+		C74FC4E12A77BDB100987BD3 /* HistoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74FC4E02A77BDB100987BD3 /* HistoryData.swift */; };
+		C74FC4E32A77BF0C00987BD3 /* DayData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74FC4E22A77BF0C00987BD3 /* DayData.swift */; };
+		C74FC4E52A77BFF600987BD3 /* Date+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74FC4E42A77BFF600987BD3 /* Date+ext.swift */; };
+		C74FC4E72A77C95500987BD3 /* HistoryBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74FC4E62A77C95500987BD3 /* HistoryBar.swift */; };
 		C75C09C12A377EBD00A1EA4F /* CircleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75C09C02A377EBD00A1EA4F /* CircleShape.swift */; };
 		C75DCA3C2A6FF94C00D362E9 /* StatusIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75DCA3B2A6FF94C00D362E9 /* StatusIndicatorView.swift */; };
 		C76FBE542A4B520B0067FC9D /* String+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76FBE532A4B520B0067FC9D /* String+ext.swift */; };
@@ -73,6 +78,11 @@
 		C746953F2A7107EF00D6E795 /* IntervalTypeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalTypeLabel.swift; sourceTree = "<group>"; };
 		C74695412A7152AA00D6E795 /* IntervalParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalParameters.swift; sourceTree = "<group>"; };
 		C74695432A7152C000D6E795 /* IntervalType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalType.swift; sourceTree = "<group>"; };
+		C74FC4DE2A77BD8A00987BD3 /* DataStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorageService.swift; sourceTree = "<group>"; };
+		C74FC4E02A77BDB100987BD3 /* HistoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryData.swift; sourceTree = "<group>"; };
+		C74FC4E22A77BF0C00987BD3 /* DayData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayData.swift; sourceTree = "<group>"; };
+		C74FC4E42A77BFF600987BD3 /* Date+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ext.swift"; sourceTree = "<group>"; };
+		C74FC4E62A77C95500987BD3 /* HistoryBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryBar.swift; sourceTree = "<group>"; };
 		C75C09C02A377EBD00A1EA4F /* CircleShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleShape.swift; sourceTree = "<group>"; };
 		C75DCA3B2A6FF94C00D362E9 /* StatusIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusIndicatorView.swift; sourceTree = "<group>"; };
 		C76FBE532A4B520B0067FC9D /* String+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ext.swift"; sourceTree = "<group>"; };
@@ -107,10 +117,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C72180842A757CCD001DA4F3 /* Home */ = {
+		C71BE19C2A77F24000547475 /* History */ = {
 			isa = PBXGroup;
 			children = (
 				C72180872A757D31001DA4F3 /* HistoryView.swift */,
+				C74FC4E62A77C95500987BD3 /* HistoryBar.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		C72180842A757CCD001DA4F3 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C71BE19C2A77F24000547475 /* History */,
 				C720F4B92A72A68F00E61536 /* SetupPickerView.swift */,
 				C72989932A753F6200547B16 /* InfoView.swift */,
 				C72989952A75494F00547B16 /* WeekStreakView.swift */,
@@ -187,6 +206,8 @@
 				C72465412A3E2F1F005AE0AA /* CircleShapeParameters.swift */,
 				C726F8972A47549B0007EE80 /* SessionSetup.swift */,
 				C74695412A7152AA00D6E795 /* IntervalParameters.swift */,
+				C74FC4E02A77BDB100987BD3 /* HistoryData.swift */,
+				C74FC4E22A77BF0C00987BD3 /* DayData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -239,6 +260,7 @@
 				C7D226FD2A02D984001D1966 /* UIColor+ext.swift */,
 				C7CB25D62A30EAF5001F3685 /* UIView+ext.swift */,
 				C76FBE532A4B520B0067FC9D /* String+ext.swift */,
+				C74FC4E42A77BFF600987BD3 /* Date+ext.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -262,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				C726F8922A474F3D0007EE80 /* CounterService.swift */,
+				C74FC4DE2A77BD8A00987BD3 /* DataStorageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -408,16 +431,19 @@
 				C72989942A753F6200547B16 /* InfoView.swift in Sources */,
 				C7D226F22A02AD9B001D1966 /* TemplateViewController.swift in Sources */,
 				C7D226FC2A02BE86001D1966 /* TabBarView.swift in Sources */,
+				C74FC4E72A77C95500987BD3 /* HistoryBar.swift in Sources */,
 				C720F4BE2A72D92300E61536 /* PickerType.swift in Sources */,
 				C7D226FE2A02D984001D1966 /* UIColor+ext.swift in Sources */,
 				C73D0BFF2A01699F006F0EE2 /* AppDelegate.swift in Sources */,
 				C726F8932A474F3D0007EE80 /* CounterService.swift in Sources */,
+				C74FC4E32A77BF0C00987BD3 /* DayData.swift in Sources */,
 				C75C09C12A377EBD00A1EA4F /* CircleShape.swift in Sources */,
 				C744208C2A4DCE9F00849DBB /* ImagesRes.swift in Sources */,
 				C726F8982A47549B0007EE80 /* SessionSetup.swift in Sources */,
 				C72989982A75691200547B16 /* Catalog.swift in Sources */,
 				C72180882A757D31001DA4F3 /* HistoryView.swift in Sources */,
 				C73D0C012A01699F006F0EE2 /* SceneDelegate.swift in Sources */,
+				C74FC4E12A77BDB100987BD3 /* HistoryData.swift in Sources */,
 				C74695442A7152C000D6E795 /* IntervalType.swift in Sources */,
 				C720F4BA2A72A68F00E61536 /* SetupPickerView.swift in Sources */,
 				C75DCA3C2A6FF94C00D362E9 /* StatusIndicatorView.swift in Sources */,
@@ -427,12 +453,14 @@
 				C74695422A7152AA00D6E795 /* IntervalParameters.swift in Sources */,
 				C76FBE542A4B520B0067FC9D /* String+ext.swift in Sources */,
 				C7B4E2942A719F80002D3DEE /* SetupViewController.swift in Sources */,
+				C74FC4DF2A77BD8A00987BD3 /* DataStorageService.swift in Sources */,
 				C7CB25D72A30EAF5001F3685 /* UIView+ext.swift in Sources */,
 				C7CB25BE2A30E5CB001F3685 /* FontsRes.swift in Sources */,
 				C7EF04882A0182AE0030BE13 /* TabBarController.swift in Sources */,
 				C74695402A7107EF00D6E795 /* IntervalTypeLabel.swift in Sources */,
 				C7F191F12A702F1F00B1937D /* CircleIndicatorImageView.swift in Sources */,
 				C74420902A4DE41700849DBB /* ColorRes.swift in Sources */,
+				C74FC4E52A77BFF600987BD3 /* Date+ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
