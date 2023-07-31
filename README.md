@@ -9,7 +9,7 @@
 ## Description
 
 <p align="center">
-  <img src="./Screenshots/Screenshot_1.png" width="200">
+  <img src="./Screenshots/screenshot_1.png" width="200">
 </p>
 
 The Modocore app is a productivity tool designed to help users manage their time more effectively and improve their focus and productivity. Inspired by the Pomodoro Technique. The app provides a clean and intuitive user interface, allowing users to start and pause pomodoros with a single tap. It also includes customizable settings. With its minimalist design and seamless functionality app empowers users to maintain a structured workflow, combat distractions, and make the most of their valuable work and study sessions.
@@ -18,8 +18,8 @@ App goes beyond being a timer, providing users with a range of valuable features
 
 <p align="center">
   <img src="./Screenshots/video_1.gif" width="200">
-  <img src="./Screenshots/Screenshot_2.png" width="200">
-  <img src="./Screenshots/Screenshot_3.png" width="200">
+  <img src="./Screenshots/screenshot_2.png" width="200">
+  <img src="./Screenshots/screenshot_3.png" width="200">
 </p>
 
 ## Features
