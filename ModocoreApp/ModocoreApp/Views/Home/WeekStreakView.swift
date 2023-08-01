@@ -17,7 +17,7 @@ final class WeekStreakView: UIView {
     
     // MARK: - Views
     private lazy var titleLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = .boldInter(size: 17)
         label.text = Catalog.Names.weekStreakTitle
         label.textAlignment = .left
@@ -26,7 +26,7 @@ final class WeekStreakView: UIView {
     }()
     
     private lazy var stack: UIStackView = {
-       let stack = UIStackView()
+        let stack = UIStackView()
         stack.axis = .horizontal
         stack.distribution = .equalSpacing
         return stack
@@ -67,18 +67,23 @@ private extension WeekStreakView {
             stack.removeArrangedSubview(view)
             view.removeFromSuperview()
         }
-        
-        for _ in 0..<currentStreak {
-            stack.addArrangedSubview(getFireIcon(true))
+    
+        for _ in 0..<7 {
+            stack.addArrangedSubview(getFireIcon())
         }
         
-        for _ in 0..<(7 - currentStreak) {
-            stack.addArrangedSubview(getFireIcon(false))
+        for (index, view) in stack.arrangedSubviews.enumerated() {
+            guard index < currentStreak else { break }
+            view.alpha = 0.7
+            UIView.animate(withDuration: 0.5, delay: 0.06 * Double(index), options: .curveEaseOut, animations: {
+                view.alpha = 1
+            }) { _ in
+                view.tintColor = .fire
+            }
         }
-        setNeedsLayout()
     }
     
-    func getFireIcon(_ isFire: Bool) -> UIImageView {
+    func getFireIcon(_ isFire: Bool = false) -> UIImageView {
         let icon = UIImageView()
         icon.image = .flameIcon
         icon.tintColor = isFire ? .fire : .grayBackground

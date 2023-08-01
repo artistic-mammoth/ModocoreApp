@@ -53,12 +53,16 @@ final class StatusIndicatorView: UIView {
         }
     }
 
-    func fillNextCircle() {
+    func fillNextCircle(for count: Int = 1) {
+        var count = count
         let views = stackView.arrangedSubviews as! [CircleIndicatorImageView]
         for i in 0..<views.count {
             if !views[i].isFilled {
+                count -= 1
                 views[i].isFilled = true
-                return
+                if count <= 0 {
+                    break
+                }
             }
         }
     }

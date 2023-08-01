@@ -8,6 +8,6 @@
 protocol ClockDelegate: AnyObject {
     func runClock(with setup: SessionSetup)
     func updateClockTime(_ seconds: Int)
-    func updateClock(with param: IntervalParameters)
+    func updateClock(with param: IntervalParameters, skipFor: Int)
     func stopClock()
 }

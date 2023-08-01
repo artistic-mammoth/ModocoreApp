@@ -24,8 +24,8 @@ final class DataStorageService {
         DayData(date: Date("2023-07-26"), startingCount: 0, focusSeconds: 0),
         DayData(date: Date("2023-07-27"), startingCount: 6, focusSeconds: 6000),
         DayData(date: Date("2023-07-28"), startingCount: 6, focusSeconds: 4000),
-        DayData(date: Date("2023-07-29"), startingCount: 3, focusSeconds: 3700),
-        DayData(date: Date("2023-07-30"), startingCount: 0, focusSeconds: 0),
+        DayData(date: Date("2023-07-29"), startingCount: 0, focusSeconds: 3700),
+        DayData(date: Date("2023-07-30"), startingCount: 1, focusSeconds: 0),
         DayData(date: Date("2023-07-31"), startingCount: 3, focusSeconds: 3500),
         
     ])

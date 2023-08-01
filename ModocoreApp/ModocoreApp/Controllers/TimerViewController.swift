@@ -40,6 +40,16 @@ final class TimerViewController: UIViewController {
         counterService?.delegate = self
         counterService?.runCounter()
     }
+    
+    func enterBackground() {
+        guard counterService != nil && !isPaused else { return }
+        counterService?.enterBackground()
+    }
+    
+    func enterForeground() {
+        guard counterService != nil && !isPaused else { return }
+        counterService?.enterForeground()
+    }
 }
 
 // MARK: - Private extension
@@ -115,16 +125,16 @@ extension TimerViewController: ClockDelegate {
         clockView.currentClockSeconds = seconds
     }
     
-    func updateClock(with param: IntervalParameters) {
+    func updateClock(with param: IntervalParameters, skipFor: Int) {
         intervalTypeLabel.switchType(to: param.type)
         clockView.currentClockSeconds = param.seconds
-        statusIndicatorView.fillNextCircle()
+        statusIndicatorView.fillNextCircle(for: skipFor)
     }
     
     func stopClock() {
         intervalTypeLabel.resetText()
         clockView.stopClock()
-        statusIndicatorView.fillNextCircle()
+        statusIndicatorView.fillNextCircle(for: Int.max)
         counterService = nil
         isStarted = false
     }

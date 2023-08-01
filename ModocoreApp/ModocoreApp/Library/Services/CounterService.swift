@@ -12,10 +12,12 @@ final class CounterService {
     weak var delegate: ClockDelegate?
     
     // MARK: - Private properties
-    private var currentTime = 0
+    private var currentTime: Int = 0
     private weak var timer: Timer?
     private var currentIntervalIndex = 0
     private var setup: SessionSetup
+    
+    private var timeEnterBackground: Date = Date()
     
     // MARK: - Init
     init(_ setup: SessionSetup) {
@@ -37,6 +39,50 @@ final class CounterService {
     
     func resumeTimer() {
         runTimer()
+    }
+    
+    func enterBackground() {
+        timeEnterBackground = .now
+        stopTimer()
+    }
+    
+    func enterForeground() {
+        let diff = Date().timeIntervalSince(timeEnterBackground)
+        
+        currentTime -= Int(diff)
+        
+        if currentTime >= 1 {
+            delegate?.updateClockTime(currentTime)
+            runTimer()
+        }
+        else {
+            currentIntervalIndex += 1
+            
+            var time = abs(currentTime)
+            var skipFor = 0
+            
+            for i in currentIntervalIndex...setup.session.count {
+                currentIntervalIndex = i
+                if currentIntervalIndex >= setup.session.count {
+                    delegate?.stopClock()
+                    stopTimer()
+                    break
+                }
+                
+                let sessionTime = setup.session[i].seconds
+                if time >= sessionTime {
+                    time -= sessionTime
+                    skipFor += 1
+                    continue
+                }
+                else {
+                    currentTime = setup.session[i].seconds - time
+                    delegate?.updateClock(with: setup.session[i], skipFor: skipFor)
+                    runTimer()
+                    break
+                }
+            }
+        }
     }
 }
 
@@ -67,7 +113,7 @@ private extension CounterService {
         }
         
         currentTime = setup.session[currentIntervalIndex].seconds
-        delegate?.updateClock(with: setup.session[currentIntervalIndex])
+        delegate?.updateClock(with: setup.session[currentIntervalIndex], skipFor: 1)
         runTimer()
     }
     
