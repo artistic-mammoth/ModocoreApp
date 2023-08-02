@@ -31,14 +31,17 @@ final class CounterService {
         currentTime = setup.session[0].seconds
         delegate?.runClock(with: setup)
         runTimer()
+        NotificationService.shared.updateNotificationForTimer(setup: setup, currentTime: currentTime, currentIntervalIndex: currentIntervalIndex)
     }
     
     func pauseTimer() {
         timer?.invalidate()
+        NotificationService.shared.removeTimerNotifications()
     }
     
     func resumeTimer() {
         runTimer()
+        NotificationService.shared.updateNotificationForTimer(setup: setup, currentTime: currentTime, currentIntervalIndex: currentIntervalIndex)
     }
     
     func enterBackground() {
@@ -65,6 +68,7 @@ final class CounterService {
                 currentIntervalIndex = i
                 if currentIntervalIndex >= setup.session.count {
                     delegate?.stopClock()
+                    NotificationService.shared.removeTimerNotifications()
                     stopTimer()
                     break
                 }
@@ -79,6 +83,7 @@ final class CounterService {
                     currentTime = setup.session[i].seconds - time
                     delegate?.updateClock(with: setup.session[i], skipFor: skipFor)
                     runTimer()
+                    NotificationService.shared.updateNotificationForTimer(setup: setup, currentTime: currentTime, currentIntervalIndex: currentIntervalIndex)
                     break
                 }
             }
@@ -91,6 +96,7 @@ private extension CounterService {
     func runTimer() {
         timer?.invalidate()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+        timer?.tolerance = 0.1
     }
     
     @objc func timerAction() {
@@ -108,6 +114,7 @@ private extension CounterService {
         
         if currentIntervalIndex >= setup.session.count {
             delegate?.stopClock()
+            NotificationService.shared.removeTimerNotifications()
             stopTimer()
             return
         }

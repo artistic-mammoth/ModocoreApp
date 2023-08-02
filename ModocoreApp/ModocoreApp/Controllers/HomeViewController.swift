@@ -41,6 +41,7 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         setupAndLayoutView()
         setupSwipeNavigation()
+        NotificationService.shared.checkForNotificationPremission()
     }
     
     override func viewWillAppear(_ animated: Bool) {
