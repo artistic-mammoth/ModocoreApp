@@ -26,9 +26,9 @@ final class CounterService {
     
     // MARK: - Public methods
     func runCounter() {
-        guard setup.session.count > 0 else { delegate = nil; return }
+        guard setup.count > 0 else { delegate = nil; return }
         currentIntervalIndex = 0
-        currentTime = setup.session[0].seconds
+        currentTime = setup[0].seconds
         delegate?.runClock(with: setup)
         runTimer()
         NotificationService.shared.updateNotificationForTimer(setup: setup, currentTime: currentTime, currentIntervalIndex: currentIntervalIndex)
@@ -64,24 +64,24 @@ final class CounterService {
             var time = abs(currentTime)
             var skipFor = 0
             
-            for i in currentIntervalIndex...setup.session.count {
+            for i in currentIntervalIndex...setup.count {
                 currentIntervalIndex = i
-                if currentIntervalIndex >= setup.session.count {
+                if currentIntervalIndex >= setup.count {
                     delegate?.stopClock()
                     NotificationService.shared.removeTimerNotifications()
                     stopTimer()
                     break
                 }
                 
-                let sessionTime = setup.session[i].seconds
+                let sessionTime = setup[i].seconds
                 if time >= sessionTime {
                     time -= sessionTime
                     skipFor += 1
                     continue
                 }
                 else {
-                    currentTime = setup.session[i].seconds - time
-                    delegate?.updateClock(with: setup.session[i], skipFor: skipFor)
+                    currentTime = setup[i].seconds - time
+                    delegate?.updateClock(with: setup[i], skipFor: skipFor)
                     runTimer()
                     NotificationService.shared.updateNotificationForTimer(setup: setup, currentTime: currentTime, currentIntervalIndex: currentIntervalIndex)
                     break
@@ -112,15 +112,15 @@ private extension CounterService {
     func checkoutState() {
         currentIntervalIndex += 1
         
-        if currentIntervalIndex >= setup.session.count {
+        if currentIntervalIndex >= setup.count {
             delegate?.stopClock()
             NotificationService.shared.removeTimerNotifications()
             stopTimer()
             return
         }
         
-        currentTime = setup.session[currentIntervalIndex].seconds
-        delegate?.updateClock(with: setup.session[currentIntervalIndex], skipFor: 1)
+        currentTime = setup[currentIntervalIndex].seconds
+        delegate?.updateClock(with: setup[currentIntervalIndex], skipFor: 1)
         runTimer()
     }
     

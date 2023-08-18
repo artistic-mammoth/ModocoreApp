@@ -92,7 +92,7 @@ private extension SetupViewController {
             intervalParameters.append(focus)
             intervalParameters.append(rest)
         }
-        doneAction?(SessionSetup(session: intervalParameters))
+        doneAction?(intervalParameters)
         dismiss(animated: true)
     }
 }

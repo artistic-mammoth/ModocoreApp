@@ -169,6 +169,7 @@
 		C73D0BFD2A01699F006F0EE2 /* ModocoreApp */ = {
 			isa = PBXGroup;
 			children = (
+				C77CE7F82A900B8000166775 /* Application */,
 				C73D0C142A016AB5006F0EE2 /* Models */,
 				C73D0C132A016AA7006F0EE2 /* Controllers */,
 				C73D0C152A016ABC006F0EE2 /* Views */,
@@ -182,8 +183,6 @@
 		C73D0C122A016A76006F0EE2 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				C73D0C002A01699F006F0EE2 /* SceneDelegate.swift */,
-				C73D0BFE2A01699F006F0EE2 /* AppDelegate.swift */,
 				C73D0C092A01699F006F0EE2 /* LaunchScreen.storyboard */,
 				C73D0C0C2A01699F006F0EE2 /* Info.plist */,
 			);
@@ -316,6 +315,15 @@
 				C7F191F02A702F1F00B1937D /* CircleIndicatorImageView.swift */,
 			);
 			path = StatusIndicator;
+			sourceTree = "<group>";
+		};
+		C77CE7F82A900B8000166775 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				C73D0BFE2A01699F006F0EE2 /* AppDelegate.swift */,
+				C73D0C002A01699F006F0EE2 /* SceneDelegate.swift */,
+			);
+			path = Application;
 			sourceTree = "<group>";
 		};
 		C7CB25B62A30E509001F3685 /* Fonts */ = {

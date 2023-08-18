@@ -116,8 +116,8 @@ private extension TimerViewController {
 // MARK: - CounterDelegate extension
 extension TimerViewController: ClockDelegate {
     func runClock(with setup: SessionSetup) {
-        intervalTypeLabel.switchType(to: setup.session[0].type)
-        clockView.runClock(with: setup.session[0].seconds)
+        intervalTypeLabel.switchType(to: setup[0].type)
+        clockView.runClock(with: setup[0].seconds)
         statusIndicatorView.configure(with: setup)
     }
     

@@ -23,6 +23,12 @@ final class NotificationService: NSObject {
         notificationCenter.delegate = self
     }
     
+    // MARK: - Deinit
+    deinit {
+        removeTimerNotifications()
+    }
+    
+    // MARK: - Public methods
     func checkForNotificationPremission() {
         notificationCenter.getNotificationSettings { settings in
             if settings.authorizationStatus == .notDetermined {
@@ -38,7 +44,7 @@ final class NotificationService: NSObject {
         
         var allTimes: Int = currentTime + 1
 
-        for (index, interval) in setup.session.enumerated() {
+        for (index, interval) in setup.enumerated() {
             guard index >= currentIntervalIndex else { continue }
             
             let id = "session-\(index + 1)"
@@ -50,8 +56,8 @@ final class NotificationService: NSObject {
             let lastBody = "Set new pomodoros"
 
             let content = UNMutableNotificationContent()
-            content.title = index == setup.session.endIndex-1 ? lastTitle : title
-            content.body = index == setup.session.endIndex-1 ? lastBody : body
+            content.title = index == setup.endIndex-1 ? lastTitle : title
+            content.body = index == setup.endIndex-1 ? lastBody : body
             content.sound = .default
             
             allTimes += index == currentIntervalIndex ? 0 : (interval.seconds + 1)
