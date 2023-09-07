@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C70875A02AA8BA07009DE7F6 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C708759F2AA8BA07009DE7F6 /* HomePresenter.swift */; };
+		C70875A22AA8C30C009DE7F6 /* HomeAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70875A12AA8C30C009DE7F6 /* HomeAssembly.swift */; };
 		C720F4BA2A72A68F00E61536 /* SetupPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C720F4B92A72A68F00E61536 /* SetupPickerView.swift */; };
 		C720F4BE2A72D92300E61536 /* PickerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C720F4BD2A72D92300E61536 /* PickerType.swift */; };
 		C72180882A757D31001DA4F3 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72180872A757D31001DA4F3 /* HistoryView.swift */; };
@@ -29,7 +31,6 @@
 		C74695442A7152C000D6E795 /* IntervalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74695432A7152C000D6E795 /* IntervalType.swift */; };
 		C74FC4DF2A77BD8A00987BD3 /* DataStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74FC4DE2A77BD8A00987BD3 /* DataStorageService.swift */; };
 		C74FC4E12A77BDB100987BD3 /* HistoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74FC4E02A77BDB100987BD3 /* HistoryData.swift */; };
-		C74FC4E32A77BF0C00987BD3 /* DayData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74FC4E22A77BF0C00987BD3 /* DayData.swift */; };
 		C74FC4E52A77BFF600987BD3 /* Date+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74FC4E42A77BFF600987BD3 /* Date+ext.swift */; };
 		C74FC4E72A77C95500987BD3 /* HistoryBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74FC4E62A77C95500987BD3 /* HistoryBar.swift */; };
 		C750E4A52A7A690100F7277D /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C750E4A42A7A690100F7277D /* NotificationService.swift */; };
@@ -39,6 +40,9 @@
 		C7B4E2902A718919002D3DEE /* ActiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B4E28F2A718919002D3DEE /* ActiveButton.swift */; };
 		C7B4E2922A718A46002D3DEE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B4E2912A718A46002D3DEE /* HomeViewController.swift */; };
 		C7B4E2942A719F80002D3DEE /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B4E2932A719F80002D3DEE /* SetupViewController.swift */; };
+		C7CB15832AA8D005008A1608 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB15822AA8D005008A1608 /* HomeRouter.swift */; };
+		C7CB15852AA8D49A008A1608 /* UIView+addViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB15842AA8D49A008A1608 /* UIView+addViews.swift */; };
+		C7CB15872AA8D59E008A1608 /* UIViewController+Swipeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB15862AA8D59E008A1608 /* UIViewController+Swipeable.swift */; };
 		C7CB25BE2A30E5CB001F3685 /* FontsRes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB25BD2A30E5CB001F3685 /* FontsRes.swift */; };
 		C7CB25CB2A30E776001F3685 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7CB25C52A30E776001F3685 /* Inter-Medium.ttf */; };
 		C7CB25CC2A30E776001F3685 /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7CB25C62A30E776001F3685 /* Inter-Black.ttf */; };
@@ -47,7 +51,6 @@
 		C7CB25CF2A30E776001F3685 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7CB25C92A30E776001F3685 /* Inter-Regular.ttf */; };
 		C7CB25D02A30E776001F3685 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7CB25CA2A30E776001F3685 /* Inter-Bold.ttf */; };
 		C7CB25D32A30E83D001F3685 /* ClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB25D22A30E83D001F3685 /* ClockView.swift */; };
-		C7CB25D72A30EAF5001F3685 /* UIView+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB25D62A30EAF5001F3685 /* UIView+ext.swift */; };
 		C7D226F22A02AD9B001D1966 /* TemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D226F12A02AD9B001D1966 /* TemplateViewController.swift */; };
 		C7D226FA2A02BB19001D1966 /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D226F92A02BB19001D1966 /* TabBarItemView.swift */; };
 		C7D226FC2A02BE86001D1966 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D226FB2A02BE86001D1966 /* TabBarView.swift */; };
@@ -57,6 +60,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C708759F2AA8BA07009DE7F6 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		C70875A12AA8C30C009DE7F6 /* HomeAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembly.swift; sourceTree = "<group>"; };
 		C720F4B92A72A68F00E61536 /* SetupPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupPickerView.swift; sourceTree = "<group>"; };
 		C720F4BD2A72D92300E61536 /* PickerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerType.swift; sourceTree = "<group>"; };
 		C72180872A757D31001DA4F3 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
@@ -81,7 +86,6 @@
 		C74695432A7152C000D6E795 /* IntervalType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalType.swift; sourceTree = "<group>"; };
 		C74FC4DE2A77BD8A00987BD3 /* DataStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorageService.swift; sourceTree = "<group>"; };
 		C74FC4E02A77BDB100987BD3 /* HistoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryData.swift; sourceTree = "<group>"; };
-		C74FC4E22A77BF0C00987BD3 /* DayData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayData.swift; sourceTree = "<group>"; };
 		C74FC4E42A77BFF600987BD3 /* Date+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ext.swift"; sourceTree = "<group>"; };
 		C74FC4E62A77C95500987BD3 /* HistoryBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryBar.swift; sourceTree = "<group>"; };
 		C750E4A42A7A690100F7277D /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -91,6 +95,9 @@
 		C7B4E28F2A718919002D3DEE /* ActiveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveButton.swift; sourceTree = "<group>"; };
 		C7B4E2912A718A46002D3DEE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C7B4E2932A719F80002D3DEE /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
+		C7CB15822AA8D005008A1608 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		C7CB15842AA8D49A008A1608 /* UIView+addViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+addViews.swift"; sourceTree = "<group>"; };
+		C7CB15862AA8D59E008A1608 /* UIViewController+Swipeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Swipeable.swift"; sourceTree = "<group>"; };
 		C7CB25BD2A30E5CB001F3685 /* FontsRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontsRes.swift; sourceTree = "<group>"; };
 		C7CB25C52A30E776001F3685 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
 		C7CB25C62A30E776001F3685 /* Inter-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Black.ttf"; sourceTree = "<group>"; };
@@ -99,7 +106,6 @@
 		C7CB25C92A30E776001F3685 /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
 		C7CB25CA2A30E776001F3685 /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
 		C7CB25D22A30E83D001F3685 /* ClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockView.swift; sourceTree = "<group>"; };
-		C7CB25D62A30EAF5001F3685 /* UIView+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ext.swift"; sourceTree = "<group>"; };
 		C7D226F12A02AD9B001D1966 /* TemplateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateViewController.swift; sourceTree = "<group>"; };
 		C7D226F92A02BB19001D1966 /* TabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemView.swift; sourceTree = "<group>"; };
 		C7D226FB2A02BE86001D1966 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
@@ -119,6 +125,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C708759D2AA8B9F6009DE7F6 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				C708759E2AA8B9FC009DE7F6 /* Home */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		C708759E2AA8B9FC009DE7F6 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				C7B4E2912A718A46002D3DEE /* HomeViewController.swift */,
+				C708759F2AA8BA07009DE7F6 /* HomePresenter.swift */,
+				C7CB15822AA8D005008A1608 /* HomeRouter.swift */,
+				C70875A12AA8C30C009DE7F6 /* HomeAssembly.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		C71BE19C2A77F24000547475 /* History */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +194,7 @@
 		C73D0BFD2A01699F006F0EE2 /* ModocoreApp */ = {
 			isa = PBXGroup;
 			children = (
+				C708759D2AA8B9F6009DE7F6 /* Modules */,
 				C77CE7F82A900B8000166775 /* Application */,
 				C73D0C142A016AB5006F0EE2 /* Models */,
 				C73D0C132A016AA7006F0EE2 /* Controllers */,
@@ -195,7 +221,6 @@
 				C73D0C1D2A016E50006F0EE2 /* Navigation */,
 				C7D226F12A02AD9B001D1966 /* TemplateViewController.swift */,
 				C72FE1D02A30C2BE0000B98C /* TimerViewController.swift */,
-				C7B4E2912A718A46002D3DEE /* HomeViewController.swift */,
 				C7B4E2932A719F80002D3DEE /* SetupViewController.swift */,
 			);
 			path = Controllers;
@@ -208,7 +233,6 @@
 				C726F8972A47549B0007EE80 /* SessionSetup.swift */,
 				C74695412A7152AA00D6E795 /* IntervalParameters.swift */,
 				C74FC4E02A77BDB100987BD3 /* HistoryData.swift */,
-				C74FC4E22A77BF0C00987BD3 /* DayData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -258,8 +282,9 @@
 		C73D0C1B2A016B11006F0EE2 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				C7CB15862AA8D59E008A1608 /* UIViewController+Swipeable.swift */,
 				C7D226FD2A02D984001D1966 /* UIColor+ext.swift */,
-				C7CB25D62A30EAF5001F3685 /* UIView+ext.swift */,
+				C7CB15842AA8D49A008A1608 /* UIView+addViews.swift */,
 				C76FBE532A4B520B0067FC9D /* String+ext.swift */,
 				C74FC4E42A77BFF600987BD3 /* Date+ext.swift */,
 			);
@@ -439,7 +464,9 @@
 				C72FE1D12A30C2BE0000B98C /* TimerViewController.swift in Sources */,
 				C7CB25D32A30E83D001F3685 /* ClockView.swift in Sources */,
 				C726F8952A4751F70007EE80 /* ClockDelegate.swift in Sources */,
+				C70875A22AA8C30C009DE7F6 /* HomeAssembly.swift in Sources */,
 				C72989942A753F6200547B16 /* InfoView.swift in Sources */,
+				C7CB15872AA8D59E008A1608 /* UIViewController+Swipeable.swift in Sources */,
 				C7D226F22A02AD9B001D1966 /* TemplateViewController.swift in Sources */,
 				C7D226FC2A02BE86001D1966 /* TabBarView.swift in Sources */,
 				C74FC4E72A77C95500987BD3 /* HistoryBar.swift in Sources */,
@@ -447,7 +474,6 @@
 				C7D226FE2A02D984001D1966 /* UIColor+ext.swift in Sources */,
 				C73D0BFF2A01699F006F0EE2 /* AppDelegate.swift in Sources */,
 				C726F8932A474F3D0007EE80 /* CounterService.swift in Sources */,
-				C74FC4E32A77BF0C00987BD3 /* DayData.swift in Sources */,
 				C75C09C12A377EBD00A1EA4F /* CircleShape.swift in Sources */,
 				C744208C2A4DCE9F00849DBB /* ImagesRes.swift in Sources */,
 				C726F8982A47549B0007EE80 /* SessionSetup.swift in Sources */,
@@ -456,7 +482,9 @@
 				C73D0C012A01699F006F0EE2 /* SceneDelegate.swift in Sources */,
 				C74FC4E12A77BDB100987BD3 /* HistoryData.swift in Sources */,
 				C74695442A7152C000D6E795 /* IntervalType.swift in Sources */,
+				C7CB15852AA8D49A008A1608 /* UIView+addViews.swift in Sources */,
 				C720F4BA2A72A68F00E61536 /* SetupPickerView.swift in Sources */,
+				C70875A02AA8BA07009DE7F6 /* HomePresenter.swift in Sources */,
 				C75DCA3C2A6FF94C00D362E9 /* StatusIndicatorView.swift in Sources */,
 				C72465422A3E2F1F005AE0AA /* CircleShapeParameters.swift in Sources */,
 				C7D226FA2A02BB19001D1966 /* TabBarItemView.swift in Sources */,
@@ -466,9 +494,9 @@
 				C76FBE542A4B520B0067FC9D /* String+ext.swift in Sources */,
 				C7B4E2942A719F80002D3DEE /* SetupViewController.swift in Sources */,
 				C74FC4DF2A77BD8A00987BD3 /* DataStorageService.swift in Sources */,
-				C7CB25D72A30EAF5001F3685 /* UIView+ext.swift in Sources */,
 				C7CB25BE2A30E5CB001F3685 /* FontsRes.swift in Sources */,
 				C7EF04882A0182AE0030BE13 /* TabBarController.swift in Sources */,
+				C7CB15832AA8D005008A1608 /* HomeRouter.swift in Sources */,
 				C74695402A7107EF00D6E795 /* IntervalTypeLabel.swift in Sources */,
 				C7F191F12A702F1F00B1937D /* CircleIndicatorImageView.swift in Sources */,
 				C74420902A4DE41700849DBB /* ColorRes.swift in Sources */,

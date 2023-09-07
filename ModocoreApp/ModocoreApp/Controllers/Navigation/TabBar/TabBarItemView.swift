@@ -43,7 +43,7 @@ class TabBarItemView: UIButton {
 // MARK: - Private extension
 private extension TabBarItemView {
     func setupView() {
-        addViews([substrate, iconView])
+        addViews(substrate, iconView)
         substrate.layer.cornerRadius = 9
         
         NSLayoutConstraint.activate([

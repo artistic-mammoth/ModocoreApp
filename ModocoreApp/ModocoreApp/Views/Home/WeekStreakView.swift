@@ -45,7 +45,7 @@ final class WeekStreakView: UIView {
 // MARK: - Private extension
 private extension WeekStreakView {
     func setupAndLayoutView() {
-        addViews([titleLabel, stack])
+        addViews(titleLabel, stack)
         updateStackView()
         
         backgroundColor = .blackBackground

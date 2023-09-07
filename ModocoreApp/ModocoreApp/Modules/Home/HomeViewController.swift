@@ -7,9 +7,16 @@
 
 import UIKit
 
+protocol HomeViewProtocol: AnyObject {
+    func updateInfoTodayFocus(totalSeconds: Int, count: Int)
+    func updateInfoAllFocus(totalSeconds: Int, count: Int)
+    func updateWeekStreakView(with currentStreak: Int)
+    func updateHistoryView(with historySeconds: [Int])
+}
+
 final class HomeViewController: UIViewController {
-    // MARK: - Private properties
-    private var currentSession: SessionSetup?
+    // MARK: - Public properties
+    var presenter: HomePresenterProtocol?
     
     // MARK: - Views
     private lazy var infoTodayFocus = InfoView()
@@ -20,7 +27,7 @@ final class HomeViewController: UIViewController {
     private lazy var setupButton = ActiveButton()
     
     private lazy var titleLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = .boldInter(size: 34)
         label.textColor = .blackBackground
         label.textAlignment = .center
@@ -37,11 +44,14 @@ final class HomeViewController: UIViewController {
     }()
     
     // MARK: - Lifecycle
+    override func loadView() {
+        super.loadView()
+        configureView()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupAndLayoutView()
-        setupSwipeNavigation()
-        NotificationService.shared.checkForNotificationPremission()
+        presenter?.viewDidLoaded()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,31 +65,62 @@ final class HomeViewController: UIViewController {
     }
 }
 
+// MARK: - HomeViewProtocol
+extension HomeViewController: HomeViewProtocol {
+    func updateInfoTodayFocus(totalSeconds: Int, count: Int) {
+        infoTodayFocus.totalSeconds = totalSeconds
+        infoTodayFocus.count = count
+    }
+    
+    func updateInfoAllFocus(totalSeconds: Int, count: Int) {
+        infoAllFocus.totalSeconds = totalSeconds
+        infoAllFocus.count = count
+    }
+    
+    func updateWeekStreakView(with currentStreak: Int) {
+        weekStreakView.currentStreak = currentStreak
+    }
+    
+    func updateHistoryView(with historySeconds: [Int]) {
+        historyView.historySeconds = historySeconds
+    }
+}
+
 // MARK: - Private extension
 private extension HomeViewController {
-    func setupAndLayoutView() {
-        view.addViews([titleLabel, infoStack, weekStreakView, historyView, startButton, setupButton])
-        view.backgroundColor = .white
-        
+    func configureView() {
+        view.addViews(titleLabel, infoStack, weekStreakView, historyView, startButton, setupButton)
         infoStack.addArrangedSubview(infoTodayFocus)
         infoStack.addArrangedSubview(infoAllFocus)
         
-        startButton.labelText = Catalog.Names.startButtonName
-        startButton.addTarget(self, action: #selector(startButtonHandle), for: .touchUpInside)
-        
-        setupButton.labelText = Catalog.Names.setupButtonName
-        setupButton.addTarget(self, action: #selector(setupButtonHandle), for: .touchUpInside)
-        
-        updateInfoViews(DataStorageService.history)
-        updateWeekView(DataStorageService.history)
-        updateHistoryView(DataStorageService.history)
-        
-//        DispatchQueue.main.asyncAfter(deadline: .now()+3) { [weak self] in
-//            self?.updateHistoryView(DataStorageService.history2)
-//            self?.updateInfoViews(DataStorageService.history2)
-//            self?.updateWeekView(DataStorageService.history2)
-//        }
+        view.backgroundColor = .white
 
+        infoTodayFocus.titleText = Catalog.Names.infoTodayFocusTitle
+        infoAllFocus.titleText = Catalog.Names.infoAllFocusTitle
+        infoAllFocus.isBlackTheme = false
+        
+        startButton.labelText = Catalog.Names.startButtonName
+        setupButton.labelText = Catalog.Names.setupButtonName
+        setupButtonActions()
+        
+        setupSwipeNavigation()
+        setupLayout()
+    }
+    
+    func setupButtonActions() {
+        let startButtonAction = UIAction { [weak self] _ in
+            self?.presenter?.startButtonDidTap()
+        }
+        
+        let setupButtonAction = UIAction { [weak self] _ in
+            self?.presenter?.setupButtonDidTap()
+        }
+        
+        startButton.addAction(startButtonAction, for: .touchUpInside)
+        setupButton.addAction(setupButtonAction, for: .touchUpInside)
+    }
+    
+    func setupLayout() {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
@@ -119,84 +160,5 @@ private extension HomeViewController {
         let setupBtnTopConstraint = setupButton.topAnchor.constraint(equalTo: historyView.bottomAnchor, constant: 30)
         setupBtnTopConstraint.priority = .defaultHigh
         setupBtnTopConstraint.isActive = true
-    }
-    
-    func updateInfoViews(_ historyData: HistoryData) {
-        infoTodayFocus.titleText = Catalog.Names.infoTodayFocusTitle
-        infoAllFocus.titleText = Catalog.Names.infoAllFocusTitle
-        infoAllFocus.isBlackTheme = false
-
-        let data = historyData.data
-        
-        var allFocusSeconds = 0
-        var allFocusCount = 0
-        
-        for i in 0..<data.count {
-            allFocusSeconds += data[i].focusSeconds
-            allFocusCount += data[i].startingCount
-        }
-
-        infoAllFocus.totalSeconds = allFocusSeconds
-        infoAllFocus.count = allFocusCount
-        
-        let todayData = data.last ?? DayData(date: Date.now, startingCount: 0, focusSeconds: 0)
-        
-        infoTodayFocus.totalSeconds = todayData.focusSeconds
-        infoTodayFocus.count = todayData.startingCount
-    }
-    
-    func updateWeekView(_ historyData: HistoryData) {
-        var count = 0
-        var reversedData = historyData.data
-        reversedData.reverse()
-        
-        let historyCount = reversedData.count <= 7 ? reversedData.count : 7
-
-        for i in 0..<historyCount {
-            if reversedData[i].startingCount == 0 {
-                break
-            }
-            else {
-                count += 1
-            }
-        }
-        weekStreakView.currentStreak = count
-    }
-    
-    func updateHistoryView(_ historyData: HistoryData) {
-        let focusSeconds = historyData.data.map({ $0.focusSeconds })
-        historyView.historySeconds = focusSeconds
-    }
-    
-    @objc func startButtonHandle() {
-        guard let currentSession = self.currentSession else { return }
-        TabBarController.shared.switchTabTo(1)
-        TabBarController.shared.timerController.startTimer(with: currentSession)
-    }
-    
-    @objc func setupButtonHandle() {
-        let setupViewController = SetupViewController()
-        setupViewController.doneAction = { [weak self] session in
-            self?.currentSession = session
-        }
-        navigationController?.present(setupViewController, animated: true)
-    }
-    
-    func setupSwipeNavigation() {
-        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
-        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
-        leftSwipe.direction = .left
-        rightSwipe.direction = .right
-        self.view.addGestureRecognizer(leftSwipe)
-        self.view.addGestureRecognizer(rightSwipe)
-    }
-    
-    @objc func handleSwipes(_ sender: UISwipeGestureRecognizer) {
-        if sender.direction == .left {
-            TabBarController.shared.switchTabTo(self.tabBarController!.selectedIndex + 1)
-        }
-        if sender.direction == .right {
-            TabBarController.shared.switchTabTo(self.tabBarController!.selectedIndex - 1)
-        }
     }
 }

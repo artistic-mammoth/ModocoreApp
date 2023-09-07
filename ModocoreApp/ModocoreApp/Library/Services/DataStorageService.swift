@@ -8,7 +8,7 @@
 import Foundation
 
 final class DataStorageService {
-    static let history: HistoryData = HistoryData(data: [
+    static let history: HistoryData = [
         DayData(date: Date("2023-07-14"), startingCount: 7, focusSeconds: 10500),
         DayData(date: Date("2023-07-15"), startingCount: 4, focusSeconds: 2400),
         DayData(date: Date("2023-07-16"), startingCount: 8, focusSeconds: 7000),
@@ -28,12 +28,12 @@ final class DataStorageService {
         DayData(date: Date("2023-07-30"), startingCount: 1, focusSeconds: 0),
         DayData(date: Date("2023-07-31"), startingCount: 3, focusSeconds: 3500),
         
-    ])
+    ]
     
-    static let history2: HistoryData = HistoryData(data: [
+    static let history2: HistoryData = [
         DayData(date: Date("2023-07-29"), startingCount: 3, focusSeconds: 3700),
         DayData(date: Date("2023-07-30"), startingCount: 1, focusSeconds: 1000),
         DayData(date: Date("2023-07-31"), startingCount: 3, focusSeconds: 3500),
         
-    ])
+    ]
 }

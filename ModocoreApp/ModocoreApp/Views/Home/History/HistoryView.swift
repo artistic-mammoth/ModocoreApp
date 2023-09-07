@@ -45,7 +45,7 @@ final class HistoryView: UIView {
 // MARK: - Private extension
 private extension HistoryView {
     func setupAndLayoutView() {
-        addViews([titleLabel, stack])
+        addViews(titleLabel, stack)
         updateStackView()
         
         backgroundColor = .clear

@@ -12,7 +12,7 @@ final class TabBarController: UITabBarController {
     // MARK: - Private properties
     private var tabBarView: TabBarView!
     
-    private(set) lazy var homeController = UINavigationController(rootViewController: HomeViewController())
+    private(set) lazy var homeController = UINavigationController(rootViewController: HomeAssembly.build())
     private(set) lazy var timerController = TimerViewController()
     private(set) lazy var templateController = TemplateViewController()
     

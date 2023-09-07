@@ -29,7 +29,7 @@ final class TemplateViewController: UIViewController {
     }
     
     private func layoutView() {
-        view.addViews([label])
+        view.addViews(label)
         
         NSLayoutConstraint.activate([
             label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -37,23 +37,5 @@ final class TemplateViewController: UIViewController {
             label.heightAnchor.constraint(equalToConstant: 200),
             label.widthAnchor.constraint(equalToConstant: 200),
         ])
-    }
-    
-    private func setupSwipeNavigation() {
-        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
-        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
-        leftSwipe.direction = .left
-        rightSwipe.direction = .right
-        self.view.addGestureRecognizer(leftSwipe)
-        self.view.addGestureRecognizer(rightSwipe)
-    }
-    
-    @objc private func handleSwipes(_ sender: UISwipeGestureRecognizer) {
-        if sender.direction == .left {
-            TabBarController.shared.switchTabTo(self.tabBarController!.selectedIndex + 1)
-        }
-        if sender.direction == .right {
-            TabBarController.shared.switchTabTo(self.tabBarController!.selectedIndex - 1)
-        }
     }
 }

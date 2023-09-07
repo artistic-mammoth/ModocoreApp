@@ -65,7 +65,7 @@ private extension SetupPickerView {
         pickerView.layer.cornerRadius = 24
         pickerView.clipsToBounds = true
         
-        addViews([titleLabel, pickerView])
+        addViews(titleLabel, pickerView)
         
         if currentType == .timePicker { setupForTimeType() }
         
@@ -109,7 +109,7 @@ private extension SetupPickerView {
         let minLabel = getLabelForSection(with: Catalog.Names.timePrefixMinutesName)
         let secLabel = getLabelForSection(with: Catalog.Names.timePrefixSecondsName)
         
-        addViews([separatorLabel,minLabel, secLabel])
+        addViews(separatorLabel,minLabel, secLabel)
         
         pickerView.selectRow(1, inComponent: 1, animated: true)
         

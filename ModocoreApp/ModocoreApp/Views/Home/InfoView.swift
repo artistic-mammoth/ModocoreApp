@@ -106,7 +106,7 @@ private extension InfoView {
         stack.addArrangedSubview(countLabel)
         stack.addArrangedSubview(stackTime)
         
-        addViews([stack])
+        addViews(stack)
         
         NSLayoutConstraint.activate([
             stack.topAnchor.constraint(equalTo: topAnchor, constant: 11),

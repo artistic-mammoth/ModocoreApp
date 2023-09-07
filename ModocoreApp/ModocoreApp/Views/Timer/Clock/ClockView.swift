@@ -79,7 +79,7 @@ final class ClockView: UIView {
 // MARK: - Private extension
 private extension ClockView {
     func setupAndLayoutView() {
-        addViews([clockLabel, playIcon])
+        addViews(clockLabel, playIcon)
         
         circleShapes = getCircleShapes()
         circleShapes.forEach(layer.addSublayer(_:))

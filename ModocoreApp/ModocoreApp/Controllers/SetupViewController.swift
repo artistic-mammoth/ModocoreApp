@@ -40,7 +40,7 @@ final class SetupViewController: UIViewController {
 // MARK: - Private extension
 private extension SetupViewController {
     func setupAndLayoutView() {
-        view.addViews([focusPickerView, restPickerView, repeatsPickerView, doneButton])
+        view.addViews(focusPickerView, restPickerView, repeatsPickerView, doneButton)
         view.backgroundColor = .white
         
         doneButton.addTarget(self, action: #selector(doneButtonHandler), for: .touchUpInside)
