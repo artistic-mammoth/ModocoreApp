@@ -7,6 +7,21 @@
 
 import Foundation
 
+protocol ClockDelegate: AnyObject {
+    func runClock(with setup: SessionSetup)
+    func updateClockTime(_ seconds: Int)
+    func updateClock(with param: IntervalParameters, skipFor: Int)
+    func stopClock()
+}
+
+protocol CounterServiceProtocol {
+    func runCounter(with setup: SessionSetup)
+    func pauseTimer()
+    func resumeTimer()
+    func enterBackground()
+    func enterForeground()
+}
+
 final class CounterService {
     // MARK: - Public properties
     weak var delegate: ClockDelegate?
@@ -15,17 +30,20 @@ final class CounterService {
     private var currentTime: Int = 0
     private weak var timer: Timer?
     private var currentIntervalIndex = 0
-    private var setup: SessionSetup
+    private var setup: SessionSetup?
     
     private var timeEnterBackground: Date = Date()
     
     // MARK: - Init
-    init(_ setup: SessionSetup) {
-        self.setup = setup
+    init(delegate: ClockDelegate? = nil) {
+        self.delegate = delegate
     }
-    
-    // MARK: - Public methods
-    func runCounter() {
+}
+
+// MARK: - CounterServiceProtocol
+extension CounterService: CounterServiceProtocol {
+    func runCounter(with setup: SessionSetup) {
+        self.setup = setup
         guard setup.count > 0 else { delegate = nil; return }
         currentIntervalIndex = 0
         currentTime = setup[0].seconds
@@ -40,6 +58,7 @@ final class CounterService {
     }
     
     func resumeTimer() {
+        guard let setup = setup else { return }
         runTimer()
         NotificationService.shared.updateNotificationForTimer(setup: setup, currentTime: currentTime, currentIntervalIndex: currentIntervalIndex)
     }
@@ -50,6 +69,7 @@ final class CounterService {
     }
     
     func enterForeground() {
+        guard let setup = setup else { return }
         let diff = Date().timeIntervalSince(timeEnterBackground)
         
         currentTime -= Int(diff)
@@ -110,6 +130,7 @@ private extension CounterService {
     }
     
     func checkoutState() {
+        guard let setup = setup else { return }
         currentIntervalIndex += 1
         
         if currentIntervalIndex >= setup.count {

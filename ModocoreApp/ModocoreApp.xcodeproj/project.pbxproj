@@ -14,7 +14,6 @@
 		C72180882A757D31001DA4F3 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72180872A757D31001DA4F3 /* HistoryView.swift */; };
 		C72465422A3E2F1F005AE0AA /* CircleShapeParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72465412A3E2F1F005AE0AA /* CircleShapeParameters.swift */; };
 		C726F8932A474F3D0007EE80 /* CounterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F8922A474F3D0007EE80 /* CounterService.swift */; };
-		C726F8952A4751F70007EE80 /* ClockDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F8942A4751F70007EE80 /* ClockDelegate.swift */; };
 		C726F8982A47549B0007EE80 /* SessionSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C726F8972A47549B0007EE80 /* SessionSetup.swift */; };
 		C72989942A753F6200547B16 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72989932A753F6200547B16 /* InfoView.swift */; };
 		C72989962A75494F00547B16 /* WeekStreakView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72989952A75494F00547B16 /* WeekStreakView.swift */; };
@@ -41,6 +40,8 @@
 		C7B4E2902A718919002D3DEE /* ActiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B4E28F2A718919002D3DEE /* ActiveButton.swift */; };
 		C7B4E2922A718A46002D3DEE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B4E2912A718A46002D3DEE /* HomeViewController.swift */; };
 		C7B4E2942A719F80002D3DEE /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B4E2932A719F80002D3DEE /* SetupViewController.swift */; };
+		C7C5E9FB2AAB597A00441E57 /* TimerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C5E9FA2AAB597A00441E57 /* TimerPresenter.swift */; };
+		C7C5E9FD2AAB5A0E00441E57 /* TimerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C5E9FC2AAB5A0E00441E57 /* TimerAssembly.swift */; };
 		C7CB15832AA8D005008A1608 /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB15822AA8D005008A1608 /* HomeRouter.swift */; };
 		C7CB15852AA8D49A008A1608 /* UIView+addViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB15842AA8D49A008A1608 /* UIView+addViews.swift */; };
 		C7CB15872AA8D59E008A1608 /* UIViewController+Swipeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB15862AA8D59E008A1608 /* UIViewController+Swipeable.swift */; };
@@ -56,7 +57,7 @@
 		C7D226FA2A02BB19001D1966 /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D226F92A02BB19001D1966 /* TabBarItemView.swift */; };
 		C7D226FC2A02BE86001D1966 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D226FB2A02BE86001D1966 /* TabBarView.swift */; };
 		C7D226FE2A02D984001D1966 /* UIColor+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D226FD2A02D984001D1966 /* UIColor+ext.swift */; };
-		C7D5CF6C2AAA681000953877 /* TabBarAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D5CF6B2AAA681000953877 /* TabBarAssembly.swift */; };
+		C7D5CF6C2AAA681000953877 /* AppCoordinatorAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D5CF6B2AAA681000953877 /* AppCoordinatorAssembly.swift */; };
 		C7EF04882A0182AE0030BE13 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EF04872A0182AE0030BE13 /* TabBarController.swift */; };
 		C7F191F12A702F1F00B1937D /* CircleIndicatorImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F191F02A702F1F00B1937D /* CircleIndicatorImageView.swift */; };
 /* End PBXBuildFile section */
@@ -69,7 +70,6 @@
 		C72180872A757D31001DA4F3 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		C72465412A3E2F1F005AE0AA /* CircleShapeParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleShapeParameters.swift; sourceTree = "<group>"; };
 		C726F8922A474F3D0007EE80 /* CounterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterService.swift; sourceTree = "<group>"; };
-		C726F8942A4751F70007EE80 /* ClockDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockDelegate.swift; sourceTree = "<group>"; };
 		C726F8972A47549B0007EE80 /* SessionSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionSetup.swift; sourceTree = "<group>"; };
 		C72989932A753F6200547B16 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		C72989952A75494F00547B16 /* WeekStreakView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekStreakView.swift; sourceTree = "<group>"; };
@@ -98,6 +98,8 @@
 		C7B4E28F2A718919002D3DEE /* ActiveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveButton.swift; sourceTree = "<group>"; };
 		C7B4E2912A718A46002D3DEE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C7B4E2932A719F80002D3DEE /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
+		C7C5E9FA2AAB597A00441E57 /* TimerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerPresenter.swift; sourceTree = "<group>"; };
+		C7C5E9FC2AAB5A0E00441E57 /* TimerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerAssembly.swift; sourceTree = "<group>"; };
 		C7CB15822AA8D005008A1608 /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		C7CB15842AA8D49A008A1608 /* UIView+addViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+addViews.swift"; sourceTree = "<group>"; };
 		C7CB15862AA8D59E008A1608 /* UIViewController+Swipeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Swipeable.swift"; sourceTree = "<group>"; };
@@ -113,7 +115,7 @@
 		C7D226F92A02BB19001D1966 /* TabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemView.swift; sourceTree = "<group>"; };
 		C7D226FB2A02BE86001D1966 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		C7D226FD2A02D984001D1966 /* UIColor+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ext.swift"; sourceTree = "<group>"; };
-		C7D5CF6B2AAA681000953877 /* TabBarAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAssembly.swift; sourceTree = "<group>"; };
+		C7D5CF6B2AAA681000953877 /* AppCoordinatorAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorAssembly.swift; sourceTree = "<group>"; };
 		C7EF04872A0182AE0030BE13 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C7F191F02A702F1F00B1937D /* CircleIndicatorImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleIndicatorImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,6 +134,7 @@
 		C708759D2AA8B9F6009DE7F6 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				C7C5E9F92AAB596800441E57 /* Timer */,
 				C78059A72AAB48B3009170A9 /* TabBar */,
 				C708759E2AA8B9FC009DE7F6 /* Home */,
 			);
@@ -162,7 +165,6 @@
 			isa = PBXGroup;
 			children = (
 				C71BE19C2A77F24000547475 /* History */,
-				C720F4B92A72A68F00E61536 /* SetupPickerView.swift */,
 				C72989932A753F6200547B16 /* InfoView.swift */,
 				C72989952A75494F00547B16 /* WeekStreakView.swift */,
 			);
@@ -224,7 +226,6 @@
 			isa = PBXGroup;
 			children = (
 				C7D226F12A02AD9B001D1966 /* TemplateViewController.swift */,
-				C72FE1D02A30C2BE0000B98C /* TimerViewController.swift */,
 				C7B4E2932A719F80002D3DEE /* SetupViewController.swift */,
 			);
 			path = Controllers;
@@ -244,6 +245,7 @@
 		C73D0C152A016ABC006F0EE2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C7C5E9FE2AAB659700441E57 /* SetupPicker */,
 				C72180852A757CEF001DA4F3 /* Timer */,
 				C72180842A757CCD001DA4F3 /* Home */,
 				C7B4E28F2A718919002D3DEE /* ActiveButton.swift */,
@@ -268,7 +270,6 @@
 			isa = PBXGroup;
 			children = (
 				C74695452A71531100D6E795 /* Enums */,
-				C744208E2A4DE3FF00849DBB /* Delegates */,
 				C744208D2A4DE1AF00849DBB /* Services */,
 				C73D0C1A2A016B08006F0EE2 /* Helpers */,
 			);
@@ -312,19 +313,10 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		C744208E2A4DE3FF00849DBB /* Delegates */ = {
-			isa = PBXGroup;
-			children = (
-				C726F8942A4751F70007EE80 /* ClockDelegate.swift */,
-			);
-			path = Delegates;
-			sourceTree = "<group>";
-		};
 		C74695452A71531100D6E795 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
 				C74695432A7152C000D6E795 /* IntervalType.swift */,
-				C720F4BD2A72D92300E61536 /* PickerType.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -353,7 +345,7 @@
 				C78059A82AAB48CA009170A9 /* Views */,
 				C7EF04872A0182AE0030BE13 /* TabBarController.swift */,
 				C78059A92AAB4945009170A9 /* AppCoordinator.swift */,
-				C7D5CF6B2AAA681000953877 /* TabBarAssembly.swift */,
+				C7D5CF6B2AAA681000953877 /* AppCoordinatorAssembly.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -365,6 +357,25 @@
 				C7D226FB2A02BE86001D1966 /* TabBarView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		C7C5E9F92AAB596800441E57 /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				C72FE1D02A30C2BE0000B98C /* TimerViewController.swift */,
+				C7C5E9FA2AAB597A00441E57 /* TimerPresenter.swift */,
+				C7C5E9FC2AAB5A0E00441E57 /* TimerAssembly.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		C7C5E9FE2AAB659700441E57 /* SetupPicker */ = {
+			isa = PBXGroup;
+			children = (
+				C720F4BD2A72D92300E61536 /* PickerType.swift */,
+				C720F4B92A72A68F00E61536 /* SetupPickerView.swift */,
+			);
+			path = SetupPicker;
 			sourceTree = "<group>";
 		};
 		C7CB25B62A30E509001F3685 /* Fonts */ = {
@@ -469,7 +480,6 @@
 				C7B4E2902A718919002D3DEE /* ActiveButton.swift in Sources */,
 				C72FE1D12A30C2BE0000B98C /* TimerViewController.swift in Sources */,
 				C7CB25D32A30E83D001F3685 /* ClockView.swift in Sources */,
-				C726F8952A4751F70007EE80 /* ClockDelegate.swift in Sources */,
 				C70875A22AA8C30C009DE7F6 /* HomeAssembly.swift in Sources */,
 				C72989942A753F6200547B16 /* InfoView.swift in Sources */,
 				C7CB15872AA8D59E008A1608 /* UIViewController+Swipeable.swift in Sources */,
@@ -498,9 +508,11 @@
 				C74695422A7152AA00D6E795 /* IntervalParameters.swift in Sources */,
 				C750E4A52A7A690100F7277D /* NotificationService.swift in Sources */,
 				C76FBE542A4B520B0067FC9D /* String+ext.swift in Sources */,
+				C7C5E9FB2AAB597A00441E57 /* TimerPresenter.swift in Sources */,
 				C7B4E2942A719F80002D3DEE /* SetupViewController.swift in Sources */,
-				C7D5CF6C2AAA681000953877 /* TabBarAssembly.swift in Sources */,
+				C7D5CF6C2AAA681000953877 /* AppCoordinatorAssembly.swift in Sources */,
 				C74FC4DF2A77BD8A00987BD3 /* DataStorageService.swift in Sources */,
+				C7C5E9FD2AAB5A0E00441E57 /* TimerAssembly.swift in Sources */,
 				C7CB25BE2A30E5CB001F3685 /* FontsRes.swift in Sources */,
 				C7EF04882A0182AE0030BE13 /* TabBarController.swift in Sources */,
 				C7CB15832AA8D005008A1608 /* HomeRouter.swift in Sources */,

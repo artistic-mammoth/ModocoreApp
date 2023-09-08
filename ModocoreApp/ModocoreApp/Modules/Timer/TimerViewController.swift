@@ -7,11 +7,21 @@
 
 import UIKit
 
+protocol TimerViewProtocol: AnyObject {
+    func start(with session: SessionSetup)
+    func runClock(startSeconds: Int, types: [IntervalType])
+    func updateClockTime(_ seconds: Int)
+    func updateClock(with param: IntervalParameters, skipFor: Int)
+    func stopClock()
+    func pauseClock()
+    func resumeClock()
+    func enterBackground()
+    func enterForeground()
+}
+
 final class TimerViewController: UIViewController {
-    // MARK: - Private properties
-    private var counterService: CounterService?
-    private var isPaused = false
-    private var isStarted = false
+    // MARK: - Public properties
+    var presenter: TimerPresenterProtocol?
     
     // MARK: - Views
     private lazy var clockView = ClockView()
@@ -29,26 +39,50 @@ final class TimerViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+}
+
+// MARK: - TimerViewProtocol
+extension TimerViewController: TimerViewProtocol {
+    func start(with session: SessionSetup) {
+        presenter?.startTimer(with: session)
+    }
     
-    // MARK: - Public methods
-    func startTimer(with session: SessionSetup) {
-        guard !isStarted else { return }
-        
-        isStarted = true
-        
-        counterService = CounterService(session)
-        counterService?.delegate = self
-        counterService?.runCounter()
+    func runClock(startSeconds: Int, types: [IntervalType]) {
+        intervalTypeLabel.switchType(to: types[0])
+        clockView.runClock(with: startSeconds)
+        statusIndicatorView.configure(with: types)
+    }
+    
+    func updateClockTime(_ seconds: Int) {
+        clockView.currentClockSeconds = seconds
+    }
+    
+    func updateClock(with param: IntervalParameters, skipFor: Int) {
+        intervalTypeLabel.switchType(to: param.type)
+        clockView.currentClockSeconds = param.seconds
+        statusIndicatorView.fillNextCircle(for: skipFor)
+    }
+    
+    func stopClock() {
+        intervalTypeLabel.resetText()
+        clockView.stopClock()
+        statusIndicatorView.fillNextCircle(for: Int.max)
+    }
+    
+    func pauseClock() {
+        clockView.pauseClock()
+    }
+    
+    func resumeClock() {
+        clockView.resumeClock()
     }
     
     func enterBackground() {
-        guard counterService != nil && !isPaused else { return }
-        counterService?.enterBackground()
+        presenter?.enterBackground()
     }
     
     func enterForeground() {
-        guard counterService != nil && !isPaused else { return }
-        counterService?.enterForeground()
+        presenter?.enterForeground()
     }
 }
 
@@ -79,45 +113,8 @@ private extension TimerViewController {
         ])
     }
     
-    @objc func clockViewBtnHandler() {
-        guard isStarted else { return }
-
-        if isPaused {
-            counterService?.resumeTimer()
-            clockView.resumeClock()
-            isPaused = false
-        }
-        else {
-            counterService?.pauseTimer()
-            clockView.pauseClock()
-            isPaused = true
-        }
-    }
-}
-
-// MARK: - CounterDelegate extension
-extension TimerViewController: ClockDelegate {
-    func runClock(with setup: SessionSetup) {
-        intervalTypeLabel.switchType(to: setup[0].type)
-        clockView.runClock(with: setup[0].seconds)
-        statusIndicatorView.configure(with: setup)
-    }
-    
-    func updateClockTime(_ seconds: Int) {
-        clockView.currentClockSeconds = seconds
-    }
-    
-    func updateClock(with param: IntervalParameters, skipFor: Int) {
-        intervalTypeLabel.switchType(to: param.type)
-        clockView.currentClockSeconds = param.seconds
-        statusIndicatorView.fillNextCircle(for: skipFor)
-    }
-    
-    func stopClock() {
-        intervalTypeLabel.resetText()
-        clockView.stopClock()
-        statusIndicatorView.fillNextCircle(for: Int.max)
-        counterService = nil
-        isStarted = false
+    @objc
+    func clockViewBtnHandler() {
+        presenter?.clockViewDidTap()
     }
 }

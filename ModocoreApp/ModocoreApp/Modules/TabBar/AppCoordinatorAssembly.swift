@@ -1,5 +1,5 @@
 //
-//  TabBarAssembly.swift
+//  AppCoordinatorAssembly.swift
 //  ModocoreApp
 //
 //  Created by Михайлов Александр on 07.09.2023.
@@ -13,13 +13,13 @@ enum Tabs: Int {
     case template
 }
 
-final class TabBarAssembly {
-    static func build() -> UIViewController {
+final class AppCoordinatorAssembly {
+    static func build() -> AppCoordinatorProtocol {
         let tabBarController = TabBarController()
         let appCoordinator = AppCoordinator(tabBarController: tabBarController)
         
         let homeController = UINavigationController(rootViewController: HomeAssembly.build(appCoordinator: appCoordinator))
-        let timerController = TimerViewController()
+        let timerController = TimerAssembly.build()
         let templateController = TemplateViewController()
         
         let homeItem = TabBarItemView(icon: UIImage(systemName: "house.circle"))
@@ -33,6 +33,6 @@ final class TabBarAssembly {
         tabBarController.setupWith(tabs: tabs)
         appCoordinator.child = tabs.map( { $0.0 })
         
-        return tabBarController
+        return appCoordinator
     }
 }

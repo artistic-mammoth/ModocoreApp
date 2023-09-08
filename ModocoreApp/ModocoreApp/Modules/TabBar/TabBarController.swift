@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol TabBarControllerProtocol {
+protocol TabBarControllerProtocol: UITabBarController {
     func switchTabTo(_ id: Int)
     func setupWith(tabs: [TabsItems])
 }

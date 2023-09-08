@@ -30,24 +30,24 @@ final class StatusIndicatorView: UIView {
     }
 
     // MARK: - Public methods
-    func configure(with setup: SessionSetup) {
+    func configure(with types: [IntervalType]) {
         var views = stackView.arrangedSubviews as! [CircleIndicatorImageView]
         
-        while views.count > setup.count {
+        while views.count > types.count {
             views.removeLast().removeFromSuperview()
         }
         
-        for i in 0..<setup.count {
+        for i in 0..<types.count {
             if i < views.count {
-                views[i].intervalType = setup[i].type
+                views[i].intervalType = types[i]
                 views[i].isFilled = false
             }
             else {
-                stackView.addArrangedSubview(CircleIndicatorImageView(intervalType: setup[i].type))
+                stackView.addArrangedSubview(CircleIndicatorImageView(intervalType: types[i]))
             }
         }
         
-        stackView.constraints.first(where: { $0.firstAttribute == .width })?.constant = stackCellWidth * CGFloat(setup.count)
+        stackView.constraints.first(where: { $0.firstAttribute == .width })?.constant = stackCellWidth * CGFloat(types.count)
         UIView.animate(withDuration: 0.3, delay: 0) { [weak self] in
             self?.layoutIfNeeded()
         }
