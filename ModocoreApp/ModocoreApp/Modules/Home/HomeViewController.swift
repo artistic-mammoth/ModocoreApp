@@ -12,6 +12,7 @@ protocol HomeViewProtocol: AnyObject {
     func updateInfoAllFocus(totalSeconds: Int, count: Int)
     func updateWeekStreakView(with currentStreak: Int)
     func updateHistoryView(with historySeconds: [Int])
+    func requestForUpdateUIFromStorage()
 }
 
 final class HomeViewController: UIViewController {
@@ -57,6 +58,7 @@ final class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        presenter?.viewWillAppear()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -67,6 +69,10 @@ final class HomeViewController: UIViewController {
 
 // MARK: - HomeViewProtocol
 extension HomeViewController: HomeViewProtocol {
+    func requestForUpdateUIFromStorage() {
+        presenter?.requestForUpdateUIFromStorage()
+    }
+    
     func updateInfoTodayFocus(totalSeconds: Int, count: Int) {
         infoTodayFocus.totalSeconds = totalSeconds
         infoTodayFocus.count = count

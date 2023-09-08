@@ -11,6 +11,8 @@ protocol HomePresenterProtocol: AnyObject {
     func viewDidLoaded()
     func startButtonDidTap()
     func setupButtonDidTap()
+    func viewWillAppear()
+    func requestForUpdateUIFromStorage()
 }
 
 final class HomePresenter {
@@ -20,20 +22,22 @@ final class HomePresenter {
     
     // MARK: - Private properties
     private var currentSession: SessionSetup?
+    private var storage: HistoryStorageServiceProtocol
     
     // MARK: - Init
-    init(view: HomeViewProtocol? = nil, router: HomeRouterProtocol) {
+    init(view: HomeViewProtocol? = nil, router: HomeRouterProtocol, currentSession: SessionSetup? = nil, storage: HistoryStorageServiceProtocol) {
         self.view = view
         self.router = router
+        self.currentSession = currentSession
+        self.storage = storage
     }
 }
 
 // MARK: - HomePresenterProtocol
 extension HomePresenter: HomePresenterProtocol {
-    func setupButtonDidTap() {
-        router.openSetupView { [weak self] session in
-            self?.currentSession = session
-        }
+    func viewDidLoaded() {
+        NotificationService.shared.checkForNotificationPremission()
+        updateHistoryData()
     }
     
     func startButtonDidTap() {
@@ -41,12 +45,19 @@ extension HomePresenter: HomePresenterProtocol {
         router.openTimerViewWith(session: currentSession)
     }
     
-    func viewDidLoaded() {
-        NotificationService.shared.checkForNotificationPremission()
-        let data = DataStorageService.history
-        updateViewData(data)
+    func setupButtonDidTap() {
+        router.openSetupView { [weak self] session in
+            self?.currentSession = session
+        }
     }
     
+    func viewWillAppear() {
+        updateHistoryData()
+    }
+    
+    func requestForUpdateUIFromStorage() {
+        updateHistoryData()
+    }
 }
 
 // MARK: - Private extension
@@ -66,7 +77,7 @@ private extension HomePresenter {
     }
     
     func prepareHistoryViewData(_ data: HistoryData) -> [Int] {
-        data.map({ $0.focusSeconds })
+        data.map({ Int($0.focusSeconds) })
     }
     
     func prepareWeekViewData(_ data: HistoryData) -> Int {
@@ -85,8 +96,8 @@ private extension HomePresenter {
     }
     
     func prepareInfoTodayFocusData(_ data: HistoryData) -> (Int, Int) {
-        let todayData = data.last ?? DayData(date: Date.now, startingCount: 0, focusSeconds: 0)
-        return (todayData.focusSeconds, todayData.startingCount)
+        guard let todayData = data.last else { return (0, 0)}
+        return (Int(todayData.focusSeconds), Int(todayData.startingCount))
     }
     
     func prepareInfoAllFocusData(_ data: HistoryData) -> (Int, Int) {
@@ -94,10 +105,23 @@ private extension HomePresenter {
         var allFocusCount = 0
         
         for i in 0..<data.count {
-            allFocusSeconds += data[i].focusSeconds
-            allFocusCount += data[i].startingCount
+            allFocusSeconds += Int(data[i].focusSeconds)
+            allFocusCount += Int(data[i].startingCount)
         }
         
         return (allFocusSeconds, allFocusCount)
+    }
+    
+    func updateHistoryData() {
+        storage.loadHistoryData { result in
+            switch result {
+            case .success(let data):
+                DispatchQueue.main.async { [weak self] in
+                    self?.updateViewData(data)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }

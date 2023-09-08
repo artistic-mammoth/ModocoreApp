@@ -125,14 +125,14 @@ private extension InfoView {
     }
     
     func setTimeText() {
-        let totalMinutes = totalSeconds / 60
-
-        if totalMinutes <= 1000 {
-            totalTimeLabel.text = "\(totalMinutes) "
+        if totalSeconds < 60 {
+            totalTimeLabel.text = "\(totalSeconds) "
+            timePrefixLabel.text = " \(Catalog.Names.timePrefixSecondsName)"
+        } else if totalSeconds / 60 <= 1000 {
+            totalTimeLabel.text = "\(totalSeconds / 60) "
             timePrefixLabel.text = " \(Catalog.Names.timePrefixMinutesName)"
-        }
-        else {
-            totalTimeLabel.text = "\(totalMinutes / 60) "
+        } else {
+            totalTimeLabel.text = "\(totalSeconds / 60 / 60) "
             timePrefixLabel.text = " \(Catalog.Names.timePrefixHoursName)"
         }
     }

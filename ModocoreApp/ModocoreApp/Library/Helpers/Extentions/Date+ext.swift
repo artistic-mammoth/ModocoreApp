@@ -28,4 +28,10 @@ extension Date {
         let date = dateFormatter.date(from: string)!
         self.init(timeInterval: 0, since: date)
     }
+    
+    func toString(format: String = "yyyy-MM-dd") -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.string(from: self)
+    }
 }

@@ -16,10 +16,12 @@ enum Tabs: Int {
 final class AppCoordinatorAssembly {
     static func build() -> AppCoordinatorProtocol {
         let tabBarController = TabBarController()
-        let appCoordinator = AppCoordinator(tabBarController: tabBarController)
+
+        let coreDataStack = CoreDataStack(modelName: "HistoryStorage")
+        let appCoordinator = AppCoordinator(tabBarController: tabBarController, coreDataStack: coreDataStack)
         
         let homeController = UINavigationController(rootViewController: HomeAssembly.build(appCoordinator: appCoordinator))
-        let timerController = TimerAssembly.build()
+        let timerController = TimerAssembly.build(appCoordinator: appCoordinator)
         let templateController = TemplateViewController()
         
         let homeItem = TabBarItemView(icon: UIImage(systemName: "house.circle"))

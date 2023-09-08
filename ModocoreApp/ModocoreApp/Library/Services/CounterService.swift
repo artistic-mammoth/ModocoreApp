@@ -33,10 +33,12 @@ final class CounterService {
     private var setup: SessionSetup?
     
     private var timeEnterBackground: Date = Date()
+    private var storage: HistoryStorageServiceProtocol
     
     // MARK: - Init
-    init(delegate: ClockDelegate? = nil) {
+    init(delegate: ClockDelegate? = nil, storage: HistoryStorageServiceProtocol) {
         self.delegate = delegate
+        self.storage = storage
     }
 }
 
@@ -49,6 +51,7 @@ extension CounterService: CounterServiceProtocol {
         currentTime = setup[0].seconds
         delegate?.runClock(with: setup)
         runTimer()
+        storage.addStartingCount(1)
         NotificationService.shared.updateNotificationForTimer(setup: setup, currentTime: currentTime, currentIntervalIndex: currentIntervalIndex)
     }
     
@@ -83,6 +86,7 @@ extension CounterService: CounterServiceProtocol {
             
             var time = abs(currentTime)
             var skipFor = 0
+            var storageSeconds = 0
             
             for i in currentIntervalIndex...setup.count {
                 currentIntervalIndex = i
@@ -90,12 +94,14 @@ extension CounterService: CounterServiceProtocol {
                     delegate?.stopClock()
                     NotificationService.shared.removeTimerNotifications()
                     stopTimer()
+                    storageSeconds += setup[currentIntervalIndex - 1].seconds
                     break
                 }
                 
                 let sessionTime = setup[i].seconds
                 if time >= sessionTime {
                     time -= sessionTime
+                    storageSeconds += sessionTime
                     skipFor += 1
                     continue
                 }
@@ -107,6 +113,8 @@ extension CounterService: CounterServiceProtocol {
                     break
                 }
             }
+            
+            storage.updateFocusSeconds(storageSeconds)
         }
     }
 }
@@ -137,12 +145,18 @@ private extension CounterService {
             delegate?.stopClock()
             NotificationService.shared.removeTimerNotifications()
             stopTimer()
+            
+            let seconds = setup[currentIntervalIndex - 1].seconds
+            storage.updateFocusSeconds(seconds)
             return
         }
         
         currentTime = setup[currentIntervalIndex].seconds
         delegate?.updateClock(with: setup[currentIntervalIndex], skipFor: 1)
         runTimer()
+        
+        let seconds = setup[currentIntervalIndex - 1].seconds
+        storage.updateFocusSeconds(seconds)
     }
     
     func stopTimer() {

@@ -8,10 +8,11 @@
 import UIKit
 
 final class TimerAssembly {
-    static func build() -> UIViewController {
+    static func build(appCoordinator: AppCoordinatorProtocol) -> UIViewController {
         let viewController = TimerViewController()
-        let counterService = CounterService()
-        let presenter = TimerPresenter(view: viewController, counterService: counterService)
+        let storage = HistoryStorageService(coreDataStack: appCoordinator.coreDataStack)
+        let counterService = CounterService(storage: storage)
+        let presenter = TimerPresenter(view: viewController, counterService: counterService, appCoordinator: appCoordinator)
         counterService.delegate = presenter
         viewController.presenter = presenter
         

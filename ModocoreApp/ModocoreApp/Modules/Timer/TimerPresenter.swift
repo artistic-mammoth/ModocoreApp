@@ -18,15 +18,17 @@ final class TimerPresenter {
     // MARK: - Public properties
     weak var view: TimerViewProtocol?
     var counterService: CounterServiceProtocol?
+    var appCoordinator: AppCoordinatorProtocol?
     
     // MARK: - Private properties
     private var isPaused = false
     private var isStarted = false
     
     // MARK: - Init
-    init(view: TimerViewProtocol? = nil, counterService: CounterServiceProtocol? = nil) {
+    init(view: TimerViewProtocol? = nil, counterService: CounterServiceProtocol? = nil, appCoordinator: AppCoordinatorProtocol? = nil) {
         self.view = view
         self.counterService = counterService
+        self.appCoordinator = appCoordinator
     }
 }
 
@@ -79,10 +81,12 @@ extension TimerPresenter: ClockDelegate {
     
     func updateClock(with param: IntervalParameters, skipFor: Int) {
         view?.updateClock(with: param, skipFor: skipFor)
+        appCoordinator?.requestForUpdateUIFromStorage()
     }
     
     func stopClock() {
         view?.stopClock()
+        appCoordinator?.requestForUpdateUIFromStorage()
         isStarted = false
     }
 }

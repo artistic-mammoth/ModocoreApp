@@ -28,7 +28,7 @@
 		C74695402A7107EF00D6E795 /* IntervalTypeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C746953F2A7107EF00D6E795 /* IntervalTypeLabel.swift */; };
 		C74695422A7152AA00D6E795 /* IntervalParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74695412A7152AA00D6E795 /* IntervalParameters.swift */; };
 		C74695442A7152C000D6E795 /* IntervalType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74695432A7152C000D6E795 /* IntervalType.swift */; };
-		C74FC4DF2A77BD8A00987BD3 /* DataStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74FC4DE2A77BD8A00987BD3 /* DataStorageService.swift */; };
+		C74FC4DF2A77BD8A00987BD3 /* HistoryStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74FC4DE2A77BD8A00987BD3 /* HistoryStorageService.swift */; };
 		C74FC4E12A77BDB100987BD3 /* HistoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74FC4E02A77BDB100987BD3 /* HistoryData.swift */; };
 		C74FC4E52A77BFF600987BD3 /* Date+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74FC4E42A77BFF600987BD3 /* Date+ext.swift */; };
 		C74FC4E72A77C95500987BD3 /* HistoryBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C74FC4E62A77C95500987BD3 /* HistoryBar.swift */; };
@@ -36,6 +36,10 @@
 		C75C09C12A377EBD00A1EA4F /* CircleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75C09C02A377EBD00A1EA4F /* CircleShape.swift */; };
 		C75DCA3C2A6FF94C00D362E9 /* StatusIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75DCA3B2A6FF94C00D362E9 /* StatusIndicatorView.swift */; };
 		C76FBE542A4B520B0067FC9D /* String+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76FBE532A4B520B0067FC9D /* String+ext.swift */; };
+		C77004002AABC277009D667F /* HistoryStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C77003FE2AABC277009D667F /* HistoryStorage.xcdatamodeld */; };
+		C77004042AABC39F009D667F /* DayData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77004022AABC39F009D667F /* DayData+CoreDataClass.swift */; };
+		C77004052AABC39F009D667F /* DayData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77004032AABC39F009D667F /* DayData+CoreDataProperties.swift */; };
+		C77004082AABC4F5009D667F /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77004072AABC4F5009D667F /* CoreDataStack.swift */; };
 		C78059AA2AAB4945009170A9 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78059A92AAB4945009170A9 /* AppCoordinator.swift */; };
 		C7B4E2902A718919002D3DEE /* ActiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B4E28F2A718919002D3DEE /* ActiveButton.swift */; };
 		C7B4E2922A718A46002D3DEE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B4E2912A718A46002D3DEE /* HomeViewController.swift */; };
@@ -86,7 +90,7 @@
 		C746953F2A7107EF00D6E795 /* IntervalTypeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalTypeLabel.swift; sourceTree = "<group>"; };
 		C74695412A7152AA00D6E795 /* IntervalParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalParameters.swift; sourceTree = "<group>"; };
 		C74695432A7152C000D6E795 /* IntervalType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntervalType.swift; sourceTree = "<group>"; };
-		C74FC4DE2A77BD8A00987BD3 /* DataStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStorageService.swift; sourceTree = "<group>"; };
+		C74FC4DE2A77BD8A00987BD3 /* HistoryStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryStorageService.swift; sourceTree = "<group>"; };
 		C74FC4E02A77BDB100987BD3 /* HistoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryData.swift; sourceTree = "<group>"; };
 		C74FC4E42A77BFF600987BD3 /* Date+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ext.swift"; sourceTree = "<group>"; };
 		C74FC4E62A77C95500987BD3 /* HistoryBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryBar.swift; sourceTree = "<group>"; };
@@ -94,6 +98,10 @@
 		C75C09C02A377EBD00A1EA4F /* CircleShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleShape.swift; sourceTree = "<group>"; };
 		C75DCA3B2A6FF94C00D362E9 /* StatusIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusIndicatorView.swift; sourceTree = "<group>"; };
 		C76FBE532A4B520B0067FC9D /* String+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ext.swift"; sourceTree = "<group>"; };
+		C77003FF2AABC277009D667F /* HistoryStorage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HistoryStorage.xcdatamodel; sourceTree = "<group>"; };
+		C77004022AABC39F009D667F /* DayData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DayData+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C77004032AABC39F009D667F /* DayData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DayData+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C77004072AABC4F5009D667F /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		C78059A92AAB4945009170A9 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		C7B4E28F2A718919002D3DEE /* ActiveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveButton.swift; sourceTree = "<group>"; };
 		C7B4E2912A718A46002D3DEE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -306,8 +314,8 @@
 		C744208D2A4DE1AF00849DBB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C77004012AABC27C009D667F /* Storage */,
 				C726F8922A474F3D0007EE80 /* CounterService.swift */,
-				C74FC4DE2A77BD8A00987BD3 /* DataStorageService.swift */,
 				C750E4A42A7A690100F7277D /* NotificationService.swift */,
 			);
 			path = Services;
@@ -328,6 +336,26 @@
 				C7F191F02A702F1F00B1937D /* CircleIndicatorImageView.swift */,
 			);
 			path = StatusIndicator;
+			sourceTree = "<group>";
+		};
+		C77004012AABC27C009D667F /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				C77004062AABC3A6009D667F /* Entities */,
+				C74FC4DE2A77BD8A00987BD3 /* HistoryStorageService.swift */,
+				C77003FE2AABC277009D667F /* HistoryStorage.xcdatamodeld */,
+				C77004072AABC4F5009D667F /* CoreDataStack.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		C77004062AABC3A6009D667F /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				C77004022AABC39F009D667F /* DayData+CoreDataClass.swift */,
+				C77004032AABC39F009D667F /* DayData+CoreDataProperties.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		C77CE7F82A900B8000166775 /* Application */ = {
@@ -483,13 +511,16 @@
 				C70875A22AA8C30C009DE7F6 /* HomeAssembly.swift in Sources */,
 				C72989942A753F6200547B16 /* InfoView.swift in Sources */,
 				C7CB15872AA8D59E008A1608 /* UIViewController+Swipeable.swift in Sources */,
+				C77004082AABC4F5009D667F /* CoreDataStack.swift in Sources */,
 				C7D226F22A02AD9B001D1966 /* TemplateViewController.swift in Sources */,
 				C7D226FC2A02BE86001D1966 /* TabBarView.swift in Sources */,
 				C74FC4E72A77C95500987BD3 /* HistoryBar.swift in Sources */,
 				C720F4BE2A72D92300E61536 /* PickerType.swift in Sources */,
 				C7D226FE2A02D984001D1966 /* UIColor+ext.swift in Sources */,
+				C77004052AABC39F009D667F /* DayData+CoreDataProperties.swift in Sources */,
 				C73D0BFF2A01699F006F0EE2 /* AppDelegate.swift in Sources */,
 				C726F8932A474F3D0007EE80 /* CounterService.swift in Sources */,
+				C77004002AABC277009D667F /* HistoryStorage.xcdatamodeld in Sources */,
 				C75C09C12A377EBD00A1EA4F /* CircleShape.swift in Sources */,
 				C744208C2A4DCE9F00849DBB /* ImagesRes.swift in Sources */,
 				C726F8982A47549B0007EE80 /* SessionSetup.swift in Sources */,
@@ -511,13 +542,14 @@
 				C7C5E9FB2AAB597A00441E57 /* TimerPresenter.swift in Sources */,
 				C7B4E2942A719F80002D3DEE /* SetupViewController.swift in Sources */,
 				C7D5CF6C2AAA681000953877 /* AppCoordinatorAssembly.swift in Sources */,
-				C74FC4DF2A77BD8A00987BD3 /* DataStorageService.swift in Sources */,
+				C74FC4DF2A77BD8A00987BD3 /* HistoryStorageService.swift in Sources */,
 				C7C5E9FD2AAB5A0E00441E57 /* TimerAssembly.swift in Sources */,
 				C7CB25BE2A30E5CB001F3685 /* FontsRes.swift in Sources */,
 				C7EF04882A0182AE0030BE13 /* TabBarController.swift in Sources */,
 				C7CB15832AA8D005008A1608 /* HomeRouter.swift in Sources */,
 				C74695402A7107EF00D6E795 /* IntervalTypeLabel.swift in Sources */,
 				C7F191F12A702F1F00B1937D /* CircleIndicatorImageView.swift in Sources */,
+				C77004042AABC39F009D667F /* DayData+CoreDataClass.swift in Sources */,
 				C78059AA2AAB4945009170A9 /* AppCoordinator.swift in Sources */,
 				C74420902A4DE41700849DBB /* ColorRes.swift in Sources */,
 				C74FC4E52A77BFF600987BD3 /* Date+ext.swift in Sources */,
@@ -736,6 +768,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C77003FE2AABC277009D667F /* HistoryStorage.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C77003FF2AABC277009D667F /* HistoryStorage.xcdatamodel */,
+			);
+			currentVersion = C77003FF2AABC277009D667F /* HistoryStorage.xcdatamodel */;
+			path = HistoryStorage.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C73D0BF32A01699F006F0EE2 /* Project object */;
 }
