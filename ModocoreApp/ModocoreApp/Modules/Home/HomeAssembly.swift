@@ -8,9 +8,9 @@
 import UIKit
 
 final class HomeAssembly {
-    static func build() -> UIViewController {
+    static func build(appCoordinator: AppCoordinatorProtocol) -> UIViewController {
         let viewController = HomeViewController()
-        let router = HomeRouter(viewController: viewController)
+        let router = HomeRouter(viewController: viewController, appCoordinator: appCoordinator)
         let presenter = HomePresenter(view: viewController, router: router)
         viewController.presenter = presenter
         

@@ -37,6 +37,7 @@
 		C75C09C12A377EBD00A1EA4F /* CircleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75C09C02A377EBD00A1EA4F /* CircleShape.swift */; };
 		C75DCA3C2A6FF94C00D362E9 /* StatusIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75DCA3B2A6FF94C00D362E9 /* StatusIndicatorView.swift */; };
 		C76FBE542A4B520B0067FC9D /* String+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C76FBE532A4B520B0067FC9D /* String+ext.swift */; };
+		C78059AA2AAB4945009170A9 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78059A92AAB4945009170A9 /* AppCoordinator.swift */; };
 		C7B4E2902A718919002D3DEE /* ActiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B4E28F2A718919002D3DEE /* ActiveButton.swift */; };
 		C7B4E2922A718A46002D3DEE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B4E2912A718A46002D3DEE /* HomeViewController.swift */; };
 		C7B4E2942A719F80002D3DEE /* SetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B4E2932A719F80002D3DEE /* SetupViewController.swift */; };
@@ -55,6 +56,7 @@
 		C7D226FA2A02BB19001D1966 /* TabBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D226F92A02BB19001D1966 /* TabBarItemView.swift */; };
 		C7D226FC2A02BE86001D1966 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D226FB2A02BE86001D1966 /* TabBarView.swift */; };
 		C7D226FE2A02D984001D1966 /* UIColor+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D226FD2A02D984001D1966 /* UIColor+ext.swift */; };
+		C7D5CF6C2AAA681000953877 /* TabBarAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D5CF6B2AAA681000953877 /* TabBarAssembly.swift */; };
 		C7EF04882A0182AE0030BE13 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EF04872A0182AE0030BE13 /* TabBarController.swift */; };
 		C7F191F12A702F1F00B1937D /* CircleIndicatorImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F191F02A702F1F00B1937D /* CircleIndicatorImageView.swift */; };
 /* End PBXBuildFile section */
@@ -92,6 +94,7 @@
 		C75C09C02A377EBD00A1EA4F /* CircleShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleShape.swift; sourceTree = "<group>"; };
 		C75DCA3B2A6FF94C00D362E9 /* StatusIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusIndicatorView.swift; sourceTree = "<group>"; };
 		C76FBE532A4B520B0067FC9D /* String+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+ext.swift"; sourceTree = "<group>"; };
+		C78059A92AAB4945009170A9 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		C7B4E28F2A718919002D3DEE /* ActiveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveButton.swift; sourceTree = "<group>"; };
 		C7B4E2912A718A46002D3DEE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C7B4E2932A719F80002D3DEE /* SetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +113,7 @@
 		C7D226F92A02BB19001D1966 /* TabBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemView.swift; sourceTree = "<group>"; };
 		C7D226FB2A02BE86001D1966 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		C7D226FD2A02D984001D1966 /* UIColor+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ext.swift"; sourceTree = "<group>"; };
+		C7D5CF6B2AAA681000953877 /* TabBarAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAssembly.swift; sourceTree = "<group>"; };
 		C7EF04872A0182AE0030BE13 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C7F191F02A702F1F00B1937D /* CircleIndicatorImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleIndicatorImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,6 +132,7 @@
 		C708759D2AA8B9F6009DE7F6 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				C78059A72AAB48B3009170A9 /* TabBar */,
 				C708759E2AA8B9FC009DE7F6 /* Home */,
 			);
 			path = Modules;
@@ -218,7 +223,6 @@
 		C73D0C132A016AA7006F0EE2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C73D0C1D2A016E50006F0EE2 /* Navigation */,
 				C7D226F12A02AD9B001D1966 /* TemplateViewController.swift */,
 				C72FE1D02A30C2BE0000B98C /* TimerViewController.swift */,
 				C7B4E2932A719F80002D3DEE /* SetupViewController.swift */,
@@ -298,14 +302,6 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
-		C73D0C1D2A016E50006F0EE2 /* Navigation */ = {
-			isa = PBXGroup;
-			children = (
-				C7EF04862A01829C0030BE13 /* TabBar */,
-			);
-			path = Navigation;
-			sourceTree = "<group>";
-		};
 		C744208D2A4DE1AF00849DBB /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,6 +347,26 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
+		C78059A72AAB48B3009170A9 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				C78059A82AAB48CA009170A9 /* Views */,
+				C7EF04872A0182AE0030BE13 /* TabBarController.swift */,
+				C78059A92AAB4945009170A9 /* AppCoordinator.swift */,
+				C7D5CF6B2AAA681000953877 /* TabBarAssembly.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		C78059A82AAB48CA009170A9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C7D226F92A02BB19001D1966 /* TabBarItemView.swift */,
+				C7D226FB2A02BE86001D1966 /* TabBarView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		C7CB25B62A30E509001F3685 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -371,16 +387,6 @@
 				C75C09C02A377EBD00A1EA4F /* CircleShape.swift */,
 			);
 			path = Clock;
-			sourceTree = "<group>";
-		};
-		C7EF04862A01829C0030BE13 /* TabBar */ = {
-			isa = PBXGroup;
-			children = (
-				C7EF04872A0182AE0030BE13 /* TabBarController.swift */,
-				C7D226F92A02BB19001D1966 /* TabBarItemView.swift */,
-				C7D226FB2A02BE86001D1966 /* TabBarView.swift */,
-			);
-			path = TabBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -493,12 +499,14 @@
 				C750E4A52A7A690100F7277D /* NotificationService.swift in Sources */,
 				C76FBE542A4B520B0067FC9D /* String+ext.swift in Sources */,
 				C7B4E2942A719F80002D3DEE /* SetupViewController.swift in Sources */,
+				C7D5CF6C2AAA681000953877 /* TabBarAssembly.swift in Sources */,
 				C74FC4DF2A77BD8A00987BD3 /* DataStorageService.swift in Sources */,
 				C7CB25BE2A30E5CB001F3685 /* FontsRes.swift in Sources */,
 				C7EF04882A0182AE0030BE13 /* TabBarController.swift in Sources */,
 				C7CB15832AA8D005008A1608 /* HomeRouter.swift in Sources */,
 				C74695402A7107EF00D6E795 /* IntervalTypeLabel.swift in Sources */,
 				C7F191F12A702F1F00B1937D /* CircleIndicatorImageView.swift in Sources */,
+				C78059AA2AAB4945009170A9 /* AppCoordinator.swift in Sources */,
 				C74420902A4DE41700849DBB /* ColorRes.swift in Sources */,
 				C74FC4E52A77BFF600987BD3 /* Date+ext.swift in Sources */,
 			);

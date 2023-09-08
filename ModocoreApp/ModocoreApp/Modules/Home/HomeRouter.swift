@@ -15,17 +15,18 @@ protocol HomeRouterProtocol {
 final class HomeRouter {
     // MARK: - Public properties
     weak var viewController: HomeViewController?
+    var appCoordinator: AppCoordinatorProtocol?
     
-    init(viewController: HomeViewController? = nil) {
+    init(viewController: HomeViewController? = nil, appCoordinator: AppCoordinatorProtocol? = nil) {
         self.viewController = viewController
+        self.appCoordinator = appCoordinator
     }
 }
 
 // MARK: - HomeRouterProtocol
 extension HomeRouter: HomeRouterProtocol {
     func openTimerViewWith(session: SessionSetup) {
-        TabBarController.shared.switchTabTo(1)
-        TabBarController.shared.timerController.startTimer(with: session)
+        appCoordinator?.openAndStartTimer(with: session)
     }
     
     func openSetupView(_ callback: @escaping ((SessionSetup) -> Void)) {

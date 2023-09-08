@@ -15,15 +15,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = TabBarController.shared
+        window?.rootViewController = TabBarAssembly.build()
         window?.makeKeyAndVisible()
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {
-        TabBarController.shared.timerController.enterBackground()
+//        TabBarController.shared.timerController.enterBackground()
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
-        TabBarController.shared.timerController.enterForeground()
+//        TabBarController.shared.timerController.enterForeground()
     }
 }

@@ -7,21 +7,31 @@
 
 import UIKit
 
+protocol TabBarControllerProtocol {
+    func switchTabTo(_ id: Int)
+    func setupWith(tabs: [TabsItems])
+}
+
+typealias TabsItems = (UIViewController, TabBarItemView)
 
 final class TabBarController: UITabBarController {
     // MARK: - Private properties
     private var tabBarView: TabBarView!
     
-    private(set) lazy var homeController = UINavigationController(rootViewController: HomeAssembly.build())
-    private(set) lazy var timerController = TimerViewController()
-    private(set) lazy var templateController = TemplateViewController()
-    
-    static let shared: TabBarController = TabBarController()
-
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+    }
+}
+// MARK: - TabBarControllerProtocol
+extension TabBarController: TabBarControllerProtocol {
+    func setupWith(tabs: [TabsItems]) {
+        let views = tabs.map({ $0.0 })
+        viewControllers = views
+        
+        let items = tabs.map({ $0.1 })
+        setTabBar(items: items)
     }
     
     func switchTabTo(_ id: Int) {
@@ -38,19 +48,6 @@ final class TabBarController: UITabBarController {
 private extension TabBarController {
     func setupView() {
         tabBar.isHidden = true
-        
-        let home = TabBarItemView(icon: UIImage(systemName: "house.circle"))
-        let timerItem = TabBarItemView(icon: UIImage(systemName: "timer.circle.fill"))
-        let template = TabBarItemView(icon: UIImage(systemName: "gear.circle"))
-        
-        setTabBar(items: [home, timerItem, template])
-        viewControllers = [homeController, timerController, templateController]
-        
-        // TODO: - delete after testing
-//        selectedIndex = 1
-//        tabBarView.setCustomAppearance(true)
-//        tabBarView.itemsWrapped[0].isSelectedItem = false
-//        tabBarView.itemsWrapped[1].isSelectedItem = true
     }
     
     func setTabBar(items: [TabBarItemView]) {

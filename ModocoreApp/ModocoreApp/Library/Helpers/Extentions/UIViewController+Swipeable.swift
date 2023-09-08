@@ -19,11 +19,10 @@ extension UIViewController {
     
     @objc func handleSwipes(_ sender: UISwipeGestureRecognizer) {
         if sender.direction == .left {
-            TabBarController.shared.switchTabTo(self.tabBarController!.selectedIndex + 1)
-            
+//            TabBarController.shared.switchTabTo(self.tabBarController!.selectedIndex + 1)
         }
         if sender.direction == .right {
-            TabBarController.shared.switchTabTo(self.tabBarController!.selectedIndex - 1)
+//            TabBarController.shared.switchTabTo(self.tabBarController!.selectedIndex - 1)
         }
     }
 }
