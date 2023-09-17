@@ -7,10 +7,8 @@
 
 import Foundation
 
-protocol TimerPresenterProtocol {
+protocol TimerPresenterProtocol: Lifecycleable {
     func startTimer(with session: SessionSetup)
-    func enterBackground()
-    func enterForeground()
     func clockViewDidTap()
 }
 
@@ -18,17 +16,17 @@ final class TimerPresenter {
     // MARK: - Public properties
     weak var view: TimerViewProtocol?
     var counterService: CounterServiceProtocol?
-    var appCoordinator: AppCoordinatorProtocol?
+    weak var coordinator: TimerCoordinatorProtocol?
     
     // MARK: - Private properties
     private var isPaused = false
     private var isStarted = false
     
     // MARK: - Init
-    init(view: TimerViewProtocol? = nil, counterService: CounterServiceProtocol? = nil, appCoordinator: AppCoordinatorProtocol? = nil) {
+    init(view: TimerViewProtocol? = nil, counterService: CounterServiceProtocol? = nil, coordinator: TimerCoordinatorProtocol? = nil) {
         self.view = view
         self.counterService = counterService
-        self.appCoordinator = appCoordinator
+        self.coordinator = coordinator
     }
 }
 
@@ -41,12 +39,12 @@ extension TimerPresenter: TimerPresenterProtocol {
         counterService?.runCounter(with: session)
     }
     
-    func enterBackground() {
+    func appEnterBackground() {
         guard counterService != nil && !isPaused else { return }
         counterService?.enterBackground()
     }
     
-    func enterForeground() {
+    func appEnterForeground() {
         guard counterService != nil && !isPaused else { return }
         counterService?.enterForeground()
     }
@@ -81,12 +79,12 @@ extension TimerPresenter: ClockDelegate {
     
     func updateClock(with param: IntervalParameters, skipFor: Int) {
         view?.updateClock(with: param, skipFor: skipFor)
-        appCoordinator?.requestForUpdateUIFromStorage()
+        coordinator?.requestForUpdateHomeView()
     }
     
     func stopClock() {
         view?.stopClock()
-        appCoordinator?.requestForUpdateUIFromStorage()
+        coordinator?.requestForUpdateHomeView()
         isStarted = false
     }
 }

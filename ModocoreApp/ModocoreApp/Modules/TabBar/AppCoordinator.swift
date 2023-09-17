@@ -7,54 +7,79 @@
 
 import UIKit
 
-protocol AppCoordinatorProtocol: AnyObject {
-    var tabBarController: TabBarControllerProtocol? { get set }
-    var child: [UIViewController]? { get set }
-    var coreDataStack: CoreDataStackProtocol { get set }
-    func switchTabTo(_ tab: Tabs)
-    func openAndStartTimer(with session: SessionSetup)
-    func appEnterBackground()
-    func appEnterForeground()
-    func requestForUpdateUIFromStorage()
+enum Tabs: Int {
+    case home
+    case timer
+    case template
 }
 
-class AppCoordinator {
-    var tabBarController: TabBarControllerProtocol?
-    var child: [UIViewController]?
-    var coreDataStack: CoreDataStackProtocol
+protocol AppCoordinatorProtocol: BaseCoordinatorProtocol {
+    func switchTabTo(_ tab: Tabs)
+    func startTimer(with session: SessionSetup)
+    func requestForUpdateHomeView()
+}
+
+final class AppCoordinator {
+    // MARK: - Private properties
+    private var tabBarController: TabBarControllerProtocol
+    private var coreDataStack: CoreDataStackProtocol
+    private var modulesfactory: CoordinatorsFactoryProtocol
     
-    init(tabBarController: TabBarControllerProtocol? = nil, child: [UIViewController]? = nil, coreDataStack: CoreDataStackProtocol) {
+    private lazy var homeCoordinator: HomeCoordinatorProtocol = modulesfactory.buildHomeCoordinator()
+    private lazy var timerCoordinator: TimerCoordinatorProtocol = modulesfactory.buildTimerCoordinator()
+    private lazy var templateController = TemplateViewController()
+    
+    // MARK: - Init
+    init(tabBarController: TabBarControllerProtocol, coreDataStack: CoreDataStackProtocol, modulesfactory: CoordinatorsFactoryProtocol) {
         self.tabBarController = tabBarController
-        self.child = child
         self.coreDataStack = coreDataStack
+        self.modulesfactory = modulesfactory
     }
 }
 
 // MARK: - AppCoordinatorProtocol
 extension AppCoordinator: AppCoordinatorProtocol {
-    func requestForUpdateUIFromStorage() {
-        guard let vc = (child?[Tabs.home.rawValue] as? UINavigationController)?.viewControllers.first as? HomeViewProtocol else { return }
-        vc.requestForUpdateUIFromStorage()
+    func start() -> UIViewController {
+        
+        let homeController = homeCoordinator.start()
+        let timerController = timerCoordinator.start()
+        let templateController = templateController
+        
+        let homeItem = TabBarItemView(icon: UIImage(systemName: "house.circle"))
+        let timerItem = TabBarItemView(icon: UIImage(systemName: "timer.circle.fill"))
+        let templateItem = TabBarItemView(icon: UIImage(systemName: "gear.circle"))
+        
+        let tabs: [TabsItems] = [(homeController, homeItem),
+                                 (timerController, timerItem),
+                                 (templateController, templateItem)]
+        
+        tabBarController.setupWith(tabs: tabs)
+        
+        return tabBarController
     }
     
+    func switchTabTo(_ tab: Tabs) {
+        tabBarController.switchTabTo(tab.rawValue)
+    }
+    
+    func startTimer(with session: SessionSetup) {
+        switchTabTo(.timer)
+        timerCoordinator.startTimer(with: session)
+    }
+    
+    func requestForUpdateHomeView() {
+        homeCoordinator.updateHomeView()
+    }
+}
+
+// MARK: - Lifecycleable
+extension AppCoordinator: Lifecycleable {
     func appEnterBackground() {
-        guard let vc = child?[Tabs.timer.rawValue] as? TimerViewProtocol else { return }
-        vc.enterBackground()
+        timerCoordinator.appEnterBackground()
         coreDataStack.saveContext()
     }
     
     func appEnterForeground() {
-        guard let vc = child?[Tabs.timer.rawValue] as? TimerViewProtocol else { return }
-        vc.enterForeground()
-    }
-    
-    func openAndStartTimer(with session: SessionSetup) {
-        switchTabTo(.timer)
-        guard let vc = child?[Tabs.timer.rawValue] as? TimerViewProtocol else { return }
-        vc.start(with: session)
-    }
-    
-    func switchTabTo(_ tab: Tabs) {
-        tabBarController?.switchTabTo(tab.rawValue)
+        timerCoordinator.appEnterForeground()
     }
 }

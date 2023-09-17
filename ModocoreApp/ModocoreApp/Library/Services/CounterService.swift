@@ -94,15 +94,23 @@ extension CounterService: CounterServiceProtocol {
                     delegate?.stopClock()
                     NotificationService.shared.removeTimerNotifications()
                     stopTimer()
-                    storageSeconds += setup[currentIntervalIndex - 1].seconds
+                    
+                    if setup[currentIntervalIndex - 1].type == .focus {
+                        storageSeconds += setup[currentIntervalIndex - 1].seconds
+                    }
+                    
                     break
                 }
                 
                 let sessionTime = setup[i].seconds
                 if time >= sessionTime {
                     time -= sessionTime
-                    storageSeconds += sessionTime
                     skipFor += 1
+
+                    if setup[i].type == .focus {
+                        storageSeconds += sessionTime
+                    }
+                    
                     continue
                 }
                 else {
@@ -146,8 +154,11 @@ private extension CounterService {
             NotificationService.shared.removeTimerNotifications()
             stopTimer()
             
-            let seconds = setup[currentIntervalIndex - 1].seconds
-            storage.updateFocusSeconds(seconds)
+            if setup[currentIntervalIndex - 1].type == .focus {
+                let seconds = setup[currentIntervalIndex - 1].seconds
+                storage.updateFocusSeconds(seconds)
+            }
+            
             return
         }
         
@@ -155,8 +166,10 @@ private extension CounterService {
         delegate?.updateClock(with: setup[currentIntervalIndex], skipFor: 1)
         runTimer()
         
-        let seconds = setup[currentIntervalIndex - 1].seconds
-        storage.updateFocusSeconds(seconds)
+        if setup[currentIntervalIndex - 1].type == .focus {
+            let seconds = setup[currentIntervalIndex - 1].seconds
+            storage.updateFocusSeconds(seconds)
+        }
     }
     
     func stopTimer() {

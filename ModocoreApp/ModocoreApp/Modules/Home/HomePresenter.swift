@@ -12,22 +12,22 @@ protocol HomePresenterProtocol: AnyObject {
     func startButtonDidTap()
     func setupButtonDidTap()
     func viewWillAppear()
-    func requestForUpdateUIFromStorage()
+    func updateHomeView()
 }
 
 final class HomePresenter {
     // MARK: - Public properties
     weak var view: HomeViewProtocol?
-    var router: HomeRouterProtocol
+    weak var coordinator: HomeCoordinatorProtocol?
     
     // MARK: - Private properties
     private var currentSession: SessionSetup?
     private var storage: HistoryStorageServiceProtocol
     
     // MARK: - Init
-    init(view: HomeViewProtocol? = nil, router: HomeRouterProtocol, currentSession: SessionSetup? = nil, storage: HistoryStorageServiceProtocol) {
+    init(view: HomeViewProtocol? = nil, coordinator: HomeCoordinatorProtocol? = nil, currentSession: SessionSetup? = nil, storage: HistoryStorageServiceProtocol) {
         self.view = view
-        self.router = router
+        self.coordinator = coordinator
         self.currentSession = currentSession
         self.storage = storage
     }
@@ -42,11 +42,11 @@ extension HomePresenter: HomePresenterProtocol {
     
     func startButtonDidTap() {
         guard let currentSession = self.currentSession else { return }
-        router.openTimerViewWith(session: currentSession)
+        coordinator?.startTimer(session: currentSession)
     }
     
     func setupButtonDidTap() {
-        router.openSetupView { [weak self] session in
+        coordinator?.openSetupView { [weak self] session in
             self?.currentSession = session
         }
     }
@@ -55,7 +55,7 @@ extension HomePresenter: HomePresenterProtocol {
         updateHistoryData()
     }
     
-    func requestForUpdateUIFromStorage() {
+    func updateHomeView() {
         updateHistoryData()
     }
 }

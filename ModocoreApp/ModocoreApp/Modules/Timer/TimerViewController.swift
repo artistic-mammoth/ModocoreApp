@@ -15,8 +15,6 @@ protocol TimerViewProtocol: AnyObject {
     func stopClock()
     func pauseClock()
     func resumeClock()
-    func enterBackground()
-    func enterForeground()
 }
 
 final class TimerViewController: UIViewController {
@@ -75,14 +73,6 @@ extension TimerViewController: TimerViewProtocol {
     
     func resumeClock() {
         clockView.resumeClock()
-    }
-    
-    func enterBackground() {
-        presenter?.enterBackground()
-    }
-    
-    func enterForeground() {
-        presenter?.enterForeground()
     }
 }
 
