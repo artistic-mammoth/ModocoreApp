@@ -34,7 +34,8 @@ extension TimerCoordinator: TimerCoordinatorProtocol {
     func start() -> UIViewController {
         let viewController = TimerViewController()
         let storage = HistoryStorageService(coreDataStack: coreDataStack)
-        let counterService = CounterService(storage: storage)
+        let audioService = AudioService()
+        let counterService = CounterService(storage: storage, audioService: audioService)
         let presenter = TimerPresenter(view: viewController, counterService: counterService, coordinator: self)
         counterService.delegate = presenter
         viewController.presenter = presenter

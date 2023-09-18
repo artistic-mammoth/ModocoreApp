@@ -34,11 +34,13 @@ final class CounterService {
     
     private var timeEnterBackground: Date = Date()
     private var storage: HistoryStorageServiceProtocol
+    private var audioService: AudioServiceProtocol?
     
     // MARK: - Init
-    init(delegate: ClockDelegate? = nil, storage: HistoryStorageServiceProtocol) {
+    init(delegate: ClockDelegate? = nil, storage: HistoryStorageServiceProtocol, audioService: AudioServiceProtocol? = nil) {
         self.delegate = delegate
         self.storage = storage
+        self.audioService = audioService
     }
 }
 
@@ -141,6 +143,7 @@ private extension CounterService {
             delegate?.updateClockTime(currentTime)
         }
         else {
+            audioService?.playAlertForEndOfState()
             checkoutState()
         }
     }

@@ -44,6 +44,9 @@
 		C77004042AABC39F009D667F /* DayData+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77004022AABC39F009D667F /* DayData+CoreDataClass.swift */; };
 		C77004052AABC39F009D667F /* DayData+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77004032AABC39F009D667F /* DayData+CoreDataProperties.swift */; };
 		C77004082AABC4F5009D667F /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77004072AABC4F5009D667F /* CoreDataStack.swift */; };
+		C775733D2AB8822B00F7D0B9 /* AudioService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C775733C2AB8822A00F7D0B9 /* AudioService.swift */; };
+		C77573402AB887B300F7D0B9 /* piano-notification-5b.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C775733F2AB887B300F7D0B9 /* piano-notification-5b.mp3 */; };
+		C77573422AB8891400F7D0B9 /* SoundRes.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77573412AB8891400F7D0B9 /* SoundRes.swift */; };
 		C78059AA2AAB4945009170A9 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78059A92AAB4945009170A9 /* AppCoordinator.swift */; };
 		C7B4E2902A718919002D3DEE /* ActiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B4E28F2A718919002D3DEE /* ActiveButton.swift */; };
 		C7B4E2922A718A46002D3DEE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B4E2912A718A46002D3DEE /* HomeViewController.swift */; };
@@ -107,6 +110,9 @@
 		C77004022AABC39F009D667F /* DayData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DayData+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C77004032AABC39F009D667F /* DayData+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DayData+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C77004072AABC4F5009D667F /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		C775733C2AB8822A00F7D0B9 /* AudioService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioService.swift; sourceTree = "<group>"; };
+		C775733F2AB887B300F7D0B9 /* piano-notification-5b.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "piano-notification-5b.mp3"; sourceTree = "<group>"; };
+		C77573412AB8891400F7D0B9 /* SoundRes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundRes.swift; sourceTree = "<group>"; };
 		C78059A92AAB4945009170A9 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		C7B4E28F2A718919002D3DEE /* ActiveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveButton.swift; sourceTree = "<group>"; };
 		C7B4E2912A718A46002D3DEE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -265,6 +271,7 @@
 		C73D0C162A016ACA006F0EE2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C775733E2AB887A400F7D0B9 /* Sound */,
 				C7CB25B62A30E509001F3685 /* Fonts */,
 				C744208B2A4DCE9F00849DBB /* ImagesRes.swift */,
 				C7CB25BD2A30E5CB001F3685 /* FontsRes.swift */,
@@ -320,6 +327,7 @@
 				C77004012AABC27C009D667F /* Storage */,
 				C726F8922A474F3D0007EE80 /* CounterService.swift */,
 				C750E4A42A7A690100F7277D /* NotificationService.swift */,
+				C775733C2AB8822A00F7D0B9 /* AudioService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -367,6 +375,15 @@
 				C77004032AABC39F009D667F /* DayData+CoreDataProperties.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		C775733E2AB887A400F7D0B9 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				C775733F2AB887B300F7D0B9 /* piano-notification-5b.mp3 */,
+				C77573412AB8891400F7D0B9 /* SoundRes.swift */,
+			);
+			path = Sound;
 			sourceTree = "<group>";
 		};
 		C77CE7F82A900B8000166775 /* Application */ = {
@@ -502,6 +519,7 @@
 				C7CB25D02A30E776001F3685 /* Inter-Bold.ttf in Resources */,
 				C7CB25CB2A30E776001F3685 /* Inter-Medium.ttf in Resources */,
 				C7CB25CD2A30E776001F3685 /* Inter-Thin.ttf in Resources */,
+				C77573402AB887B300F7D0B9 /* piano-notification-5b.mp3 in Resources */,
 				C7CB25CE2A30E776001F3685 /* Inter-Light.ttf in Resources */,
 				C7CB25CC2A30E776001F3685 /* Inter-Black.ttf in Resources */,
 				C7CB25CF2A30E776001F3685 /* Inter-Regular.ttf in Resources */,
@@ -547,6 +565,8 @@
 				C70875A02AA8BA07009DE7F6 /* HomePresenter.swift in Sources */,
 				C75DCA3C2A6FF94C00D362E9 /* StatusIndicatorView.swift in Sources */,
 				C72465422A3E2F1F005AE0AA /* CircleShapeParameters.swift in Sources */,
+				C77573422AB8891400F7D0B9 /* SoundRes.swift in Sources */,
+				C775733D2AB8822B00F7D0B9 /* AudioService.swift in Sources */,
 				C7D226FA2A02BB19001D1966 /* TabBarItemView.swift in Sources */,
 				C76F13072AB7AC4B00A7E4F2 /* BaseCoordinatorProtocol.swift in Sources */,
 				C7B4E2922A718A46002D3DEE /* HomeViewController.swift in Sources */,
