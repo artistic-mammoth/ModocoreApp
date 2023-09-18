@@ -23,7 +23,7 @@ extension AudioService: AudioServiceProtocol {
         do {
             player?.stop()
             
-            try AVAudioSession.sharedInstance().setCategory(.soloAmbient)
+            try AVAudioSession.sharedInstance().setCategory(.playback)
             try AVAudioSession.sharedInstance().setActive(true)
             
             player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
