@@ -41,12 +41,12 @@ extension TimerPresenter: TimerPresenterProtocol {
     
     func appEnterBackground() {
         guard counterService != nil && !isPaused else { return }
-        counterService?.enterBackground()
+        counterService?.appEnterBackground()
     }
     
     func appEnterForeground() {
         guard counterService != nil && !isPaused else { return }
-        counterService?.enterForeground()
+        counterService?.appEnterForeground()
     }
     
     func clockViewDidTap() {

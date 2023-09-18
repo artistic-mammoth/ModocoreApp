@@ -14,12 +14,10 @@ protocol ClockDelegate: AnyObject {
     func stopClock()
 }
 
-protocol CounterServiceProtocol {
+protocol CounterServiceProtocol: Lifecycleable {
     func runCounter(with setup: SessionSetup)
     func pauseTimer()
     func resumeTimer()
-    func enterBackground()
-    func enterForeground()
 }
 
 final class CounterService {
@@ -28,11 +26,11 @@ final class CounterService {
     
     // MARK: - Private properties
     private var currentTime: Int = 0
-    private weak var timer: Timer?
     private var currentIntervalIndex = 0
     private var setup: SessionSetup?
-    
-    private var timeEnterBackground: Date = Date()
+
+    private weak var timer: Timer?
+    private var timeEnterBackground: Date?
     private var storage: HistoryStorageServiceProtocol
     private var audioService: AudioServiceProtocol?
     
@@ -47,98 +45,54 @@ final class CounterService {
 // MARK: - CounterServiceProtocol
 extension CounterService: CounterServiceProtocol {
     func runCounter(with setup: SessionSetup) {
+        guard setup.count > 0 else { return }
+        
         self.setup = setup
-        guard setup.count > 0 else { delegate = nil; return }
         currentIntervalIndex = 0
         currentTime = setup[0].seconds
-        delegate?.runClock(with: setup)
         runTimer()
+        
+        delegate?.runClock(with: setup)
+        updateNotifications(setup: setup)
         storage.addStartingCount(1)
-        NotificationService.shared.updateNotificationForTimer(setup: setup, currentTime: currentTime, currentIntervalIndex: currentIntervalIndex)
     }
     
     func pauseTimer() {
-        timer?.invalidate()
-        NotificationService.shared.removeTimerNotifications()
+        stopTimer()
+        removeNotifications()
     }
     
     func resumeTimer() {
         guard let setup = setup else { return }
         runTimer()
-        NotificationService.shared.updateNotificationForTimer(setup: setup, currentTime: currentTime, currentIntervalIndex: currentIntervalIndex)
+        updateNotifications(setup: setup)
     }
     
-    func enterBackground() {
+    func appEnterBackground() {
         timeEnterBackground = .now
         stopTimer()
     }
     
-    func enterForeground() {
-        guard let setup = setup else { return }
-        let diff = Date().timeIntervalSince(timeEnterBackground)
+    func appEnterForeground() {
+        guard let timeEnterBackground = timeEnterBackground else { return }
+        let timeOffline = Date().timeIntervalSince(timeEnterBackground)
+        let timeLeft = currentTime - Int(timeOffline)
         
-        currentTime -= Int(diff)
-        
-        if currentTime >= 1 {
+        if timeLeft >= 1 {
+            currentTime = timeLeft
             delegate?.updateClockTime(currentTime)
             runTimer()
-        }
-        else {
-            currentIntervalIndex += 1
-            
-            var time = abs(currentTime)
-            var skipFor = 0
-            var storageSeconds = 0
-            
-            for i in currentIntervalIndex...setup.count {
-                currentIntervalIndex = i
-                if currentIntervalIndex >= setup.count {
-                    delegate?.stopClock()
-                    NotificationService.shared.removeTimerNotifications()
-                    stopTimer()
-                    
-                    if setup[currentIntervalIndex - 1].type == .focus {
-                        storageSeconds += setup[currentIntervalIndex - 1].seconds
-                    }
-                    
-                    break
-                }
-                
-                let sessionTime = setup[i].seconds
-                if time >= sessionTime {
-                    time -= sessionTime
-                    skipFor += 1
-
-                    if setup[i].type == .focus {
-                        storageSeconds += sessionTime
-                    }
-                    
-                    continue
-                }
-                else {
-                    currentTime = setup[i].seconds - time
-                    delegate?.updateClock(with: setup[i], skipFor: skipFor)
-                    runTimer()
-                    NotificationService.shared.updateNotificationForTimer(setup: setup, currentTime: currentTime, currentIntervalIndex: currentIntervalIndex)
-                    break
-                }
-            }
-            
-            storage.updateFocusSeconds(storageSeconds)
+        } else {
+            updateDependsOnOfflineTime(timeLeft: abs(timeLeft))
         }
     }
 }
 
 // MARK: - Private extension
 private extension CounterService {
-    func runTimer() {
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
-        timer?.tolerance = 0.1
-    }
-    
-    @objc func timerAction() {
-        if currentTime >= 1 {
+    @objc
+    func timerAction() {
+        if currentTime > 0 {
             currentTime -= 1
             delegate?.updateClockTime(currentTime)
         }
@@ -150,32 +104,81 @@ private extension CounterService {
     
     func checkoutState() {
         guard let setup = setup else { return }
-        currentIntervalIndex += 1
+        let nextIndex = currentIntervalIndex + 1
         
-        if currentIntervalIndex >= setup.count {
-            delegate?.stopClock()
-            NotificationService.shared.removeTimerNotifications()
+        if nextIndex >= setup.count {
             stopTimer()
-            
-            if setup[currentIntervalIndex - 1].type == .focus {
-                let seconds = setup[currentIntervalIndex - 1].seconds
-                storage.updateFocusSeconds(seconds)
-            }
-            
+            delegate?.stopClock()
+            removeNotifications()
+            updateStorage(setup: setup, index: currentIntervalIndex)
             return
         }
         
-        currentTime = setup[currentIntervalIndex].seconds
-        delegate?.updateClock(with: setup[currentIntervalIndex], skipFor: 1)
+        currentTime = setup[nextIndex].seconds
+        delegate?.updateClock(with: setup[nextIndex], skipFor: 1)
         runTimer()
+        updateStorage(setup: setup, index: currentIntervalIndex)
+        currentIntervalIndex = nextIndex
+    }
+    
+    func updateDependsOnOfflineTime(timeLeft: Int) {
+        guard let setup = setup else { return }
         
-        if setup[currentIntervalIndex - 1].type == .focus {
-            let seconds = setup[currentIntervalIndex - 1].seconds
-            storage.updateFocusSeconds(seconds)
+        var timeLeft = timeLeft
+        let nextIndex = currentIntervalIndex + 1
+        var skipFor = 1
+        
+        for checkIndex in nextIndex...setup.count {
+            if checkIndex >= setup.count {
+                stopTimer()
+                delegate?.stopClock()
+                removeNotifications()
+                updateStorage(setup: setup, index: checkIndex)
+                break
+            }
+            
+            let checkIntervalTime = setup[checkIndex].seconds
+            if timeLeft >= checkIntervalTime {
+                timeLeft -= checkIntervalTime
+                skipFor += 1
+                updateStorage(setup: setup, index: checkIndex)
+                continue
+            } else {
+                currentTime = checkIntervalTime - timeLeft
+                currentIntervalIndex = checkIndex
+                delegate?.updateClock(with: setup[checkIndex], skipFor: skipFor)
+                delegate?.updateClockTime(currentTime)
+                runTimer()
+                updateStorage(setup: setup, index: checkIndex - 1)
+                updateNotifications(setup: setup)
+                break
+            }
         }
+    }
+    
+    func runTimer() {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+        timer?.tolerance = 0.1
     }
     
     func stopTimer() {
         timer?.invalidate()
+    }
+    
+    func updateNotifications(setup: SessionSetup) {
+        NotificationService.shared.updateNotificationForTimer(setup: setup, currentTime: currentTime, currentIntervalIndex: currentIntervalIndex)
+    }
+    
+    func removeNotifications() {
+        NotificationService.shared.removeTimerNotifications()
+    }
+    
+    func updateStorage(setup: SessionSetup, index: Int) {
+        guard index < setup.count && index >= 0 else { return }
+        if setup[index].type == .focus {
+            let seconds = setup[index].seconds
+            storage.updateFocusSeconds(seconds)
+        }
     }
 }
