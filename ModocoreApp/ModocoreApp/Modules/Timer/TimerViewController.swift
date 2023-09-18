@@ -8,7 +8,6 @@
 import UIKit
 
 protocol TimerViewProtocol: AnyObject {
-    func start(with session: SessionSetup)
     func runClock(startSeconds: Int, types: [IntervalType])
     func updateClockTime(_ seconds: Int)
     func updateClock(with param: IntervalParameters, skipFor: Int)
@@ -41,10 +40,6 @@ final class TimerViewController: UIViewController {
 
 // MARK: - TimerViewProtocol
 extension TimerViewController: TimerViewProtocol {
-    func start(with session: SessionSetup) {
-        presenter?.startTimer(with: session)
-    }
-    
     func runClock(startSeconds: Int, types: [IntervalType]) {
         intervalTypeLabel.switchType(to: types[0])
         clockView.runClock(with: startSeconds)
