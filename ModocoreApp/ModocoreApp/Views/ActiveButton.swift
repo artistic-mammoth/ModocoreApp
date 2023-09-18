@@ -44,14 +44,36 @@ final class ActiveButton: UIButton {
 // MARK: - Private extension
 private extension ActiveButton {
     func setupAndLayoutView() {
+        addViews(nameLabel)
+
         layer.cornerRadius = 23
         backgroundColor = .circleAndTextBlue
-        
-        addViews(nameLabel)
+        addAnimationsForButtonEvents()
         
         NSLayoutConstraint.activate([
             nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             nameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
         ])
+    }
+    
+    func addAnimationsForButtonEvents() {
+        let animationDownAction: UIAction = UIAction { [weak self] _ in
+            guard let self = self else { return }
+            UIView.animate(withDuration: 0.3, delay: 0) {
+                self.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)
+                self.alpha = 0.9
+            }
+        }
+        
+        let animationUpAction: UIAction = UIAction { [weak self] _ in
+            guard let self = self else { return }
+            UIView.animate(withDuration: 0.3, delay: 0) {
+                self.transform = .identity
+                self.alpha = 1
+            }
+        }
+        
+        addAction(animationDownAction, for: [.touchDown, .touchDragEnter])
+        addAction(animationUpAction, for: [.touchDragExit, .touchCancel, .touchUpInside, .touchUpOutside])
     }
 }
