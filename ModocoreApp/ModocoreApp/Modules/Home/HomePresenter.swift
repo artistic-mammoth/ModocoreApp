@@ -38,6 +38,7 @@ extension HomePresenter: HomePresenterProtocol {
     func viewDidLoaded() {
         NotificationService.shared.checkForNotificationPremission()
         updateHistoryData()
+        getSavedParameters()
     }
     
     func startButtonDidTap() {
@@ -122,6 +123,13 @@ private extension HomePresenter {
             case .failure(let error):
                 print(error.localizedDescription)
             }
+        }
+    }
+    
+    func getSavedParameters() {
+        if let savedData = try? PropertiesStorage.shared.getTimePicked() {
+            let session = SessionSetup.calculateWith(repeatTimes: savedData.repeats, focusSeconds: savedData.focusSeconds, restSeconds: savedData.restSeconds)
+            self.currentSession = session
         }
     }
 }

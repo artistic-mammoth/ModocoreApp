@@ -7,10 +7,16 @@
 
 import UIKit
 
+struct TimePicked: Codable {
+    let repeats: Int
+    let focusSeconds: Int
+    let restSeconds: Int
+}
+
 final class SetupViewController: UIViewController {
     // MARK: - Public properties
     /// Callback when done editing
-    public var doneAction: ((_ session: SessionSetup) -> Void)?
+    public var pickedCallback: ((_ session: SessionSetup) -> Void)?
     
     // MARK: - Private properties
     private lazy var currentFocusSeconds: Int = 1
@@ -68,6 +74,19 @@ private extension SetupViewController {
             doneButton.heightAnchor.constraint(equalToConstant: 50),
             doneButton.widthAnchor.constraint(equalToConstant: 150),
         ])
+        
+        if let savedData = try? PropertiesStorage.shared.getTimePicked() {
+            currentRepeatsTimes = savedData.repeats
+            currentFocusSeconds = savedData.focusSeconds
+            currentRestSeconds = savedData.restSeconds
+            
+            focusPickerView.selectAmount(currentFocusSeconds)
+            restPickerView.selectAmount(currentRestSeconds)
+            repeatsPickerView.selectAmount(currentRepeatsTimes)
+            
+            let session = SessionSetup.calculateWith(repeatTimes: currentRepeatsTimes, focusSeconds: currentFocusSeconds, restSeconds: currentRestSeconds)
+            pickedCallback?(session)
+        }
     }
     
     func setupHandlers() {
@@ -85,14 +104,11 @@ private extension SetupViewController {
     }
     
     @objc func doneButtonHandler() {
-        var intervalParameters: [IntervalParameters] = []
-        for _ in 0..<currentRepeatsTimes {
-            let focus = IntervalParameters(type: .focus, seconds: currentFocusSeconds)
-            let rest = IntervalParameters(type: .rest, seconds: currentRestSeconds)
-            intervalParameters.append(focus)
-            intervalParameters.append(rest)
-        }
-        doneAction?(intervalParameters)
+        let dataToSave = TimePicked(repeats: currentRepeatsTimes, focusSeconds: currentFocusSeconds, restSeconds: currentRestSeconds)
+        try? PropertiesStorage.shared.saveTimePicked(dataToSave)
+        
+        let session = SessionSetup.calculateWith(repeatTimes: currentRepeatsTimes, focusSeconds: currentFocusSeconds, restSeconds: currentRestSeconds)
+        pickedCallback?(session)
         dismiss(animated: true)
     }
 }

@@ -68,6 +68,7 @@
 		C7D226FE2A02D984001D1966 /* UIColor+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D226FD2A02D984001D1966 /* UIColor+ext.swift */; };
 		C7EF04882A0182AE0030BE13 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EF04872A0182AE0030BE13 /* TabBarController.swift */; };
 		C7F191F12A702F1F00B1937D /* CircleIndicatorImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F191F02A702F1F00B1937D /* CircleIndicatorImageView.swift */; };
+		C7F931812AB9C73000104004 /* PropertiesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F931802AB9C73000104004 /* PropertiesStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -134,6 +135,7 @@
 		C7D226FD2A02D984001D1966 /* UIColor+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+ext.swift"; sourceTree = "<group>"; };
 		C7EF04872A0182AE0030BE13 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C7F191F02A702F1F00B1937D /* CircleIndicatorImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleIndicatorImageView.swift; sourceTree = "<group>"; };
+		C7F931802AB9C73000104004 /* PropertiesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertiesStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,6 +330,7 @@
 				C726F8922A474F3D0007EE80 /* CounterService.swift */,
 				C750E4A42A7A690100F7277D /* NotificationService.swift */,
 				C775733C2AB8822A00F7D0B9 /* AudioService.swift */,
+				C7F931802AB9C73000104004 /* PropertiesStorage.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -559,6 +562,7 @@
 				C73D0C012A01699F006F0EE2 /* SceneDelegate.swift in Sources */,
 				C76F13002AB7981700A7E4F2 /* CoordinatorsFactoryProtocol.swift in Sources */,
 				C74FC4E12A77BDB100987BD3 /* HistoryData.swift in Sources */,
+				C7F931812AB9C73000104004 /* PropertiesStorage.swift in Sources */,
 				C74695442A7152C000D6E795 /* IntervalType.swift in Sources */,
 				C7CB15852AA8D49A008A1608 /* UIView+addViews.swift in Sources */,
 				C720F4BA2A72A68F00E61536 /* SetupPickerView.swift in Sources */,

@@ -85,6 +85,7 @@ private extension ClockView {
         circleShapes.forEach(layer.addSublayer(_:))
         
         clockLabel.isHidden = true
+        playIcon.isHidden = true
         
         NSLayoutConstraint.activate([
             clockLabel.centerXAnchor.constraint(equalTo: centerXAnchor),

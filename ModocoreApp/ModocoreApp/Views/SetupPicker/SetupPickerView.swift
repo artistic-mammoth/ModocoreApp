@@ -51,6 +51,19 @@ final class SetupPickerView: UIView {
         super.init(frame: .zero)
         setupAndLayoutView()
     }
+    
+    // MARK: - Public methods
+    func selectAmount(_ amount: Int) {
+        switch currentType {
+        case .timePicker:
+            selectedMinutes = amount / 60
+            selectedSeconds = amount % 60
+            pickerView.selectRow(selectedMinutes, inComponent: 0, animated: true)
+            pickerView.selectRow(selectedSeconds, inComponent: 1, animated: true)
+        case .amountPicker:
+            pickerView.selectRow(amount - 1, inComponent: 0, animated: true)
+        }
+    }
 }
 
 // MARK: - Private extension

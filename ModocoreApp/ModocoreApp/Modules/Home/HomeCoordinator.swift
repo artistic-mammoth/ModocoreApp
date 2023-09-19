@@ -45,7 +45,7 @@ extension HomeCoordinator: HomeCoordinatorProtocol {
     
     func openSetupView(_ callback: @escaping ((SessionSetup) -> Void)) {
         let setupViewController = SetupViewController()
-        setupViewController.doneAction = { callback($0) }
+        setupViewController.pickedCallback = { callback($0) }
         navigationController.present(setupViewController, animated: true)
     }
     
